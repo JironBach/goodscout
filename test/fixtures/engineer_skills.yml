@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skills_id: 1
+  engineer_id: 1
+  years_of_experience: 1
+  level: 1
+
+two:
+  skills_id: 1
+  engineer_id: 1
+  years_of_experience: 1
+  level: 1

@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @enginner.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @enginner.email %>
+</p>
+
+<p>
+  <strong>Encrypted password:</strong>
+  <%= @enginner.encrypted_password %>
+</p>
+
+<p>
+  <strong>Self introduction:</strong>
+  <%= @enginner.self_introduction %>
+</p>
+
+<p>
+  <strong>Living place:</strong>
+  <%= @enginner.living_place %>
+</p>
+
+<p>
+  <strong>Fb uid:</strong>
+  <%= @enginner.fb_uid %>
+</p>
+
+<p>
+  <strong>Github uid:</strong>
+  <%= @enginner.github_uid %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @enginner.age %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @enginner.phone_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @enginner.status %>
+</p>
+
+<p>
+  <strong>Job history:</strong>
+  <%= @enginner.job_history %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @enginner.notes %>
+</p>
+
+<p>
+  <strong>Is registration enabled:</strong>
+  <%= @enginner.is_registration_enabled %>
+</p>
+
+<%= link_to 'Edit', edit_enginner_path(@enginner) %> |
+<%= link_to 'Back', enginners_path %>

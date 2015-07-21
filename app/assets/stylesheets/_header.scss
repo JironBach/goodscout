@@ -1,0 +1,61 @@
+/*
+  navbar
+  -navbar
+  __tilte:navbars title
+*/
+
+.navbar{
+  background-color: $navbar-bg-col;
+  color: $font-col;
+  padding: $navbar-padding;
+  margin-bottom: 15px;
+  border-top: $navbar-border;
+}
+
+.navbar__logo{
+  position: relative;
+  float: left;
+  display: inline;
+  font-size: 16px;
+  color: $navbar-logo-col;
+  padding-left: 20px;
+  padding-right: 0;
+  @media (max-width: $window-size-m){
+    font-size: 14px;
+  }
+}
+
+.navbar__title{
+  position: relative;
+  font-size: $font-size;
+  float: left;
+  min-height:1px;
+  width: 70%;
+  padding-right:15px;
+  padding-left:15px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: $window-size-m){
+    font-size: 14px;
+  }
+  @media (max-width: $window-size-m){
+    display: none;
+  }
+}
+
+.navbar__right{
+  position: relative;
+  float: right;
+  margin-right: 15px;
+  margin-top: 2px;
+}
+
+.navbar__list{
+  ul li {
+    margin: 0;
+    display: inline-block;
+    padding-right: 20px;
+  }
+}

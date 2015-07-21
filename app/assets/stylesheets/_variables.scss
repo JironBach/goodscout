@@ -1,0 +1,250 @@
+/* 
+  common
+ */
+$theme-col: #0074af;
+$accent-col: #fba848;
+$accent-col-2: #f27398;
+$accent-col-3: #58BE89;
+$cushion-col: #363947;
+$base-col: #eceef1;
+$base-col-2: #e7e7e7; 
+$base-col-3: white;
+$base-col-4: #b3bdc7;
+$font-size: 14px;
+$font-col: #363947;
+$font-col-sub: lighten($font-col,10%);
+
+$bg-col: $base-col;
+$window-size-sp: 400px;
+$window-size-s: 768px;
+$window-size-m: 992px;
+$window-size-l: 1200px;
+
+
+$font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS P Gothic",Verdana,"sans-serif";
+
+/*
+  flag
+*/
+$debug-flag: false;
+$shadow-flag: false;
+$shadow-dropdown-flag: false;
+
+/*
+  navbar
+*/
+$navbar-bg-col: $base-col-3;
+$navbar-border: 2px solid $theme-col;
+$navbar-logo-col: $theme-col;
+$navbar-padding-width: 10px;
+$navbar-padding-height: 10px;
+$navbar-padding: $navbar-padding-height $navbar-padding-width;
+
+/*
+  footer
+*/
+$footer-bg-col: $theme-col;
+$footer-col: white;
+$footer-border: 2px solid $theme-col;
+$footer-logo-col: $theme-col;
+$footer-padding-width: 10px;
+$footer-padding-height: 10px;
+$footer-padding: $footer-padding-height $footer-padding-width;
+
+/*
+  dropdown
+ */
+$dropdown-bg-col: white;
+$dropdown-border-col: $cushion-col;
+$dropdown-z-index: 200;
+$dropdown-header-bg-col: $cushion-col;
+$dropdown-border: 1px solid $dropdown-border-col;
+$dropdown-list-border: 1px solid $base-col;
+$dropdown-s-col: $theme-col;
+$dropdown-s-border: 1px solid $dropdown-s-col;
+$dropdown-item-desc-s-col: $theme-col;
+$dropdown-item-desc-s-hover-col: white;
+$dropdown-hover-bg-col: $theme-col;
+$dropdown-hover-col: white;
+
+$dropdown-triangle-col: $cushion-col;
+$dropdown-s-triangle-col: white;
+$dropdown-s-triangle-border-col: $theme-col;
+
+/*
+  triangle 
+ */
+$triangle-col: $cushion-col;
+$triangle-s-col: $theme-col;
+$triangle-s-col-2: white;
+
+/*
+  content-box 
+ */ 
+$content-box-title-border-col: $accent-col;
+
+$content-box-header-login-col: $theme-col;
+$content-box-header-alert-bg-col: $base-col;
+
+$content-box-alert-xs-height: 220px;
+$content-box-alert-s-height: 350px;
+$content-box-alert-m-height: 400px;
+$content-box-alert-l-height: 570px;
+$content-box-alert-header-icon-col: $theme-col;
+
+$content-box-scroll-view-border: 1px solid $base-col;
+$content-box-scroll-view-shadow: 0 0 2px 2px rgba(0,0,0,0.2);
+
+$time-line-bg-col: $accent-col; 
+/*
+  message box
+ */
+$comment-box-bg-col: white;
+$comment-box-border-col: $accent-col;
+
+/*
+  movie box
+*/
+$movie-bg-col: white;
+$movie-box-speed-font-size: 8px;
+$movie-box-speed-bg-col : rgba(255,255,255,0.8);
+
+/*
+  tools
+*/
+$tools-bg-col: white;
+$tool-box-time-bg-col: $theme-col;
+$tool-box-time-full-col: darken($base-col,20%);
+$input-text-border-col: $base-col; 
+$input-border: 1px solid $base-col-4;
+$input-text-shadow: 0 0 3px 1px rgba(00,105,255,0.5);
+
+/*
+  button
+*/
+$btn-bg-col: $theme-col;
+$btn-smart-col: $theme-col;
+$btn-smart-bg-col: white;
+$btn-smart-hover-col: white;
+$btn-smart-hover-bg-col: $theme-col;
+$btn-disabled-bg-col: darken($base-col,20%);
+
+/*
+  button rounded
+*/
+$btn-r-col: $theme-col;
+$btn-r-bg-col: white;
+$btn-r-bg-col-2: $base-col;
+$btn-r-two-colors-border-col: darken($base-col-2,20%);
+$btn-r-two-colors-border: 2px solid $btn-r-two-colors-border-col;
+
+/*
+  progressbar
+*/
+$progressbar-bg-col: $theme-col;
+$progressbar-height: 10px;
+$progressbar-frame-bg-col: $base-col-2;
+
+$comment-marker-bg-col: $theme-col;
+$comment-marker-border-col: darken($progressbar-bg-col,10%);
+
+/*
+  balloon
+*/
+$balloon-font-size: 12px;
+$balloon-bg-col: white;
+$balloon-border-col: $theme-col;
+
+$balloon-z-index: 300;
+
+/*
+  cover
+*/
+$cover-bg-col: rgba(0,0,0,0.5);
+$cover-z-index: 100;
+$cover-dark-bg-col: rgba(0,0,0,0.9);
+
+/*
+  panel
+*/
+$panel-border-col: $base-col;
+
+$panel-notice-good-col: $accent-col-3;
+$panel-notice-good-bg-col: white;
+$panel-notice-good-border: 2px solid $accent-col-3;
+
+$panel-notice-error-col: $accent-col-2;
+$panel-notice-error-bg-col: white;
+$panel-notice-error-border: 2px solid $accent-col-2;
+
+/*
+  textarea
+*/
+$textarea-border-col: $base-col-4;
+
+/*
+  table
+*/
+$manage-table-border-col: $base-col;
+$manage-table-url-col: $font-col-sub;
+$manage-table-th-col: $base-col-2;
+$manage-table-th-icon-size: $font-size + 5px;
+$manage-table-th-icon-col: darken($base-col,30%);
+
+/*
+  fa
+*/
+$fa-manage-table-col: darken($base-col,30%);
+$fa-in-comment-box-col: $theme-col;
+$fa-comment-menu-col: $theme-col;
+$fa-comment-checked-col: darken($base-col,20%);
+$fa-comment-unchecked-col: $accent-col;
+$fa-delete-cover-comment-over-text: $base-col;
+$fa-sp-lock-col: $font-col;
+
+$fa-theme-col: $theme-col;
+$fa-accent-col: $accent-col;
+$fa-smudge-col: darken($base-col,10%);
+
+/*
+  list-item  
+*/
+$list-item-desc-sub-col: $font-col-sub;
+
+/*
+  shadow
+*/
+$inset-shadow:0 0 2px 2px rgba(0,0,0,0.2) inset;
+$inset-shadow-l:0 0 4px 4px rgba(0,0,0,0.4) inset;
+
+/*
+  dashboard
+*/
+$dashboard-bg-col: #fafafa;
+
+/*
+  text
+ */
+$text-link-col: $theme-col;
+$text-good-col: $accent-col-3;
+$text-error-col: $accent-col-2;
+$text-small-col: darken($base-col,20%);
+
+/*
+  border
+*/
+$border-r-col: black;
+$border-r-danger-col: $accent-col-2;
+$border-r-good-col: $accent-col-3;
+
+/*
+  circle bg
+*/
+$circle-bg-icon-col: white;
+$circle-bg-icon-bg-col: $theme-col;
+
+/*
+  popup
+*/
+$popup-s-col: $base-col;
+
