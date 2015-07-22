@@ -1,4 +1,5 @@
 <%= form_for(@engineer) do |f| %>
+
   <% if @engineer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@engineer.errors.count, "error") %> prohibited this engineer from being saved:</h2>
@@ -15,43 +16,67 @@
     ※<%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     ※<%= f.label :age %><br>
     <%= f.number_field :age %>
   </div>
+
   <div class="field">
     <%= f.label :living_place %><br>
     <%= f.text_field :living_place %>
   </div>
+
   <div class="field">
     ※<%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+
   <div class="field">
     <%= f.label :phone_number %><br>
     <%= f.number_field :phone_number %>
   </div>
+
   <div class="field">
     ※<%= f.label :password, "パスワード" %><br>
     <%= f.text_field :password %>
   </div>
+
   <div class="field">
     ※<%= f.label :password_confirmation, "パスワード確認" %><br>
     <%= f.text_field :password_confirmation %>
   </div>
+
   <div class="field">
     ※<%= f.label :self_introduction %><br>
     <%= f.text_area :self_introduction %>
   </div>
+
   <div class="field">
     ※<%= f.label :job_history %><br>
     <%= f.text_area :job_history %>
   </div>
+
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
   </div>
+
+  <div class="field">
+    <% @skills.each do |skill| %>
+      <%= label_tag skill.name %>
+      <%= select_tag "skills[#{skill.id}][year]",
+        options_for_select([['未経験',0],['1年以下',1], ['1年以上', 2],['2年以上',3]]) 
+      %>
+      <%= select_tag "skills[#{skill.id}][level]",
+        options_for_select([['未経験',0],['1',1], ['2', 2],['3',3]]) 
+      %>
+      <% hidden_field_tag :engineer, 1 %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

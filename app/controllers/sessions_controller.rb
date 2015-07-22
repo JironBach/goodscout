@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
     session[:user] = 'hoge'
 
     user = Engineer.find_by_email params[:email]
-    pp params[:password_digest] 
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

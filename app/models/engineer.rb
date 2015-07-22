@@ -1,6 +1,6 @@
 class Engineer < ActiveRecord::Base
 
-  def self.create_engineer params,password_digest,status,is_invitation_enabled
+  def self.create_engineer params,status,is_invitation_enabled
 
     begin
       Engineer.create(

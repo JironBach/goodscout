@@ -2,6 +2,8 @@ class EngineersController < ApplicationController
 
   before_action :set_engineer, only: [:show, :edit, :update, :destroy]
 
+  require 'pp'
+
   # GET /engineers
   # GET /engineers.json
   def index
@@ -15,6 +17,7 @@ class EngineersController < ApplicationController
 
   # GET /engineers/new
   def new
+    @skills = Skill.all
     @engineer = Engineer.new
   end
 
@@ -30,17 +33,29 @@ class EngineersController < ApplicationController
     status = 0
     status = params['status'] if params['status'] != nil
     is_invitation_enabled = true
-    @engineer = Engineer.create_engineer(engineer_params,password_digest,status,is_invitation_enabled)
+    @engineer = Engineer.create_engineer(engineer_params,status,is_invitation_enabled)
 
-    puts "===================="
     respond_to do |format|
       if @engineer != nil 
+        skills_data = []
+        params['skills'].each do |skill|
+          if skill[1]['year'].to_i > 0 || skill[1]['level'].to_i > 0
+            skills_data.push({
+              :skill_id             => skill[0].to_i,
+              :engineer_id          => @engineer.id,
+              :years_of_experience  => skill[1]['year'],
+              :level                => skill[1]['level'] 
+            })
+          end
+        end
+        EngineerSkill.insert_engineer_skills(skills_data)
         format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
       else
         @engineer = Engineer.new
         format.html { render :new, notice: @engineer.errors }
       end
     end
+
   end
 
   # PATCH/PUT /engineers/1

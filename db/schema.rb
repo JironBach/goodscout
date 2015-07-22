@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   create_table "engineer_skills", force: :cascade do |t|
-    t.integer  "skills_id",           limit: 4, null: false
+    t.integer  "skill_id",            limit: 4, null: false
     t.integer  "engineer_id",         limit: 4, null: false
     t.integer  "years_of_experience", limit: 4, null: false
     t.integer  "level",               limit: 4, null: false
