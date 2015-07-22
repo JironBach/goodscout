@@ -37,21 +37,22 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   create_table "engineers", force: :cascade do |t|
-    t.string   "name",                  limit: 255,   null: false
-    t.string   "email",                 limit: 255,   null: false
-    t.string   "encrypted_password",    limit: 255,   null: false
-    t.text     "self_introduction",     limit: 65535, null: false
-    t.string   "living__place",         limit: 255
+    t.string   "name",                  limit: 255,                  null: false
+    t.string   "email",                 limit: 255,                  null: false
+    t.string   "picture",               limit: 255
+    t.string   "password_digest",       limit: 255,                  null: false
+    t.text     "self_introduction",     limit: 65535,                null: false
+    t.string   "living_place",          limit: 255
     t.string   "fb_uid",                limit: 255
     t.string   "github_uid",            limit: 255
-    t.integer  "age",                   limit: 4,     null: false
-    t.integer  "phone_number",          limit: 8
-    t.integer  "status",                limit: 4,     null: false
-    t.text     "job_history",           limit: 65535, null: false
+    t.integer  "age",                   limit: 4,                    null: false
+    t.string   "phone_number",          limit: 255
+    t.integer  "status",                limit: 4,     default: 0,    null: false
+    t.text     "job_history",           limit: 65535,                null: false
     t.text     "notes",                 limit: 65535
-    t.boolean  "is_invitation_enabled", limit: 1,     null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.boolean  "is_invitation_enabled", limit: 1,     default: true, null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "inquiries", force: :cascade do |t|

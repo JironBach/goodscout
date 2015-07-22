@@ -9,16 +9,22 @@
       <ul class="navbar__list">
         <li>
           <% if session[:user] == nil %>
+            <%= form_tag sign_in_path do %>
+              <div class="field">
+                <%= label_tag :email, 'login name' %>
+                <%= text_field_tag :email , params[:email] %>
+              </div>
+              <div class="field">
+                <%= label_tag :password, 'password' %>
+                <%= password_field_tag :password, params[:password] %>
+              </div>
+              <div class="actions">
+                <%= submit_tag "ログイン" %>
+              </div>
+            <% end %>
             <li><%= link_to '登録', new_engineer_path %></li>
-            <%= form_tag('/users/sign_in') do %>
-              <%= email_field_tag :email %>
-              <%= password_field_tag :encrypted_password %>
-              <li>
-                <%= button_tag 'ログイン' ,:class =>'btn btn--login' %>
-              </li>
-            <% end  %>
           <% else %>
-            <%= button_to 'ログアウト', '/users/sign_out' %>
+            <%= button_to 'ログアウト', sign_out_path %>
           <% end %>
         </li>
       </ul>

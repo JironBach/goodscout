@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 #======================= our gems ============================
 gem 'mysql2'
+gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
+
 
 group :development, :staging do
   gem 'better_errors'       #追加

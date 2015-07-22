@@ -1,3 +1,12 @@
+<!-- flash -->
+<% flash.each_with_index do |flash,i| %>
+  <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
+    <div class="grid__sp-11 grid__sm-11"><%= flash[1] %></div>
+    <div id="rm-notice-panel-<%= i %>" name="rm-notice-panel" class="grid__sp-1 grid__sm-1 rm-pd"><i class="fa fa-remove fa--with-notice"></i></div>
+  </div>
+<% end %>
+<!-- /flash -->
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Engineers</h1>
@@ -7,7 +16,6 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Encrypted password</th>
       <th>Self introduction</th>
       <th>Living  place</th>
       <th>Fb uid</th>
@@ -27,9 +35,8 @@
       <tr>
         <td><%= engineer.name %></td>
         <td><%= engineer.email %></td>
-        <td><%= engineer.encrypted_password %></td>
         <td><%= engineer.self_introduction %></td>
-        <td><%= engineer.living__place %></td>
+        <td><%= engineer.living_place %></td>
         <td><%= engineer.fb_uid %></td>
         <td><%= engineer.github_uid %></td>
         <td><%= engineer.age %></td>

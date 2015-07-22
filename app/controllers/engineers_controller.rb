@@ -25,15 +25,20 @@ class EngineersController < ApplicationController
   # POST /engineers
   # POST /engineers.json
   def create
-    @engineer = Engineer.new(engineer_params)
 
+    password_digest = 'hogehoge'
+    status = 0
+    status = params['status'] if params['status'] != nil
+    is_invitation_enabled = true
+    @engineer = Engineer.create_engineer(engineer_params,password_digest,status,is_invitation_enabled)
+
+    puts "===================="
     respond_to do |format|
-      if @engineer.save
+      if @engineer != nil 
         format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
-        format.json { render :show, status: :created, location: @engineer }
       else
-        format.html { render :new }
-        format.json { render json: @engineer.errors, status: :unprocessable_entity }
+        @engineer = Engineer.new
+        format.html { render :new, notice: @engineer.errors }
       end
     end
   end
@@ -70,6 +75,6 @@ class EngineersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def engineer_params
-      params.require(:engineer).permit(:name, :email, :encrypted_password, :self_introduction, :living__place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled)
+      params.require(:engineer).permit(:name, :email, :password, :password_confirmation, :self_introduction, :living_place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled)
     end
 end
