@@ -7,9 +7,20 @@
   <div class="navbar__right">
     <div class="navbar__list">
       <ul class="navbar__list">
-        <li>登録</li>
-        <li>ログイン</li>
-        <li>お問い合わせ(企業様用)</li>
+        <li>
+          <% if session[:user] == nil %>
+            <li><%= link_to '登録', new_engineer_path %></li>
+            <%= form_tag('/users/sign_in') do %>
+              <%= email_field_tag :email %>
+              <%= password_field_tag :encrypted_password %>
+              <li>
+                <%= button_tag 'ログイン' ,:class =>'btn btn--login' %>
+              </li>
+            <% end  %>
+          <% else %>
+            <%= button_to 'ログアウト', '/users/sign_out' %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

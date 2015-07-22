@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :enginners
+  resources :engineers
+  post 'users/sign_in' => 'users#sign_in'
+  post 'users/sign_out' => 'users#sign_out'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

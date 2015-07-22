@@ -1,0 +1,69 @@
+<%= form_for(@engineer) do |f| %>
+  <% if @engineer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@engineer.errors.count, "error") %> prohibited this engineer from being saved:</h2>
+
+      <ul>
+      <% @engineer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :encrypted_password %><br>
+    <%= f.text_field :encrypted_password %>
+  </div>
+  <div class="field">
+    <%= f.label :self_introduction %><br>
+    <%= f.text_area :self_introduction %>
+  </div>
+  <div class="field">
+    <%= f.label :living__place %><br>
+    <%= f.text_field :living__place %>
+  </div>
+  <div class="field">
+    <%= f.label :fb_uid %><br>
+    <%= f.text_field :fb_uid %>
+  </div>
+  <div class="field">
+    <%= f.label :github_uid %><br>
+    <%= f.text_field :github_uid %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.number_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :job_history %><br>
+    <%= f.text_area :job_history %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :is_invitation_enabled %><br>
+    <%= f.check_box :is_invitation_enabled %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

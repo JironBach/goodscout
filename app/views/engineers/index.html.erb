@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Engineers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Encrypted password</th>
+      <th>Self introduction</th>
+      <th>Living  place</th>
+      <th>Fb uid</th>
+      <th>Github uid</th>
+      <th>Age</th>
+      <th>Phone number</th>
+      <th>Status</th>
+      <th>Job history</th>
+      <th>Notes</th>
+      <th>Is invitation enabled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @engineers.each do |engineer| %>
+      <tr>
+        <td><%= engineer.name %></td>
+        <td><%= engineer.email %></td>
+        <td><%= engineer.encrypted_password %></td>
+        <td><%= engineer.self_introduction %></td>
+        <td><%= engineer.living__place %></td>
+        <td><%= engineer.fb_uid %></td>
+        <td><%= engineer.github_uid %></td>
+        <td><%= engineer.age %></td>
+        <td><%= engineer.phone_number %></td>
+        <td><%= engineer.status %></td>
+        <td><%= engineer.job_history %></td>
+        <td><%= engineer.notes %></td>
+        <td><%= engineer.is_invitation_enabled %></td>
+        <td><%= link_to 'Show', engineer %></td>
+        <td><%= link_to 'Edit', edit_engineer_path(engineer) %></td>
+        <td><%= link_to 'Destroy', engineer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

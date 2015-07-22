@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @engineer.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @engineer.email %>
+</p>
+
+<p>
+  <strong>Encrypted password:</strong>
+  <%= @engineer.encrypted_password %>
+</p>
+
+<p>
+  <strong>Self introduction:</strong>
+  <%= @engineer.self_introduction %>
+</p>
+
+<p>
+  <strong>Living  place:</strong>
+  <%= @engineer.living__place %>
+</p>
+
+<p>
+  <strong>Fb uid:</strong>
+  <%= @engineer.fb_uid %>
+</p>
+
+<p>
+  <strong>Github uid:</strong>
+  <%= @engineer.github_uid %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @engineer.age %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @engineer.phone_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @engineer.status %>
+</p>
+
+<p>
+  <strong>Job history:</strong>
+  <%= @engineer.job_history %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @engineer.notes %>
+</p>
+
+<p>
+  <strong>Is invitation enabled:</strong>
+  <%= @engineer.is_invitation_enabled %>
+</p>
+
+<%= link_to 'Edit', edit_engineer_path(@engineer) %> |
+<%= link_to 'Back', engineers_path %>
