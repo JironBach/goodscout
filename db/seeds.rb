@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Engineer.create(
+  :id                     => 1,
   :name                   => "柳澤 直",
   :email                  => "n.yanagisawa@nowall.co.jp",
   :password               => "hogehoge",
@@ -18,6 +19,49 @@ Engineer.create(
   :status                 => 0,
   :job_history            => '内緒だお',
   :is_invitation_enabled  => true,
+)
+
+EngineerSkill.create(
+  :skill_id             => 4,
+  :engineer_id          => 1, 
+  :years_of_experience  => 3,
+  :level                => 2
+)
+
+EngineerSkill.create(
+  :skill_id             => 8,
+  :engineer_id          => 1, 
+  :years_of_experience  => 3,
+  :level                => 2
+)
+
+EngineerSkill.create(
+  :skill_id             => 4,
+  :engineer_id          => 1, 
+  :years_of_experience  => 3,
+  :level                => 2
+)
+
+EngineerSkill.create(
+  :skill_id             => 11,
+  :engineer_id          => 1, 
+  :years_of_experience  => 2,
+  :level                => 2
+)
+
+EngineerSkill.create(
+  :skill_id             => 27,
+  :engineer_id          => 1, 
+  :years_of_experience  => 3,
+  :level                => 3
+)
+
+
+EngineerSkill.create(
+  :skill_id             => 28,
+  :engineer_id          => 1, 
+  :years_of_experience  => 3,
+  :level                => 3
 )
 
 SKILLS = ['C++','VC++','Java','JavaScript','PHP','C言語','Python','Ruby','SQL','Go言語','C#','Perl','JSON','XML',

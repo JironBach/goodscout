@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root :to => 'engineers#index'
 
   resources :engineers
+
+  post 'search' => 'engineers#search'
+
   post 'sign_in' => 'sessions#create'
   post 'sign_out' => 'sessions#destroy'
 

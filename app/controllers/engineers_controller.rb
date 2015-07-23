@@ -82,6 +82,30 @@ class EngineersController < ApplicationController
     end
   end
 
+  def search
+
+    search_conditions = []
+    params.each do |param|
+      if param[0].to_i > 0
+        search_conditions.push({
+          'skill_id' => param[1]['skill_id'],
+          'years_of_experience' => param[1]['years_of_experience'],
+          'level' => param[1]['level']
+        }) 
+      end
+    end
+
+    ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
+    if ids != nil
+      @engineers = Engineer.find(ids)
+    else
+      @engineers = []
+    end
+
+    render :index
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_engineer
