@@ -19,7 +19,7 @@ class Engineer < ActiveRecord::Base
     rescue
       puts $!
       puts $@
-      puts "============DB格納エラー=============="
+      puts "============DB格納エラー|Engineer#create_engineer=============="
       nil
     end
 

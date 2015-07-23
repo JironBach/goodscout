@@ -7,6 +7,7 @@
   <div class="navbar__right">
     <div class="navbar__list">
       <ul class="navbar__list">
+        <li><%= link_to 'お問い合わせ', new_inquiry_path %></li>
         <li>
           <% if session[:user] == nil %>
             <%= form_tag sign_in_path do %>

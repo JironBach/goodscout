@@ -1,1 +1,0 @@
-json.extract! @engineer, :id, :name, :email, :encrypted_password, :self_introduction, :living__place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled, :created_at, :updated_at

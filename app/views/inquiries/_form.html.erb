@@ -1,0 +1,58 @@
+<%= form_for(@inquiry) do |f| %>
+
+  <% if @inquiry.errors.any? || @company.errors.any? %>
+
+    <div id="error_explanation">
+      <h2><%= pluralize(@inquiry.errors.count + @company.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+      <ul>
+        <% @inquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        <% @company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+
+  <div class="field">
+    <%= label_tag '会社名' %><br>
+    <%= text_field_tag :company_name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'ご担当者様氏名' %><br>
+    <%= text_field_tag :representative_person %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'メールアドレス' %><br>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag '電話番号' %><br>
+    <%= text_field_tag :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'ご希望の返信方法' %><br>
+    <%= f.select :how_to_reply,[['電話', '電話'], ['メール','メール']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'タイトル' %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label '本文' %><br>
+    <%= f.text_area :desc %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

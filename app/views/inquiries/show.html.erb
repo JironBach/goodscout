@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>会社名</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>ご担当者様氏名</strong>
+  <%= @company.representative_person %>
+</p>
+
+
+<p>
+  <strong>メールアドレス</strong>
+  <%= @company.email %>
+</p>
+
+
+<p>
+  <strong>電話番号</strong>
+  <%= @company.phone_number %>
+</p>
+
+<p>
+  <strong>ご希望の連絡方法</strong>
+  <%= @inquiry.how_to_reply %>
+</p>
+
+<p>
+  <strong>タイトル</strong>
+  <%= @inquiry.title %>
+</p>
+
+<p>
+  <strong>本文</strong>
+  <%= @inquiry.desc %>
+</p>
+
+<%= link_to 'go to home',root_path %>
