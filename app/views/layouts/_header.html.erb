@@ -1,13 +1,15 @@
 <div class="navbar">
   <div class="navbar__left">
     <div class="navbar__logo">
-      逆求人(仮)
+      <%= link_to '逆求人(仮)',root_path  %>
     </div>
   </div>
   <div class="navbar__right">
     <div class="navbar__list">
       <ul class="navbar__list">
-        <li><%= link_to 'お問い合わせ', new_inquiry_path %></li>
+        <% if session[:user] == nil %>
+          <li><%= link_to '企業用お問い合わせ', new_inquiry_path %></li>
+        <% end %>
         <li>
           <% if session[:user] == nil %>
             <%= form_tag sign_in_path do %>

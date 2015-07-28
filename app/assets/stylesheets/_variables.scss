@@ -246,5 +246,7 @@ $circle-bg-icon-bg-col: $theme-col;
 /*
   popup
 */
-$popup-s-col: $base-col;
+$popup-bg-col: $base-col;
+$popup-border: 5px solid $theme-col;
+$popup-shadow: 0 2px 7px 5px rgba(0,0,0,0.2);
 

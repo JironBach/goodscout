@@ -27,17 +27,20 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
 
+    if session['user'] == nil
+      redirect_to root_path
+      return
+    end
+
     @message = Message.new(create_message_data())
 
     if @message.save
       redirect_to @message, notice: 'Message was successfully created.'
     else
       @engineer_id = params['message']['engineer_id']
-      puts "====="
-      puts @engineer_id
-      puts "====="
       render :new
     end
+
   end
 
   # PATCH/PUT /messages/1
@@ -76,8 +79,6 @@ class MessagesController < ApplicationController
     end
 
     def create_message_data
-
-      pp params
 
       data = {
         'from_type'   => session['user_type'],

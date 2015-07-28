@@ -1,3 +1,6 @@
+/*
+  list item 
+ */
 .list-item{
   background-color: $list-item-bg-col;
   &:hover{
@@ -11,9 +14,21 @@
 }
 
 .list-item__link{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  @include centering();
+}
+
+/*
+  popup
+ */
+.popup{
+  background-color: $popup-bg-col;
+  height: 200px;
+  width: 400px;
+  border: $popup-border;
+  box-shadow: $popup-shadow;
+  @include centering();
+}
+
+.hidden{
+  display: none;
 }
