@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #======================= our gems ============================
 gem 'mysql2'
+gem "carrierwave"
 gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
 
 

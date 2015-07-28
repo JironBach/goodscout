@@ -75,6 +75,25 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <% if @engineer.image? %>
+      <div class="thumbnail">
+        <%= image_tag @engineer.image.url %>
+      </div>
+    <% end %><br>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="field">
+    <% if @engineer.persisted? && @engineer.image? %>
+      <label>
+        <%= f.check_box :remove_image %>
+        画像を削除
+      </label>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

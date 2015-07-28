@@ -114,6 +114,6 @@ class EngineersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def engineer_params
-      params.require(:engineer).permit(:name, :email, :password, :password_confirmation, :self_introduction, :living_place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled)
+      params.require(:engineer).permit(:name, :email, :password, :password_confirmation, :self_introduction, :living_place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled, :image, :image_cache, :remove_image)
     end
 end

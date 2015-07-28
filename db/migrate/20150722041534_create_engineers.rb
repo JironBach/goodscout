@@ -3,7 +3,7 @@ class CreateEngineers < ActiveRecord::Migration
     create_table :engineers do |t|
       t.string  :name                  ,null: false
       t.string  :email                 ,null: false
-      t.string  :picture
+      t.string  :image
       t.string  :password_digest       ,null: false
       t.text    :self_introduction     ,null: false
       t.string  :living_place

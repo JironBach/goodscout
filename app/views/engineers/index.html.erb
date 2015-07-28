@@ -24,19 +24,25 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
+        <th></th>
+        <th></th>
         <th colspan="3"></th>
       </tr>
     </thead>
   
     <tbody>
-      <% @engineers.each do |engineer| %>
-        <tr>
-          <td><%= engineer.name %></td>
-          <td><%= link_to 'Show', engineer %></td>
-          <td><%= link_to 'Edit', edit_engineer_path(engineer) %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <% @engineers.each do |engineer| %>
+          <td class="list-view__td">
+            <% if engineer.image != nil %>
+              <div><%= image_tag engineer.image.url,:class => 'list-view__img' %></div>
+            <% else %>
+              <div class="default-img"></div>
+            <% end %>
+            <%= engineer.name %>
+          </td>
+        <% end %>
+      </tr>
     </tbody>
   </table>
 <% end %>

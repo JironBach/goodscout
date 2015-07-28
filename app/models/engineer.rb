@@ -1,5 +1,15 @@
 class Engineer < ActiveRecord::Base
 
+  validates :email                  ,:presence => {:message => 'メールアドレスを入力してください'}
+  validates :name                   ,:presence => {:message => '会社名を入力してください'}
+  validates :password               ,:presence => {:message => 'パスワードを入力してください'}
+  validates :password_confirmation  ,:presence => {:message => 'パスワード確認を入力してください'}
+  validates :self_introduction      ,:presence => {:message => '自己紹介文を入力してください'}
+  validates :age                    ,:presence => {:message => '年齢を入力してください'}
+  validates :job_history            ,:presence => {:message => '職務経歴を入力してください'}
+
+  mount_uploader :image, ImageUploader 
+
   def self.create_engineer params,status,is_invitation_enabled
 
     begin
@@ -13,6 +23,7 @@ class Engineer < ActiveRecord::Base
         :age                    => params['age'],
         :phone_number           => params['phone_number'],
         :status                 => status,
+        :image                  => params['image'],
         :job_history            => params['job_history'],
         :is_invitation_enabled  => is_invitation_enabled,
       )

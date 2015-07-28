@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   create_table "engineers", force: :cascade do |t|
     t.string   "name",                  limit: 255,                  null: false
     t.string   "email",                 limit: 255,                  null: false
-    t.string   "picture",               limit: 255
+    t.string   "image",                 limit: 255
     t.string   "password_digest",       limit: 255,                  null: false
     t.text     "self_introduction",     limit: 65535,                null: false
     t.string   "living_place",          limit: 255
