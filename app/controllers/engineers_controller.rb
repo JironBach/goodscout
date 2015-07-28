@@ -97,7 +97,8 @@ class EngineersController < ApplicationController
 
     ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
     if ids != nil
-      @engineers = Engineer.find(ids)
+      puts ids
+      @engineers = Engineer.where id: ids
     else
       @engineers = []
     end

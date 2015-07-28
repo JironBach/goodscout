@@ -17,8 +17,8 @@ class EngineerSkill < ActiveRecord::Base
       ids = []
       engineer_skills.each do |e|
         ids.push(e.engineer_id)
-        return ids
       end
+      return ids
     else
       return nil
     end
