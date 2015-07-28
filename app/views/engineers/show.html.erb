@@ -66,4 +66,5 @@
 </p>
 
 <%= link_to 'Edit', edit_engineer_path(@engineer) %> |
-<%= link_to 'Back', engineers_path %>
+<%= link_to 'Back', engineers_path %><br>
+<%= link_to 'メッセージを送る', new_message_path(:engineer_id => @engineer.id) %>

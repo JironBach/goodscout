@@ -7,8 +7,6 @@
 <% end %>
 <!-- /flash -->
 
-<%= session[:user] %>
-
 <div class="field">
   <%= form_tag(search_path) do %>
     <%= select_tag '1[skill_id]', options_from_collection_for_select(Skill.all,:id,:name) %>

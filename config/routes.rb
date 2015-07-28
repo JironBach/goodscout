@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :messages
   root :to => 'engineers#index'
 
   resources :engineers
