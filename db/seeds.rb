@@ -6,63 +6,44 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Engineer.create(
-  :id                     => 1,
-  :name                   => "柳澤 直",
-  :email                  => "n.yanagisawa@nowall.co.jp",
-  :password               => "hogehoge",
-  :password_confirmation  => "hogehoge",
-  :self_introduction      => "自己紹介文なり",
-  :living_place           => "湘南台",
-  :age                    => 21,
-  :phone_number           => '09096760070',
-  :status                 => 0,
-  :job_history            => '内緒だお',
-  :is_invitation_enabled  => true,
-)
+100.times do |i|
+  Engineer.create(
+    :id                     => i + 1,
+    :name                   => "柳澤 直:#{i + 1}",
+    :email                  => "n.yanagisawa#{i + 1}@nowall.co.jp",
+    :password               => "hogehoge",
+    :password_confirmation  => "hogehoge",
+    :self_introduction      => "自己紹介文なり",
+    :living_place           => "湘南台",
+    :age                    => 21,
+    :phone_number           => '09096760070',
+    :status                 => 0,
+    :job_history            => '内緒だお',
+    :is_invitation_enabled  => true,
+  )
+end
 
-EngineerSkill.create(
-  :skill_id             => 4,
-  :engineer_id          => 1, 
-  :years_of_experience  => 3,
-  :level                => 2
-)
+engineer_skills = []
+300.times do |i|
 
-EngineerSkill.create(
-  :skill_id             => 8,
-  :engineer_id          => 1, 
-  :years_of_experience  => 3,
-  :level                => 2
-)
+  skill_id = rand(1..31)
+  engineer_id = rand(1..100)
 
-EngineerSkill.create(
-  :skill_id             => 4,
-  :engineer_id          => 1, 
-  :years_of_experience  => 3,
-  :level                => 2
-)
+  while engineer_skills.include?([skill_id,engineer_id])
+    skill_id = rand(1..31)
+    engineer_id = rand(1..100)
+  end
 
-EngineerSkill.create(
-  :skill_id             => 11,
-  :engineer_id          => 1, 
-  :years_of_experience  => 2,
-  :level                => 2
-)
+  engineer_skills.push([skill_id,engineer_id])
 
-EngineerSkill.create(
-  :skill_id             => 27,
-  :engineer_id          => 1, 
-  :years_of_experience  => 3,
-  :level                => 3
-)
+  EngineerSkill.create(
+    :skill_id             => skill_id,
+    :engineer_id          => engineer_id,
+    :years_of_experience  => rand(1..3),
+    :level                => rand(1..3)
+  )
 
-
-EngineerSkill.create(
-  :skill_id             => 28,
-  :engineer_id          => 1, 
-  :years_of_experience  => 3,
-  :level                => 3
-)
+end
 
 SKILLS = ['C++','VC++','Java','JavaScript','PHP','C言語','Python','Ruby','SQL','Go言語','C#','Perl','JSON','XML',
           'Objective-C','Scala','VB.NET','Shell','Apex','COBOL','Lua','PL/SQL','XAML','Transact-SQL','C#.NET',
