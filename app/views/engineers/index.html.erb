@@ -27,13 +27,14 @@
           <% if i == 0 || i % 6 == 0 %>
             <tr>
           <% end %>
-          <td class="list-view__td grid__sp-2">
+          <td class="list-item grid__sp-2">
             <% if engineer.image != nil %>
-              <div><%= image_tag engineer.image.url,:class => 'list-view__img' %></div>
+              <div><%= image_tag engineer.image.url,:class => 'list-item__img' %></div>
             <% else %>
               <div class="default-img"></div>
             <% end %>
             <%= engineer.name %>
+            <%= link_to '', engineer, :class => 'list-item__link' %>
           </td>
           <% if i != 0 && (i + 1) % 6 == 0 %>
             </tr>

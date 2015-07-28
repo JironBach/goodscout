@@ -1,11 +1,19 @@
-.list-view{
-
+.list-item{
+  background-color: $list-item-bg-col;
+  &:hover{
+    background-color: darken($list-item-bg-col,10%)
+  }
 }
 
-.list-view__img{
+.list-item__img{
   width: 100px;
   height: 100px;
 }
 
-.list-view__td{
+.list-item__link{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
