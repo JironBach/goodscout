@@ -1,12 +1,14 @@
-  <!-- flash -->
-  <% flash.each_with_index do |flash,i| %>
-    <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
-      <div class="grid__sp-11 grid__sm-11"><%= flash[1] %></div>
-      <div id="rm-notice-panel-<%= i %>" name="rm-notice-panel" class="grid__sp-1 grid__sm-1 rm-pd"><i class="fa fa-remove fa--with-notice"></i></div>
-    </div>
-  <% end %>
-  <!-- /flash -->
-  
+<!-- flash -->
+<% flash.each_with_index do |flash,i| %>
+  <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
+    <div class="grid__sp-11 grid__sm-11"><%= flash[1] %></div>
+    <div id="rm-notice-panel-<%= i %>" name="rm-notice-panel" class="grid__sp-1 grid__sm-1 rm-pd"><i class="fa fa-remove fa--with-notice"></i></div>
+  </div>
+<% end %>
+<!-- /flash -->
+
+<div class="panel panel--normal mg-10">
+  エンジニアの絞り込み検索
   <div class="field">
     <%= form_tag(search_path) do %>
       <%= select_tag '1[skill_id]', options_from_collection_for_select(Skill.all,:id,:name) %>
@@ -15,31 +17,44 @@
       <%= submit_tag '検索' %>
     <% end %>
   </div>
-  
-  <p id="notice"><%= notice %></p>
-  
-  <h1>Listing Engineers</h1>
-  
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<div class="grid__sp-1"></div>
+<div class="grid__sp-11">
   <% if @engineers != nil %>
     <table class="grid">
       <tbody>
         <% @engineers.each_with_index do |engineer,i| %>
-          <% if i == 0 || i % 6 == 0 %>
+          <% if i == 0 || i % 4 == 0 %>
             <tr>
           <% end %>
-          <td class="list-item grid__sp-2">
-            <% if engineer.image != nil %>
-              <div><%= image_tag engineer.image.url,:class => 'list-item__img' %></div>
-            <% else %>
-              <div class="default-img"></div>
-            <% end %>
-            <%= engineer.name %>
-            <%= link_to '', engineer, :class => 'list-item__link' %>
+          <td class="grid__sp-4">
+            <div class="list-item grid">
+              <div class="grid__sp-7 rm-pd">
+                <% if engineer.image != nil && engineer.image.length > 0 %>
+                  <%= image_tag engineer.image.url,:class => 'list-item__img' %>
+                <% else %>
+                  <%= image_tag '/default_profile_img.jpg',:class => 'list-item__img' %>
+                <% end %>
+              </div>
+
+              <div class="grid__sp-5 list-item__desc">
+                <% engineer.engineer_skills.each do |skill| %>
+                  <%= @skills[skill.skill_id - 1].name %>:<%= skill.years_of_experience %>年<br>
+                <% end %>
+                <%= link_to '', engineer, :class => 'box-link' %>
+              </div>
+
+            </div>
           </td>
-          <% if i != 0 && (i + 1) % 6 == 0 %>
+          <% if i != 0 && (i + 1) % 4 == 0 %>
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
   <% end %>
+</div>
+<div class="grid__sp-1"></div>

@@ -7,7 +7,10 @@ class EngineersController < ApplicationController
   # GET /engineers
   # GET /engineers.json
   def index
-    @engineers = Engineer.all
+
+    @skills = Skill.all
+    @engineers = Engineer.select_engineer_with_skills
+
   end
 
   # GET /engineers/1
@@ -51,6 +54,7 @@ class EngineersController < ApplicationController
         EngineerSkill.insert_engineer_skills(skills_data)
         format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
       else
+        @skills = Skill.all
         @engineer = Engineer.new
         format.html { render :new, notice: @engineer.errors }
       end
@@ -97,8 +101,8 @@ class EngineersController < ApplicationController
 
     ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
     if ids != nil
-      puts ids
-      @engineers = Engineer.where id: ids
+      @skills = Skill.all
+      @engineers = Engineer.where(id: ids)
     else
       @engineers = []
     end

@@ -1,5 +1,7 @@
 class EngineerSkill < ActiveRecord::Base
 
+  belongs_to :engineer
+
   def self.insert_engineer_skills skills
     EngineerSkill.create(skills)
   end

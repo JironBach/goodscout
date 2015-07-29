@@ -13,6 +13,10 @@
     <%= yield %>
 
     <%= render 'layouts/footer' %>
+
+    <%= render 'popups/popup' %>
+
+    <%= javascript_include_tag 'common', 'data-turbolinks-track' => true %>
   
   </body>
 </html>

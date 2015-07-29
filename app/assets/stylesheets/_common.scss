@@ -1,20 +1,32 @@
 /*
+  html,body
+ */
+html,body{
+  background-color: $bg-col;
+  font-size: $font-size;
+}
+
+/*
   list item 
  */
 .list-item{
   background-color: $list-item-bg-col;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: $list-item-border;
+  font-size: $list-item-font-size;
   &:hover{
     background-color: darken($list-item-bg-col,10%)
   }
 }
 
 .list-item__img{
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 
-.list-item__link{
-  @include centering();
+.list-item__desc{
+  padding: 5px;
 }
 
 /*
@@ -31,4 +43,18 @@
 
 .hidden{
   display: none;
+}
+
+.box-link{
+  @include centering();
+}
+
+/*
+  panel
+ */
+.panel--normal{
+  padding: 20px;
+  background-color: $panel-normal-bg-col;
+  border: 2px solid $panel-normal-border-col;
+  color: $panel-normal-col;
 }

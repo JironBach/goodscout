@@ -1,0 +1,20 @@
+<!-- login -->
+<div class="popup hidden" id='popup-login-form'>
+  エンジニアをお探しの企業の方はお問い合わせください
+  <%= link_to 'お問い合わせ', new_inquiry_path %>
+  <%= form_tag sign_in_path do %>
+    <div class="field">
+      <%= label_tag :email, 'login name' %>
+      <%= text_field_tag :email , params[:email] %>
+    </div>
+    <div class="field">
+      <%= label_tag :password, 'password' %>
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "ログイン" %>
+    </div>
+  <% end %>
+</div>
+<!-- /popup -->
+

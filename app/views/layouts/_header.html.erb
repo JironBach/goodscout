@@ -1,35 +1,23 @@
 <div class="navbar">
   <div class="navbar__left">
-    <div class="navbar__logo">
-      <%= link_to '逆求人(仮)',root_path  %>
-    </div>
+    <%= link_to '逆求人(仮)', root_path, :class => 'navbar__logo'  %>
   </div>
   <div class="navbar__right">
     <div class="navbar__list">
-      <ul class="navbar__list">
+      <ul>
         <% if session[:user] == nil %>
-          <li><%= link_to '企業用お問い合わせ', new_inquiry_path %></li>
-        <% end %>
-        <li>
-          <% if session[:user] == nil %>
-            <%= form_tag sign_in_path do %>
-              <div class="field">
-                <%= label_tag :email, 'login name' %>
-                <%= text_field_tag :email , params[:email] %>
-              </div>
-              <div class="field">
-                <%= label_tag :password, 'password' %>
-                <%= password_field_tag :password, params[:password] %>
-              </div>
-              <div class="actions">
-                <%= submit_tag "ログイン" %>
-              </div>
-            <% end %>
-            <li><%= link_to '登録', new_engineer_path %></li>
-          <% else %>
+          <li name="show-popup-login-form"><a>ログイン</a></li>
+          <li>
+            <%= link_to '新規登録', new_engineer_path, :class => '' %>
+          </li>
+          <li>
+            <%= link_to 'お問い合わせ', new_inquiry_path, :class => '' %>
+          </li>
+        <% else %>
+          <li>
             <%= button_to 'ログアウト', sign_out_path %>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -29,12 +29,14 @@ ActiveRecord::Schema.define(version: 20150722041534) do
 
   create_table "engineer_skills", force: :cascade do |t|
     t.integer  "skill_id",            limit: 4, null: false
-    t.integer  "engineer_id",         limit: 4, null: false
+    t.integer  "engineer_id",         limit: 4
     t.integer  "years_of_experience", limit: 4, null: false
     t.integer  "level",               limit: 4, null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "engineer_skills", ["engineer_id"], name: "index_engineer_skills_on_engineer_id", using: :btree
 
   create_table "engineers", force: :cascade do |t|
     t.string   "name",                  limit: 255,                  null: false

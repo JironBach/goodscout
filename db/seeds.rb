@@ -16,6 +16,7 @@
     :self_introduction      => "自己紹介文なり",
     :living_place           => "湘南台",
     :age                    => 21,
+    :image                  => "default_profile_img.jpg",
     :phone_number           => '09096760070',
     :status                 => 0,
     :job_history            => '内緒だお',

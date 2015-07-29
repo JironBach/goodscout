@@ -8,11 +8,14 @@ class Engineer < ActiveRecord::Base
   validates :age                    ,:presence => {:message => '年齢を入力してください'}
   validates :job_history            ,:presence => {:message => '職務経歴を入力してください'}
 
+  has_many :engineer_skills, dependent: :destroy
+
   mount_uploader :image, ImageUploader 
 
   def self.create_engineer params,status,is_invitation_enabled
 
     begin
+
       Engineer.create(
         :name                   => params['name'],
         :email                  => params['email'],
@@ -27,6 +30,7 @@ class Engineer < ActiveRecord::Base
         :job_history            => params['job_history'],
         :is_invitation_enabled  => is_invitation_enabled,
       )
+
     rescue
       puts $!
       puts $@
@@ -34,6 +38,10 @@ class Engineer < ActiveRecord::Base
       nil
     end
 
+  end
+
+  def self.select_engineer_with_skills
+    Engineer.includes(:engineer_skills)
   end
 
   has_secure_password

@@ -1,20 +1,21 @@
 /* 
   common
  */
-$theme-col: #0074af;
+$theme-col: #3498DB;
 $accent-col: #fba848;
 $accent-col-2: #f27398;
 $accent-col-3: #58BE89;
 $cushion-col: #363947;
 $base-col: #eceef1;
-$base-col-2: #e7e7e7; 
+$base-col-2: #FBFBFB; 
 $base-col-3: white;
 $base-col-4: #b3bdc7;
+$medium-col: #2980B9;
 $font-size: 14px;
 $font-col: #363947;
 $font-col-sub: lighten($font-col,10%);
 
-$bg-col: $base-col;
+$bg-col: $base-col-2;
 $window-size-sp: 400px;
 $window-size-s: 768px;
 $window-size-m: 992px;
@@ -33,12 +34,18 @@ $shadow-dropdown-flag: false;
 /*
   navbar
 */
+$navbar-height: 55px;
 $navbar-bg-col: $base-col-3;
 $navbar-border: 2px solid $theme-col;
+$navbar-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
 $navbar-logo-col: $theme-col;
 $navbar-padding-width: 10px;
 $navbar-padding-height: 10px;
 $navbar-padding: $navbar-padding-height $navbar-padding-width;
+$navbar-list-col: $theme-col;
+$navbar-list-width: 150px;
+$navbar-list-bg-col: white;
+$navbar-list-box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);;
 
 /*
   footer
@@ -177,6 +184,10 @@ $panel-notice-error-col: $accent-col-2;
 $panel-notice-error-bg-col: white;
 $panel-notice-error-border: 2px solid $accent-col-2;
 
+$panel-normal-col: $base-col-3;
+$panel-normal-bg-col: $medium-col;
+$panel-normal-border-col: $base-col;
+
 /*
   textarea
 */
@@ -209,6 +220,8 @@ $fa-smudge-col: darken($base-col,10%);
 /*
   list-item  
 */
+$list-item-font-size: $font-size - 2px;
+$list-item-border: 2px solid $theme-col;
 $list-item-bg-col: $base-col;
 
 /*
@@ -249,4 +262,3 @@ $circle-bg-icon-bg-col: $theme-col;
 $popup-bg-col: $base-col;
 $popup-border: 5px solid $theme-col;
 $popup-shadow: 0 2px 7px 5px rgba(0,0,0,0.2);
-
