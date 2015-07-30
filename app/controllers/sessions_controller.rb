@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   def destroy 
     session[:user] = nil
     @engineers = Engineer.all
+    @skills = Skill.all
     render :template => 'engineers/index'
   end
 

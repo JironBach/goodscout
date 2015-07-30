@@ -421,9 +421,7 @@ p {
 .grid__all-1, .grid__all-2, .grid__all-3, .grid__all-4, .grid__all-5, .grid__all-6, .grid__all-7, .grid__all-8, .grid__all-9, .grid__all-10, .grid__all-11, .grid__all-12 {
   position: relative;
   float: left;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px; }
+  min-height: 1px; }
 
 .grid__sp-0 {
   display: none; }
@@ -821,6 +819,9 @@ p {
 
 .pd-10 {
   padding: 10px; }
+
+.pd-5 {
+  padding: 5px; }
 
 .pd-t-10 {
   padding-top: 10px; }
