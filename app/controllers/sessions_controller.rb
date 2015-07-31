@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = Engineer.find_by_email params[:email]
 
     if user && user.authenticate(params[:password])
-      session[:user] = Engineer.find(user.id)
+      session[:user] = user.id
       session[:user_type] = ENGINEER
       flash[:success] = "ログインに成功しました"
     else

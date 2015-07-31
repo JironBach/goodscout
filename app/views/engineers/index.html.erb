@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container--center">
   <!-- flash -->
   <% flash.each_with_index do |flash,i| %>
     <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
@@ -9,54 +9,57 @@
   <!-- /flash -->
   
   <div class="panel panel--normal mg-10">
-    エンジニアの絞り込み検索
+    <p class="text-bold">エンジニアの絞り込み検索</p>
     <div class="field">
       <%= form_tag(search_path) do %>
         <%= select_tag '1[skill_id]', options_from_collection_for_select(Skill.all,:id,:name) %>
         <%= select_tag '1[years_of_experience]', options_for_select(['1年未満','1年以上','2年以上','3年以上']) %>
         <%= select_tag '1[level]', options_for_select([['入門者レベル',0],['初心者レベル',1],['中級者レベル',2],['上級者レベル',3]]) %>
-        <%= submit_tag '検索' %>
+        <%= submit_tag '検索', :class => 'btn btn--s' %>
       <% end %>
     </div>
   </div>
   
   <p id="notice"><%= notice %></p>
   
-  <div class="container">
-    <% if @engineers != nil %>
-      <div class="grid list-item-wrapper">
-          <% @engineers.each_with_index do |engineer,i| %>
-            <div class="grid__xs-6 grid__sp-4 grid__sm-3 grid__md-2 pd-r-10">
+  <% if @engineers != nil %>
+    <div class="grid list-item-wrapper">
+        <% @engineers.each_with_index do |engineer,i| %>
+          <div class="grid__xs-6 grid__sp-4 grid__sm-3 grid__md-2 pd-r-10">
 
-              <div class="list-item grid">
+            <div class="list-item grid">
   
-                <div class="grid__sp-12 rm-pd">
-                  <% if engineer.image != nil && engineer.image.length > 0 %>
-                    <%= image_tag engineer.image.url,:class => 'list-item__img' %>
-                  <% else %>
-                    <%= image_tag '/default_profile_img.jpg',:class => 'list-item__img' %>
-                  <% end %>
-                </div>
-    
-                <div class="grid__sp-12 list-item__desc">
-                  <% engineer.engineer_skills.each_with_index do |skill,i| %>
-                    <%= @skills[skill.skill_id - 1].name %>:<%= skill.years_of_experience %>年<br>
-                    <% skill.level.times do |i| %>
-                      <i class="fa fa-star-o"></i>
-                    <% end %>
-                    <% if i == 2 || engineer.engineer_skills.last == skill %>
-                      <a class="list-item__lower-right-text">もっと見る</a>
-                      <% break %>
-                    <% end %><br>
-                  <% end %>
-                </div>
-  
-                <%= link_to '', engineer, :class => 'box-link' %>
-    
+              <div class="grid__sp-12 rm-pd text-center">
+                <% if engineer.image != nil && engineer.image.length > 0 %>
+                  <%= image_tag engineer.image.url,:class => 'list-item__img' %>
+                <% else %>
+                  <%= image_tag '/default_profile_img.jpg',:class => 'list-item__img' %>
+                <% end %>
               </div>
+  
+              <div class="grid__sp-12 list-item__desc">
+                <% engineer.engineer_skills.each_with_index do |skill,i| %>
+                  <%= @skills[skill.skill_id - 1].name %>:<%= skill.years_of_experience %>年<br>
+                  <% skill.level.times do |i| %>
+                    <i class="fa fa-star fa--accent"></i>
+                  <% end %>
+                  <% if i == 2 %>
+                    <br>
+                    その他複数...
+                    <% break %>
+                  <% elsif engineer.engineer_skills.last == skill %>
+                    <% break %>
+                  <% end %><br>
+                <% end %>
+              </div>
+
+              <%= link_to 'もっと見る', engineer, :class => 'list-item__lower-right-text' %>
+              <%= link_to '', engineer, :class => 'box-link' %>
+  
             </div>
-          <% end %>
-      </div>
-    <% end %>
-  </div>
+          </div>
+        <% end %>
+    </div>
+  <% end %>
+
 </div>

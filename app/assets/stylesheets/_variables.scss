@@ -4,9 +4,9 @@
 $theme-col: #3498DB;
 $accent-col: #fba848;
 $accent-col-2: #f27398;
-$accent-col-3: #58BE89;
+$accent-col-3: #22C7AD;
 $cushion-col: #363947;
-$base-col: #e1e1e1;
+$base-col: #f2f2f2;
 $base-col-2: #FBFBFB; 
 $base-col-3: white;
 $base-col-4: #b3bdc7;
@@ -15,7 +15,7 @@ $font-size: 14px;
 $font-col: #363947;
 $font-col-sub: lighten($font-col,10%);
 
-$bg-col: $base-col-2;
+$bg-col: $base-col;
 $window-size-sp: 400px;
 $window-size-s: 768px;
 $window-size-m: 992px;
@@ -89,11 +89,7 @@ $triangle-s-col-2: white;
 /*
   content-box 
  */ 
-$content-box-header-bg-col: $base-col;
-
-/*
-  message box
- */
+$content-box-header-bg-col: $base-col-3;
 $comment-box-bg-col: white;
 $comment-box-border-col: $accent-col;
 
@@ -118,6 +114,9 @@ $input-text-shadow: 0 0 3px 1px rgba(00,105,255,0.5);
   button
 */
 $btn-bg-col: $theme-col;
+$btn-border: 1px solid $base-col-3;
+$btn-col: $base-col;
+
 $btn-smart-col: $theme-col;
 $btn-smart-bg-col: white;
 $btn-smart-hover-col: white;
@@ -173,8 +172,8 @@ $panel-notice-error-bg-col: white;
 $panel-notice-error-border: 2px solid $accent-col-2;
 
 $panel-normal-col: $base-col-3;
-$panel-normal-bg-col: $medium-col;
-$panel-normal-border-col: $base-col;
+$panel-normal-bg-col: $accent-col-3;
+$panel-normal-border: 3px solid $base-col-3;
 
 /*
   textarea
@@ -199,8 +198,10 @@ $fa-smudge-col: darken($base-col,10%);
   list-item  
 */
 $list-item-font-size: $font-size - 2px;
+$list-item-img-size: 160px;
 $list-item-border: 2px solid $theme-col;
-$list-item-bg-col: $base-col;
+$list-item-bg-col: $base-col-3;
+$list-item-box-shadow: 1px 0 2px 2px rgba(0,0,0,0.2);
 
 /*
   shadow
@@ -220,6 +221,16 @@ $text-link-col: $theme-col;
 $text-good-col: $accent-col-3;
 $text-error-col: $accent-col-2;
 $text-small-col: darken($base-col,20%);
+
+$text-bold-font-size: $font-size + 4px;
+
+/*
+
+  select
+ 
+ */
+$select-bg-col: $base-col-3;
+$select-col: $font-col;
 
 /*
   border
@@ -248,7 +259,7 @@ $profile-img-border: 3px solid $base-col;
 $profile-top-bg-col: rgba(0,0,0,0.2);
 $profile-name-font-size: $font-size + 8px;
 $profile-content-box-box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.15);
-$profile-navbar-border: 3px solid $bg-col;
+$profile-navbar-border: 3px solid $base-col-3;
 $profile-navbar-border-hover: 3px solid darken($bg-col,10%);
 $profile-navbar-box-shadow: $profile-content-box-box-shadow;
 
