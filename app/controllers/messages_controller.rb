@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.all
+    @messages = Message.select_user_messages(session[:user_type],session[:user_id])
   end
 
   # GET /messages/1

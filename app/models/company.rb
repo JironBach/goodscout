@@ -15,4 +15,6 @@ class Company < ActiveRecord::Base
     end
   end
 
+  has_secure_password
+
 end

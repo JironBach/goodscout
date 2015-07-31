@@ -1,7 +1,15 @@
 <div class="navbar">
   <div class="navbar__left">
-    <%= link_to '逆求人(仮)', root_path, :class => 'navbar__logo'  %>
+    <% if session[:user_type] == 0 %>
+      <%= link_to '逆求人(仮)※エンジニア', root_path, :class => 'navbar__logo'  %>
+    <% elsif session[:user_type] == 1 %>
+      <%= link_to '逆求人(仮)※企業', root_path, :class => 'navbar__logo'  %>
+    <% else %>
+      <%= link_to '逆求人(仮)', root_path, :class => 'navbar__logo'  %>
+    <% end %>
   </div>
+  user_type:<%= session[:user_type] %>
+  user_id:<%= session[:user] %>
   <div class="navbar__right">
     <div class="navbar__list">
       <ul>

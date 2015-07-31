@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   create_table "companies", force: :cascade do |t|
     t.string   "company_name",          limit: 255, null: false
     t.string   "email",                 limit: 255, null: false
+    t.string   "password_digest",       limit: 255, null: false
     t.string   "phone_number",          limit: 255
     t.string   "url",                   limit: 255
     t.string   "representative_person", limit: 255, null: false

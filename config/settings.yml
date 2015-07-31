@@ -1,0 +1,5 @@
+user_type:
+  engineer  : 0
+  company   : 1
+  admin     : 2
+

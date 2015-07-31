@@ -5,7 +5,7 @@ gem 'mysql2'
 gem 'carrierwave'
 gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
 gem 'font-awesome-rails'
-
+gem 'rails_config'
 
 group :development, :staging do
   gem 'better_errors'       #追加

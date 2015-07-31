@@ -1,0 +1,12 @@
+/Users/Alexander/.rbenv/versions/2.1.1/bin/ruby -r ./siteconf20150731-74011-183ulxs.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 debug_inspector.bundle ./.gem.20150731-74011-15qquac
+installing default debug_inspector libraries

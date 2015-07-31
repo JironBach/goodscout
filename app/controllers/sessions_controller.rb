@@ -1,18 +1,25 @@
 class SessionsController < ApplicationController
 
-  ENGINEER = 0
-  RECRUITER = 1
-
   def create 
 
-    user = Engineer.find_by_email params[:email]
+    engineer = Engineer.find_by_email params[:email]
 
-    if user && user.authenticate(params[:password])
-      session[:user] = user.id
-      session[:user_type] = ENGINEER
-      flash[:success] = "ログインに成功しました"
+    if engineer && engineer.authenticate(params[:password])
+      session[:user] = engineer.id
+      session[:user_type] = Settings.user_type[:engineer] 
+      flash[:success] = "ログインに成功しました(エンジニア)"
     else
-      flash[:error] = "ユーザー名かパスワードに誤りがあります"
+
+      company = Company.find_by_email params[:email]
+
+      if company && company.authenticate(params[:password])
+        session[:user] = company.id
+        session[:user_type] = Settings.user_type[:company] 
+        flash[:success] = "ログインに成功しました(企業)"
+      else
+        flash[:error] = "ユーザー名かパスワードに誤りがあります"
+      end
+
     end
 
     redirect_to root_path
@@ -21,6 +28,7 @@ class SessionsController < ApplicationController
 
   def destroy 
     session[:user] = nil
+    session[:user_type] = nil
     @engineers = Engineer.all
     @skills = Skill.all
     render :template => 'engineers/index'

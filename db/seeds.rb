@@ -8,7 +8,6 @@
 
 100.times do |i|
   Engineer.create(
-    :id                     => i + 1,
     :name                   => "柳澤 直:#{i + 1}",
     :email                  => "n.yanagisawa#{i + 1}@nowall.co.jp",
     :password               => "hogehoge",
@@ -53,3 +52,16 @@ SKILLS = ['C++','VC++','Java','JavaScript','PHP','C言語','Python','Ruby','SQL'
 SKILLS.each do |skill|
   Skill.create( :name => skill )
 end
+
+Company.create(
+  :company_name           => 'NOWALL',
+  :email                  => 'nowall@nowall.co.jp',
+  :password               => "hogehoge",
+  :password_confirmation  => "hogehoge",
+  :phone_number           => '090987654321',
+  :url                    => 'http://nowall.co.jp',
+  :representative_person  => '柳澤直',
+  :url                    => 'http://nowall.co.jp',
+  :status                 => 1,
+  :address                => '東京都新宿区西新宿 6-15-1 セントラルパークタワー ラ・トゥール新宿 6階'
+)
