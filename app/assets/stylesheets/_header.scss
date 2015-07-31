@@ -58,7 +58,7 @@
   ul li {
     position:relative;
     float: right;
-    height: $navbar-height;
+    height: $navbar-list-height;
     padding: 15px 10px 0 10px;
     &:hover{
       box-shadow: $navbar-list-box-shadow;

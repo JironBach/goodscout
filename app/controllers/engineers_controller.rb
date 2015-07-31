@@ -16,6 +16,7 @@ class EngineersController < ApplicationController
   # GET /engineers/1
   # GET /engineers/1.json
   def show
+    @skills = Skill.all
   end
 
   # GET /engineers/new
@@ -26,6 +27,7 @@ class EngineersController < ApplicationController
 
   # GET /engineers/1/edit
   def edit
+    @skills = Skill.all
   end
 
   # POST /engineers

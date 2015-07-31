@@ -1,77 +1,149 @@
 <div class="container">
+
   <p id="notice"><%= notice %></p>
-  
-  <p>
-    <strong>Name:</strong>
-    <%= @engineer.name %>
-  </p>
-  
-  <p>
-    <strong>Email:</strong>
-    <%= @engineer.email %>
-  </p>
-  
-  <p>
-    <strong>Encrypted password:</strong>
-    <%= @engineer.password_digest %>
-  </p>
-  
-  <p>
-    <strong>Self introduction:</strong>
-    <%= @engineer.self_introduction %>
-  </p>
-  
-  <p>
-    <strong>Living place:</strong>
-    <%= @engineer.living_place %>
-  </p>
-  
-  <p>
-    <strong>Fb uid:</strong>
-    <%= @engineer.fb_uid %>
-  </p>
-  
-  <p>
-    <strong>Github uid:</strong>
-    <%= @engineer.github_uid %>
-  </p>
-  
-  <p>
-    <strong>Age:</strong>
-    <%= @engineer.age %>
-  </p>
-  
-  <p>
-    <strong>Phone number:</strong>
-    <%= @engineer.phone_number %>
-  </p>
-  
-  <p>
-    <strong>Status:</strong>
-    <%= @engineer.status %>
-  </p>
-  
-  <p>
-    <strong>Job history:</strong>
-    <%= @engineer.job_history %>
-  </p>
-  
-  <p>
-    <strong>Notes:</strong>
-    <%= @engineer.notes %>
-  </p>
-  
-  <p>
-    <strong>Is invitation enabled:</strong>
-    <%= @engineer.is_invitation_enabled %>
-  </p>
-  
-  <%= link_to 'Edit', edit_engineer_path(@engineer) %> |
-  <%= link_to 'Back', engineers_path %><br>
-  <% if session[:user] != nil %>
-    <%= link_to 'メッセージを送る', new_message_path(:engineer_id => @engineer.id) %>
-  <% else %>
-    <button name='show-popup-login-form'>メッセージを送る</button>
-  <% end %>
-  
+
+  <div class="profile">
+
+    <div class="profile__top-bg">
+
+      <div class="profile__top-bg-img"></div>
+
+      <% if @engineer.image != nil && @engineer.image.length > 0 %>
+        <%= image_tag engineer.image.url => '', :class => 'profile__img' %>
+      <% else %>
+        <%= image_tag '/default_profile_img.jpg', :class => 'profile__img'  %>
+      <% end %>
+
+      <div class="profile__name">
+        <%= @engineer.name %>
+      </div>
+
+      <table class="profile__top-data">
+        <thead>
+          <th>スキル名</th>
+          <th>レベル</th>
+          <th>経験年数</th>
+        </thead>
+        <tbody>
+          <% @engineer.engineer_skills.each do |skill| %>
+            <tr>
+              <td>
+                <%= @skills[skill.skill_id - 1].name %>
+              </td>
+              <td>
+                <% skill.level.times do %>
+                  <i class="fa fa-star-o"></i>
+                <% end %>
+              </td>
+              <td>
+                <% if skill.years_of_experience.to_i == 1 %>
+                  <%= skill.years_of_experience %>年以内
+                <% else %>
+                  <%= skill.years_of_experience - 1 %>年以上
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="profile__navbar">
+      <%= link_to(new_message_path(:engineer_id => @engineer.id), :class => 'box-link box-link--bold') do %>
+        <i class="fa fa-envelope"></i>&nbsp;このエンジニアと連絡をとってみる
+      <% end %>
+    </div>
+
+    <div class="profile__main-data grid">
+
+      <div class="f-l grid__sp-12 grid__sm-5">
+
+          <div class="content-box mg-b-20">
+            <div class="content-box__header">
+              基本情報
+            </div>
+            <div class="content-box__body">
+              <div class="content-box__text">
+                <i class="fa fa-home fa--l fa--medium"></i><%= @engineer.living_place %>在住
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-birthday-cake fa--l fa--medium"></i><%= @engineer.age %>歳
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-facebook fa--l fa--medium"></i>この方はFacebook連携をしていません
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-github fa--l fa--medium"></i>この方はGithub連携をしていません
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="content-box__header">
+              スキル
+            </div>
+            <div class="content-box__body">
+              <table class="table">
+                <thead>
+                  <th>スキル名</th>
+                  <th>レベル</th>
+                  <th>経験年数</th>
+                </thead>
+                <tbody>
+                  <% @engineer.engineer_skills.each do |skill| %>
+                    <tr>
+                      <td>
+                        <%= @skills[skill.skill_id - 1].name %><br>
+                      </td>
+                      <td>
+                        <% skill.level.times do %>
+                          <i class="fa fa-star fa--accent"></i>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= skill.years_of_experience %>年
+                        <% if skill.years_of_experience == 1 %>
+                          以内
+                        <% else %>
+                          以上
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+      </div>
+
+      <div class="f-r grid__sp-12 grid__sm-7 pd-l-10">
+
+        <div class="content-box mg-b-20">
+          <div class="content-box__header">
+            職務経歴
+          </div>
+          <div class="content-box__body">
+            <%= @engineer.job_history %>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <div class="content-box__header">
+            自己紹介
+          </div>
+          <div class="content-box__body">
+            <%= @engineer.self_introduction %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <br>
+
 </div>

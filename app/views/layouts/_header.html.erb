@@ -15,7 +15,7 @@
           </li>
         <% else %>
           <li>
-            <%= button_to 'ログアウト', sign_out_path %>
+            <%= link_to 'ログアウト', sign_out_path, :method => 'post' %>
           </li>
         <% end %>
       </ul>

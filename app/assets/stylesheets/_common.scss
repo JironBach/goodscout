@@ -4,6 +4,7 @@
 html,body{
   background-color: $bg-col;
   font-size: $font-size;
+  color: $font-col;
 }
 
 /*
@@ -61,6 +62,11 @@ html,body{
 
 .box-link{
   @include centering();
+  &.box-link--bold{
+    font-size: $bold-link-text-font-size;
+    color: $theme-col;
+    text-decoration: none;
+  }
 }
 
 /*
@@ -72,3 +78,132 @@ html,body{
   border: 2px solid $panel-normal-border-col;
   color: $panel-normal-col;
 }
+
+/*
+  profile
+ */
+.profile__img{
+  z-index: 1000;
+  position: absolute;
+  top: 120px;
+  left: 30px;
+  height: 150px;
+  width: 150px;
+  border: $profile-img-border;
+  border-radius: 5px;
+}
+
+.profile__name{
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  color: white;
+  display: inline;
+  font-weight: bold;
+  font-size: $profile-name-font-size;
+}
+
+.profile__top-bg{
+  position: relative;
+  background-color: $profile-top-bg-col;
+}
+
+.profile__top-bg-img{
+  background-image: image_url('engineer_show_top_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 250px;
+}
+
+.profile__top-data{
+  position: absolute;
+  top: 20px;
+  color: white;
+  right: 20px;
+  tr td{
+    padding: 0 10px;
+  }
+}
+
+.profile__navbar{
+  z-index: 100;
+  position: relative;
+  background-color: $base-col-3;
+  padding: 10px;
+  height: 50px;
+  margin-bottom: 20px;
+  border: $profile-navbar-border;
+  box-shadow: $profile-navbar-box-shadow;
+  cursor: pointer;
+  a{
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    height: 30px;
+    margin: auto;
+  }
+  &:hover{
+    background-color: darken($bg-col,10%);
+    border: $profile-navbar-border-hover;
+  }
+}
+
+.profile__main-data{
+  margin-left: 0;
+}
+
+/*
+ content-box
+ */
+.content-box{
+  box-shadow: $profile-content-box-box-shadow;
+}
+
+.content-box__header{
+  text-align: center;
+  background-color: $content-box-header-bg-col;
+  padding: 10px;
+}
+
+.content-box__body{
+  padding: 20px;
+}
+
+.content-box__text{
+  padding: 3px;
+}
+
+/*
+ fa
+ */
+.fa--l{
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+}
+
+.fa--medium{
+  color: $medium-col;
+}
+
+.fa--accent{
+  color: $accent-col;
+}
+
+/*
+ table
+ */
+.table{
+  width: 100%;
+  th,td{
+    border-bottom: $table-border-bottom;
+    padding: 10px;
+    text-align: left;
+  }
+}
+
+/*
+ tips
+ */
