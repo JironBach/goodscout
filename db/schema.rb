@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150722041534) do
     t.string   "password_digest",       limit: 255, null: false
     t.string   "phone_number",          limit: 255
     t.string   "url",                   limit: 255
+    t.string   "image",                 limit: 255
     t.string   "representative_person", limit: 255, null: false
     t.string   "accound_id",            limit: 255
     t.string   "encryped_password",     limit: 255

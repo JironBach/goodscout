@@ -6,7 +6,7 @@
 
     <div class="profile__top-bg">
 
-      <div class="profile__top-bg-img"></div>
+      <div class="profile__top-bg-img profile__top-bg-img--engineer"></div>
 
       <% if @engineer.image != nil && @engineer.image.length > 0 %>
         <%= image_tag @engineer.image.url , :class => 'profile__img' %>
@@ -49,7 +49,7 @@
 
     </div>
 
-    <div class="profile__navbar">
+    <div class="profile__navbar profile__navbar--clickable">
       <%= link_to(new_message_path(:engineer_id => @engineer.id), :class => 'box-link box-link--bold') do %>
         <i class="fa fa-envelope"></i>&nbsp;このエンジニアと連絡をとってみる
       <% end %>
@@ -65,16 +65,16 @@
             </div>
             <div class="content-box__body">
               <div class="content-box__text">
-                <i class="fa fa-home fa--l fa--medium"></i><%= @engineer.living_place %>在住
+                <i class="fa fa-home fa--medium"></i><%= @engineer.living_place %>在住
               </div>
               <div class="content-box__text">
-                <i class="fa fa-birthday-cake fa--l fa--medium"></i><%= @engineer.age %>歳
+                <i class="fa fa-birthday-cake fa--medium"></i><%= @engineer.age %>歳
               </div>
               <div class="content-box__text">
-                <i class="fa fa-facebook fa--l fa--medium"></i>この方はFacebook連携をしていません
+                <i class="fa fa-facebook fa--medium"></i>この方はFacebook連携をしていません
               </div>
               <div class="content-box__text">
-                <i class="fa fa-github fa--l fa--medium"></i>この方はGithub連携をしていません
+                <i class="fa fa-github fa--medium"></i>この方はGithub連携をしていません
               </div>
             </div>
           </div>

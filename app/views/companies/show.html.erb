@@ -1,0 +1,73 @@
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <div class="profile">
+
+    <div class="profile__top-bg">
+
+      <div class="profile__top-bg-img profile__top-bg-img--company"></div>
+
+      <% if @company.image != nil && @company.image.length > 0 %>
+        <%= image_tag @company.image.url , :class => 'profile__img' %>
+      <% else %>
+        <%= image_tag '/default_profile_img.jpg', :class => 'profile__img'  %>
+      <% end %>
+
+      <div class="profile__name">
+        <%= @company.company_name %>
+      </div>
+
+    </div>
+
+    <div class="profile__navbar">
+    </div>
+
+    <div class="profile__main-data grid">
+
+      <div class="f-l grid__sp-12 grid__sm-5">
+
+          <div class="content-box mg-b-20">
+            <div class="content-box__header">
+              基本情報
+            </div>
+            <div class="content-box__body">
+              <div class="content-box__text">
+                <i class="fa fa-briefcase fa--medium"></i>&nbsp;会社名 : <%= @company.company_name %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-envelope fa--medium"></i>&nbsp;メールアドレス： <%= @company.email %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-reply fa--medium"></i>&nbsp;会社URL： <a href="<%= @company.url %>"><%= @company.url %></a>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-phone fa--medium"></i>&nbsp;電話番号： <%= @company.phone_number %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-building fa--medium"></i>&nbsp;住所： <%= @company.address %>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+      <div class="f-r grid__sp-12 grid__sm-7 pd-l-10">
+
+        <div class="content-box mg-b-20">
+          <div class="content-box__header">
+            会社紹介
+          </div>
+          <div class="content-box__body">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <br>
+
+</div>

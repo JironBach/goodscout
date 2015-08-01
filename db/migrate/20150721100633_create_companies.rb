@@ -6,6 +6,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string  :password_digest        ,null: false
       t.string  :phone_number
       t.string  :url
+      t.string  :image
       t.string  :representative_person  ,null: false
       t.string  :accound_id
       t.string  :encryped_password
