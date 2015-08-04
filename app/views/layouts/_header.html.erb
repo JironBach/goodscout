@@ -9,11 +9,11 @@
     <% end %>
   </div>
   user_type:<%= session[:user_type] %>
-  user_id:<%= session[:user] %>
+  user_id:<%= session[:user_id] %>
   <div class="navbar__right">
     <div class="navbar__list">
       <ul>
-        <% if session[:user] == nil %>
+        <% if session[:user_id] == nil %>
           <li name="show-popup-login-form"><a>ログイン</a></li>
           <li>
             <%= link_to '新規登録', new_engineer_path, :class => '' %>

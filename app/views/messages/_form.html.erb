@@ -27,6 +27,10 @@
     <%= f.hidden_field :engineer_id, :value => @engineer_id %>
   </div>
 
+  <div class="field">
+    <%= f.hidden_field :to_type, :value => Settings.user_type['engineer'] %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

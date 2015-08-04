@@ -8,13 +8,15 @@ html,body{
 }
 
 .container{
-  padding: 0 15px 0 25px;
   width: initial;
   position: absolute;
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 1200px;
+  max-width: $window-size-l;
+  &.container--s{
+    max-width: $window-size-m;
+  }
 }
 
 /*
@@ -50,7 +52,7 @@ html,body{
 }
 
 .list-item-wrapper{
-  padding: 0 15px 0 25px;
+  padding: 0 15px;
   width: initial;
 }
 
@@ -63,6 +65,20 @@ html,body{
   float: right;
   text-decoration: underline;
 }
+
+
+/*
+  tandem list
+ */
+.tandem-list{
+}
+
+.tandem-list__img{
+  width: 60px;
+  border-radius: 4px;
+}
+
+
 /*
   popup
  */
@@ -189,6 +205,21 @@ html,body{
   box-shadow: $profile-content-box-box-shadow;
 }
 
+.content-box__list{
+  ul li{
+    position: relative;
+    padding: 10px;
+    border-bottom: $content-box-list-border-bottom;
+    &.disabled{
+      background-color: $content-box-list-hover-bg-col;
+    }
+    &:hover{
+      cursor: pointer;
+      background-color: $content-box-list-hover-bg-col;
+    }
+  }
+}
+
 .content-box__header{
   text-align: center;
   background-color: darken($content-box-header-bg-col,7%);
@@ -242,8 +273,23 @@ html,body{
   text
 
  */
-.text-bold{
-  font-weight: bold;
+
+.text{
+
+  &.text--bold{
+    font-weight: bold;
+  }
+  
+  &.text--s{
+    font-size: $text-sm-font-size;
+  }
+
+  &.text--thin{
+    color: $text-thin-col;
+    font-size: $text-sm-font-size;
+  }
+
+
 }
 
 /*
@@ -275,3 +321,6 @@ select{
 /*
  tips
  */
+.display-none{
+  display: none;
+}

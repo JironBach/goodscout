@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     engineer = Engineer.find_by_email params[:email]
 
     if engineer && engineer.authenticate(params[:password])
-      session[:user] = engineer.id
+      session[:user_id] = engineer.id
       session[:user_type] = Settings.user_type[:engineer] 
       flash[:success] = "ログインに成功しました(エンジニア)"
     else
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       company = Company.find_by_email params[:email]
 
       if company && company.authenticate(params[:password])
-        session[:user] = company.id
+        session[:user_id] = company.id
         session[:user_type] = Settings.user_type[:company] 
         flash[:success] = "ログインに成功しました(企業)"
       else
@@ -26,8 +26,8 @@ class SessionsController < ApplicationController
 
   end
 
-  def destroy 
-    session[:user] = nil
+  def destroy
+    session[:user_id] = nil
     session[:user_type] = nil
     @engineers = Engineer.all
     @skills = Skill.all

@@ -90,6 +90,8 @@ $triangle-s-col-2: white;
   content-box 
  */ 
 $content-box-header-bg-col: $base-col-3;
+$content-box-list-border-bottom: 1px solid $base-col;
+$content-box-list-hover-bg-col: darken($base-col-3,2%);
 $comment-box-bg-col: white;
 $comment-box-border-col: $accent-col;
 
@@ -218,6 +220,7 @@ $dashboard-bg-col: #fafafa;
   text
  */
 $text-link-col: $theme-col;
+$text-thin-col: darken($base-col,20%);
 $text-good-col: $accent-col-3;
 $text-error-col: $accent-col-2;
 $text-small-col: darken($base-col,20%);
@@ -267,3 +270,10 @@ $profile-navbar-box-shadow: $profile-content-box-box-shadow;
   link-text
  */
 $bold-link-text-font-size: $font-size + 6px;
+
+/*
+
+ font-size
+
+ */
+$text-sm-font-size: $font-size - 2px;

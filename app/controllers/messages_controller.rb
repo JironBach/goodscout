@@ -6,17 +6,20 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.select_user_messages(session[:user_type],session[:user_id])
+    #todo DB設計を修正
+    @received_messages = Message.select_received_messages(session[:user_type],session[:user_id])
+    @sent_messages = Message.select_sent_messages(session[:user_type],session[:user_id])
   end
 
   # GET /messages/1
   def show
+    @messages = Message.select_message_thread(session[:user_type],params[:opponent_id])
   end
 
   # GET /messages/new
   def new
     @message = Message.new
-    @engineer_id = params[:engineer_id]
+    @engineer_id = params[:engineer_id].to_i
   end
 
   # GET /messages/1/edit
@@ -27,7 +30,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
 
-    if session['user'] == nil
+    if session['user_type'] == nil
       redirect_to root_path
       return
     end
@@ -80,10 +83,19 @@ class MessagesController < ApplicationController
 
     def create_message_data
 
+      engineer_id = session[:user_id] if session[:user_type] == Settings.user_type['engineer']
+      engineer_id = params[:message]['engineer_id'] if session[:user_type] == Settings.user_type['company']
+
+      company_id  = session[:user_id] if session[:user_type] == Settings.user_type['company']
+      company_id  = params[:message]['company_id'] if session[:user_type] == Settings.user_type['engineer']
+
+      puts engineer_id
+      puts company_id
+
       data = {
-        'from_type'   => session['user_type'],
-        'from_id'     => session['user']['id'],
-        'to_id'       => params['message']['engineer_id'],
+        'message_type'   => session['user_type'],
+        'engineer_id' => engineer_id,
+        'company_id'  => company_id,
         'title'       => params['message']['title'],
         'desc'        => params['message']['desc']
       }

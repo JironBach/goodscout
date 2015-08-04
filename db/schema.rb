@@ -69,14 +69,16 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "from_type",  limit: 4,     null: false
-    t.integer  "from_id",    limit: 4,     null: false
-    t.integer  "to_id",      limit: 4,     null: false
-    t.string   "title",      limit: 255,   null: false
-    t.text     "desc",       limit: 65535, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "message_type", limit: 4,     null: false
+    t.integer  "engineer_id",  limit: 4
+    t.integer  "company_id",   limit: 4
+    t.string   "title",        limit: 255,   null: false
+    t.text     "desc",         limit: 65535, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
+
+  add_index "messages", ["engineer_id"], name: "index_messages_on_engineer_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

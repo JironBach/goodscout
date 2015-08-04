@@ -4,7 +4,6 @@ c = (str) ->
 #show
 $('[name="show-popup-login-form"]').each (i,el) ->
   $(el).click () ->
-    c('show')
     $('#popup-login-form').show()
 
 $('body').click (e) ->

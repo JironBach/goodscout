@@ -9,6 +9,7 @@ class Engineer < ActiveRecord::Base
   validates :job_history            ,:presence => {:message => '職務経歴を入力してください'}
 
   has_many :engineer_skills, dependent: :destroy
+  has_many :messages
 
   mount_uploader :image, ImageUploader 
 

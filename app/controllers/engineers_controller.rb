@@ -55,7 +55,7 @@ class EngineersController < ApplicationController
         end
         EngineerSkill.insert_engineer_skills(skills_data)
         session[:user_type] = USER_TYPE_ENGINEER
-        session[:user] = @engineer.id
+        session[:user_id] = @engineer.id
         format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
       else
         @skills = Skill.all

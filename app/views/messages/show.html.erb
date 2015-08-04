@@ -1,4 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+  <p id="notice"><%= notice %></p>
+
+  <% unless @messages.nil? %>
+    <% @messages.each do |message| %>
+      <% if message.message_type == Settings.message_type['from_engineer'] %><br>
+        エンジニアから
+      <% elsif message.message_type == Settings.message_type['from_engineer'] %><br>
+        企業から
+      <% end %>
+      タイトル:<%= message.title %><br>
+      本文:<%= message.desc %><br>
+    <% end %>
+  <% else %>
+    表示できるメッセージがありません
+  <% end %>
+
+  <%= link_to 'Edit', edit_message_path(@message) %> |
+  <%= link_to 'Back', messages_path %>
+
+</div>

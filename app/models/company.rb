@@ -4,6 +4,8 @@ class Company < ActiveRecord::Base
   validates :company_name           ,:presence => {:message => '会社名を入力してください'}
   validates :representative_person  ,:presence => {:message => 'ご担当者様氏名を入力してください'}
 
+  has_many :messages
+
   def self.create_company company_data
     begin
       Company.create(company_data)

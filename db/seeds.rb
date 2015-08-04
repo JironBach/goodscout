@@ -53,15 +53,49 @@ SKILLS.each do |skill|
   Skill.create( :name => skill )
 end
 
-Company.create(
-  :company_name           => 'NOWALL',
-  :email                  => 'nowall@nowall.co.jp',
-  :password               => "hogehoge",
-  :password_confirmation  => "hogehoge",
-  :phone_number           => '090987654321',
-  :url                    => 'http://nowall.co.jp',
-  :representative_person  => '柳澤直',
-  :url                    => 'http://nowall.co.jp',
-  :status                 => 1,
-  :address                => '東京都新宿区西新宿 6-15-1 セントラルパークタワー ラ・トゥール新宿 6階'
-)
+def create_company
+  Company.create(
+    :company_name           => 'NOWALL',
+    :email                  => 'nowall@nowall.co.jp',
+    :password               => "hogehoge",
+    :password_confirmation  => "hogehoge",
+    :phone_number           => '090987654321',
+    :url                    => 'http://nowall.co.jp',
+    :representative_person  => '柳澤直',
+    :url                    => 'http://nowall.co.jp',
+    :status                 => 1,
+    :address                => '東京都新宿区西新宿 6-15-1 セントラルパークタワー ラ・トゥール新宿 6階'
+  )
+end
+
+
+def create_message type,engineer_id,company_id
+  Message.create(
+    :message_type => type,
+    :engineer_id  => engineer_id,
+    :company_id   => company_id,
+    :title        => "タイトル文 type:##{type}",
+    :desc         => "本文 engineer_id:#{engineer_id} company_id:#{company_id} 
+    テストメッセージテストメッセージ
+    テストメッセージテストメッセージ
+    テストメッセージテストメッセージ
+    テストメッセージテストメッセージ"
+  )
+end
+
+create_message(0,1,1)
+
+#message from engineer
+100.times do
+  create_message(0,rand(100) + 1,rand(100) + 1)
+end
+
+#message from company
+100.times do
+  create_message(1,rand(100) + 1,rand(100) + 1)
+end
+
+#company
+100.times do
+  create_company()
+end
