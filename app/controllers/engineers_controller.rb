@@ -34,14 +34,13 @@ class EngineersController < ApplicationController
   # POST /engineers.json
   def create
 
-    password_digest = 'hogehoge'
     status = 0
     status = params['status'] if params['status'] != nil
     is_invitation_enabled = true
     @engineer = Engineer.create_engineer(engineer_params,status,is_invitation_enabled)
 
     respond_to do |format|
-      if @engineer != nil 
+      if @engineer != nil && @engineer.valid?
         skills_data = []
         params['skills'].each do |skill|
           if skill[1]['year'].to_i > 0 || skill[1]['level'].to_i > 0
@@ -54,13 +53,14 @@ class EngineersController < ApplicationController
           end
         end
         EngineerSkill.insert_engineer_skills(skills_data)
-        session[:user_type] = USER_TYPE_ENGINEER
+        session[:user_type] = Settings.user_type['engineer'] 
         session[:user_id] = @engineer.id
         format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
       else
+        pp @errors = @engineer.errors
         @skills = Skill.all
         @engineer = Engineer.new
-        format.html { render :new, notice: @engineer.errors }
+        format.html { render :new, notice: @errors }
       end
     end
 

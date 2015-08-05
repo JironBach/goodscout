@@ -1,101 +1,136 @@
 <%= form_for(@engineer) do |f| %>
 
-  <% if @engineer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@engineer.errors.count, "error") %> prohibited this engineer from being saved:</h2>
+  <% if !@errors.nil? && @errors.any? %>
+    <h2><%= @errors.count %>個の入力エラーがあります</h2>
 
-      <ul>
-      <% @engineer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <ul>
+      <% @errors.messages.each do |message| %>
+        <li class="panel panel--error mg-b-10"><%= message[1][0] %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+
   <% end %>
 
-  <div class="field">
-    ※<%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+  <table class="table table--colorful">
 
-  <div class="field">
-    ※<%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
+    <tbody>
 
-  <div class="field">
-    <%= f.label :living_place %><br>
-    <%= f.text_field :living_place %>
-  </div>
+      <tr>
+        <th><i class="fa fa-user"></i>氏名<label class="label label--danger">必須</label></th>
+        <td><%= f.text_field :name, :class => 'input', :placeholder => '例) 田中太郎' %></td>
+      </tr>
 
-  <div class="field">
-    ※<%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
+      <tr>
+        <th><i class="fa fa-birthday-cake"></i>年齢<label class="label label--danger">必須</label></th>
+        <td><%= f.number_field :age, :class => 'input', :placeholder => '27' %></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.number_field :phone_number %>
-  </div>
+      <tr>
+        <th><i class="fa fa-home"></i>住んでいる場所</th>
+        <td><%= f.text_field :living_place, :class => 'input', :placeholder => '東京都新宿区西新宿' %></td>
+      </tr>
 
-  <div class="field">
-    ※<%= f.label :password, "パスワード" %><br>
-    <%= f.text_field :password %>
-  </div>
+      <tr>
+        <th><i class="fa fa-envelope"></i>メールアドレス<label class="label label--danger">必須</label></th>
+        <td><%= f.text_field :email, :class => 'input', :placeholder => 'info@nowall.co.jp' %></td>
+      </tr>
 
-  <div class="field">
-    ※<%= f.label :password_confirmation, "パスワード確認" %><br>
-    <%= f.text_field :password_confirmation %>
-  </div>
+      <tr>
+        <th><i class="fa fa-phone"></i>電話番号</th>
+        <td><%= f.number_field :phone_number, :class => 'input', :placeholder => ' 03-6279-0840' %></td>
+      </tr>
 
-  <div class="field">
-    ※<%= f.label :self_introduction %><br>
-    <%= f.text_area :self_introduction %>
-  </div>
+      <tr>
+        <th><i class="fa fa-eye"></i>パスワード<label class="label label--danger">必須</label></th>
+        <td><%= f.password_field :password, :class => 'input' %></td>
+      </tr>
 
-  <div class="field">
-    ※<%= f.label :job_history %><br>
-    <%= f.text_area :job_history %>
-  </div>
+      <tr>
+        <th><i class="fa fa-eye"></i>パスワード確認<label class="label label--danger">必須</label></th>
+        <td><%= f.password_field :password_confirmation, :class => 'input' %></td>
+      </tr>
 
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
-  </div>
+      <tr>
+        <th><i class="fa fa-pencil-square-o"></i>自己紹介文<label class="label label--danger">必須</label></th>
+        <td><%= f.text_area :self_introduction, :class => 'textarea' %></td>
+      </tr>
 
-  <div class="field">
-    <% @skills.each do |skill| %>
-      <%= label_tag skill.name %>
-      <%= select_tag "skills[#{skill.id}][year]",
-        options_for_select([['未経験',0],['1年以下',1], ['1年以上', 2],['2年以上',3]]) 
-      %>
-      <%= select_tag "skills[#{skill.id}][level]",
-        options_for_select([['未経験',0],['1',1], ['2', 2],['3',3]]) 
-      %>
-      <% hidden_field_tag :engineer, 1 %>
-    <% end %>
-  </div>
+      <tr>
+        <th><i class="fa fa-keyboard-o"></i>職務経歴<label class="label label--danger">必須</label></th>
+        <td><%= f.text_area :job_history, :class => 'textarea'  %></td>
+      </tr>
 
-  <div class="field">
-    <% if @engineer.image? %>
-      <div class="thumbnail">
-        <%= image_tag @engineer.image.url %>
-      </div>
-    <% end %><br>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
-  </div>
-  <div class="field">
-    <% if @engineer.persisted? && @engineer.image? %>
-      <label>
-        <%= f.check_box :remove_image %>
-        画像を削除
-      </label>
-    <% end %>
-  </div>
+      <tr>
+        <th><i class="fa fa-meh-o"></i>備考</th>
+        <td><%= f.text_area :notes, :class => 'textarea'  %></td>
+      </tr>
 
-  <div class="actions">
-    <%= f.submit %>
+
+      <tr>
+        <th><i class="fa fa-image"></i>プロフィール画像登録</th>
+        <td>
+
+          <% if @engineer.persisted? && @engineer.image? %>
+              <label>
+                <%= f.check_box :remove_image %>
+                画像を削除
+              </label>
+          <% else %>
+
+            <% if @engineer.image? %>
+              <div class="thumbnail">
+                <%= image_tag @engineer.image.url %>
+              </div>
+            <% end %>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-code"></i>スキル</th>
+        <td>
+          <table class="table table--chic table--s">
+            <thead>
+              <th>スキル名</th>
+              <th>経験年数</th>
+              <th>レベル</th>
+            </thead>
+            <tbody id="skills_table">
+              <tr id="skills_0">
+                <td>
+                  <%= collection_select('skills[0]', 'id', @skills, :id, 'name') %>
+                </td>
+                <td>
+                  <%= select_tag "skills[0][year]",
+                    options_for_select([['未選択',0],['1年以下',1], ['1年以上', 2],['2年以上',3]]) 
+                  %>
+                </td>
+                <td>
+                  <%= select_tag "skills[0][level]",
+                    options_for_select([['未選択',0],['1',1], ['2', 2],['3',3]]) 
+                  %>
+                </td>
+              </tr>
+            <tbody>
+          </table>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+
+
+  </table>
+
+  <br>
+
+  <div class="text-center">
+    <%= f.submit '送信', :class => 'btn' %>
   </div>
 
 <% end %>

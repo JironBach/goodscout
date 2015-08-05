@@ -15,9 +15,9 @@ class Engineer < ActiveRecord::Base
 
   def self.create_engineer params,status,is_invitation_enabled
 
-    begin
+    #begin
 
-      Engineer.create(
+      engineer = Engineer.create(
         :name                   => params['name'],
         :email                  => params['email'],
         :password               => params['password'],
@@ -32,12 +32,13 @@ class Engineer < ActiveRecord::Base
         :is_invitation_enabled  => is_invitation_enabled,
       )
 
-    rescue
-      puts $!
-      puts $@
-      puts "============DB格納エラー|Engineer#create_engineer=============="
-      nil
-    end
+
+    #rescue
+    #  puts $!
+    #  puts $@
+    #  puts "============DB格納エラー|Engineer#create_engineer=============="
+    #  nil
+    #end
 
   end
 

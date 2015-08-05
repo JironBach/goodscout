@@ -277,11 +277,42 @@ html,body{
  */
 .table{
   width: 100%;
+
   th,td{
     border-bottom: $table-border-bottom;
     padding: 10px;
     text-align: left;
   }
+
+  &.table--colorful{
+
+    th{
+      color: $table-colorful-th-col;
+      background-color: $table-colorful-th-bg-col;
+      font-weight: normal;
+    }
+
+    th,td{
+      border: $table-colorful-border;
+    }
+
+  }
+
+  &.table--chic{
+    th{
+      background-color: $table-chic-bg-col;
+    }
+  }
+
+  &.table--s{
+    th{
+      font-size: $table-s-font-size;
+    }
+    th,td{
+      padding: 5px;
+    }
+  }
+
 }
 
 /*
@@ -331,6 +362,44 @@ select{
   border-radius: 3px;
   &:hover{
     background-color: darken($btn-bg-col,10%);
+  }
+}
+
+/*
+ 
+  input
+ 
+ */
+.input{
+  border: $input-border;
+  padding-left: 5px;
+  &.input--smart{
+    border: none;
+    background-color: $input-smart-bg-col;
+  }
+}
+
+/*
+ 
+  textarea
+ 
+ */
+.textarea{
+  width: 100%;
+  border: $textarea-border;
+}
+
+/*
+ 
+  label
+ 
+ */
+.label{
+  font-size: $label-font-size;
+  float: right;
+  padding: 3px 5px;
+  &.label--danger{
+    background-color: $label-danger-bg-col;
   }
 }
 

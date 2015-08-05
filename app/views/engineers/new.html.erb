@@ -1,5 +1,19 @@
-<h1>New Engineer</h1>
+<div class="container container--s">
 
-<%= render 'form' %>
+  <div class="content-box">
 
-<%= link_to 'Back', engineers_path %>
+    <div class="content-box__header">
+      エンジニア登録画面
+    </div>
+
+    <div class="content-box__body">
+
+      <%= render 'form' %>
+
+    </div>
+    
+  </div>
+
+</div>
+
+<%= javascript_include_tag('engineers') %>
