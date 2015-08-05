@@ -11,7 +11,7 @@
       <% if @engineer.image != nil && @engineer.image.length > 0 %>
         <%= image_tag @engineer.image.url , :class => 'profile__img' %>
       <% else %>
-        <%= image_tag '/default_engineer_profile_img.jpg', :class => 'profile__img'  %>
+        <%= image_tag '/images/default_engineer_profile_img.jpg', :class => 'profile__img'  %>
       <% end %>
 
       <div class="profile__name">
@@ -51,7 +51,7 @@
 
     <% if session[:user_type] == Settings.user_type['company'] %>
       <div class="profile__navbar profile__navbar--clickable">
-        <%= link_to(new_message_path(:engineer_id => @engineer.id), :class => 'box-link box-link--bold') do %>
+        <%= link_to(new_message_path(:opponent_id => @engineer.id), :class => 'box-link box-link--bold') do %>
           <i class="fa fa-envelope"></i>&nbsp;このエンジニアと連絡をとってみる
         <% end %>
       </div>

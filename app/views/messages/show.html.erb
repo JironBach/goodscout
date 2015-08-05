@@ -1,20 +1,143 @@
-<div class="container">
+<div class="container container--s">
 
   <p id="notice"><%= notice %></p>
 
-  <% unless @messages.nil? %>
-    <% @messages.each do |message| %>
-      <% if message.message_type == Settings.message_type['from_engineer'] %><br>
-        エンジニアから
-      <% elsif message.message_type == Settings.message_type['from_engineer'] %><br>
-        企業から
-      <% end %>
-      タイトル:<%= message.title %><br>
-      本文:<%= message.desc %><br>
-    <% end %>
-  <% else %>
-    表示できるメッセージがありません
-  <% end %>
+  <div class="grid rm-mg-l">
+
+    <div class="grid__xs-12 grid__sp-4">
+
+      <div class="content-box">
+        <div class="content-box__header">
+          メッセージ相手の詳細
+        </div>
+
+        <div class="content-box__body grid">
+
+          <% if am_i_engineer? %>
+
+            <div class="grid__xs-4 grid__sp-4 grid__sm-4">
+              <% if @messages[0].company.image != nil && @messages[0].company.image.length > 0 %>
+                <%= image_tag @messages[0].company.image.url,:class => 'img img--100 img--round' %>
+              <% else %>
+                <%= image_tag '/images/default_company_profile_img.jpg',:class => 'img img--100 img--round' %>
+              <% end %>
+            </div>
+
+            <div class="grid__xs-8 grid__sp-8 grid__sm-8">
+              <p><i class="fa fa-briefcase fa--medium"></i>会社名：<%= @messages[0].company.company_name %>:<%= @messages[0].company.id %></p>
+              <p><i class="fa fa-building fa--medium"></i>所在地：<%= @messages[0].company.address %></p>
+              
+            </div>
+
+          <% elsif am_i_company? %>
+
+            <div class="grid__xs-4 grid__sp-4 grid__sm-4">
+              <% if @messages[0].engineer.image != nil && @messages[0].engineer.image.length > 0 %>
+                <%= image_tag @messages[0].engineer.image.url,:class => 'img img--100 img--round' %>
+              <% else %>
+                <%= image_tag '/images/default_engineer_profile_img.jpg',:class => 'img img--100 img--round' %>
+              <% end %>
+            </div>
+
+            <div class="grid__xs-8 grid__sp-8 grid__sm-8">
+              <p><i class="fa fa-user fa--medium"></i><%= @messages[0].engineer.name %></p>
+              <p><i class="fa fa-home fa--medium"></i><%= @messages[0].engineer.living_place %>在住</p>
+              <p><i class="fa fa-birthday-cake fa--medium"></i><%= @messages[0].engineer.age %>歳</p>
+              <% @messages[0].engineer.engineer_skills.each_with_index do |skill,i| %>
+                <p><%= @skills[skill.skill_id - 1].name %>:
+                <% @messages[0].engineer.engineer_skills[0].level.times do %>
+                  <i class="fa fa-star fa--accent fa--s"></i>
+                <% end %>
+                <% if i > 0 %>
+                  ......<% break %>
+                <% end %></p>
+              <% end %>
+            </div>
+
+          <% end %>
+
+          <%= link_to '', @messages[0].engineer ,:class => 'box-link' %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="grid__xs-12 grid__sp-8">
+
+      <div class="content-box">
+
+        <div class="content-box__header">
+          メッセージスレッド
+        </div>
+
+        <div class="content-box__list">
+          <ul>
+            <% unless @messages.nil? %>
+              <% @messages.each do |message| %>
+                <% if am_i_engineer? %>
+                    <li class="content-box__list--dark">
+                  <% else %>
+                    <li>
+                <% end %>
+                  タイトル:<%= message.title %><br>
+                  本文:<%= message.desc %><br>
+                  created_at：<%= message.created_at %><br>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+
+      <br>
+
+      <div class="content-box pd-10 text-center">
+
+        <%= form_for(@new_message) do |f| %>
+        
+          <% if @new_message.errors.any? %>
+        
+            <div id="error_explanation">
+              <h2><%= pluralize(@new_message.errors.count, "error") %> prohibited this message from being saved:</h2>
+              <ul>
+                <% @new_message.errors.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+        
+          <% end %>
+        
+          <div class="field">
+            <%= label_tag 'タイトル' %><br>
+            <%= f.text_field :title ,:class => 'content-box__input' %>
+          </div>
+        
+          <div class="field">
+            <%= label_tag '本文' %><br>
+            <%= f.text_area :desc,:class => 'content-box__input',:rows => '6'  %>
+          </div>
+        
+          <% if am_i_engineer? %>
+            <%= f.hidden_field :opponent_id, :value => @messages[0].company_id %>
+          <% else %>
+            <%= f.hidden_field :opponent_id, :value => @messages[0].engineer_id %>
+          <% end %>
+        
+          <%= f.submit '送信',:class => 'btn' %>
+        
+        <% end %>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
 
   <%= link_to 'Edit', edit_message_path(@message) %> |
   <%= link_to 'Back', messages_path %>

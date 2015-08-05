@@ -46,22 +46,22 @@
 
                   <div class="grid__xs-2 grid__sp-3 text-center">
 
-                    <% if session[:user_type] == Settings.user_type['engineer'] %>
+                    <% if am_i_engineer? %>
 
                       <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
 
                       <% if message.engineer.image.nil? || message.engineer.image.length == 0 %>
-                        <%= image_tag '/default_engineer_profile_img.jpg',:class => 'tandem-list__img' %>
+                        <%= image_tag '/images/default_company_profile_img.jpg',:class => 'tandem-list__img' %>
                       <% else %>
                         <%= image_tag message.engineer.image.url %>
                       <% end %>
 
-                    <% elsif session[:user_type] == Settings.user_type['company'] %>
+                    <% elsif am_i_company? %>
 
                       <p class="text text--s text-center"><%= message.engineer.name %>さん</p>
                       
                       <% if message.company.image.nil? %>
-                        <%= image_tag '/default_company_profile_img.jpg',:class => 'tandem-list__img' %>
+                        <%= image_tag '/images/default_engineer_profile_img.jpg',:class => 'tandem-list__img' %>
                       <% else %>
                         <%= image_tag message.engineer.image.url %>
                       <% end %>
@@ -84,9 +84,9 @@
 
                   </div>
 
-                  <% if session[:user_type] == Settings.user_type['engineer'] %>
+                  <% if am_i_engineer? %>
                     <%= link_to '', message_path(message,opponent_id: message.company_id), :class => 'box-link' %>
-                  <% elsif session[:user_type] == Settings.user_type['company'] %>
+                  <% elsif am_i_company? %>
                     <%= link_to '', message_path(message,opponent_id: message.engineer_id), :class => 'box-link' %>
                   <% end %>
 
@@ -107,22 +107,22 @@
 
                   <div class="grid__xs-2 grid__sp-3 text-center">
 
-                    <% if session[:user_type] == Settings.user_type['engineer'] %>
+                    <% if am_i_engineer? %>
 
                       <p class="text text--s text-center"><%= message.engineer.name %>さん</p>
 
                       <% if message.engineer.image.nil? || message.engineer.image.length == 0 %>
-                        <%= image_tag '/default_engineer_profile_img.jpg',:class => 'tandem-list__img' %>
+                        <%= image_tag '/images/default_engineer_profile_img.jpg',:class => 'tandem-list__img' %>
                       <% else %>
                         <%= image_tag message.engineer.image.url %>
                       <% end %>
 
-                    <% elsif session[:user_type] == Settings.user_type['company'] %>
+                    <% elsif am_i_company? %>
 
                       <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
                       
                       <% if message.company.image.nil? %>
-                        <%= image_tag '/default_company_profile_img.jpg',:class => 'tandem-list__img' %>
+                        <%= image_tag '/images/default_company_profile_img.jpg',:class => 'tandem-list__img' %>
                       <% else %>
                         <%= image_tag message.engineer.image.url %>
                       <% end %>
@@ -145,9 +145,9 @@
 
                   </div>
 
-                  <% if session[:user_type] == Settings.user_type['engineer'] %>
+                  <% if am_i_engineer? %>
                     <%= link_to '', message_path(message,opponent_id: message.company_id), :class => 'box-link' %>
-                  <% elsif session[:user_type] == Settings.user_type['company'] %>
+                  <% elsif am_i_company? %>
                     <%= link_to '', message_path(message,opponent_id: message.engineer_id), :class => 'box-link' %>
                   <% end %>
 

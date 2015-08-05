@@ -11,7 +11,7 @@
       <% if @company.image != nil && @company.image.length > 0 %>
         <%= image_tag @company.image.url , :class => 'profile__img' %>
       <% else %>
-        <%= image_tag '/default_profile_img.jpg', :class => 'profile__img'  %>
+        <%= image_tag '/images/default_profile_img.jpg', :class => 'profile__img'  %>
       <% end %>
 
       <div class="profile__name">

@@ -13,13 +13,15 @@ class MessagesController < ApplicationController
 
   # GET /messages/1
   def show
-    @messages = Message.select_message_thread(session[:user_type],params[:opponent_id])
+    @skills = Skill.all
+    @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id])
+    @new_message = Message.new
   end
 
   # GET /messages/new
   def new
     @message = Message.new
-    @engineer_id = params[:engineer_id].to_i
+    @engineer_id = params[:opponent_id].to_i
   end
 
   # GET /messages/1/edit
@@ -38,7 +40,10 @@ class MessagesController < ApplicationController
     @message = Message.new(create_message_data())
 
     if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
+      @skills = Skill.all
+      @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id])
+      @new_message = Message.new
+      render :show, notice: 'Message was successfully created.'
     else
       @engineer_id = params['message']['engineer_id']
       render :new
@@ -83,14 +88,13 @@ class MessagesController < ApplicationController
 
     def create_message_data
 
-      engineer_id = session[:user_id] if session[:user_type] == Settings.user_type['engineer']
-      engineer_id = params[:message]['engineer_id'] if session[:user_type] == Settings.user_type['company']
-
-      company_id  = session[:user_id] if session[:user_type] == Settings.user_type['company']
-      company_id  = params[:message]['company_id'] if session[:user_type] == Settings.user_type['engineer']
-
-      puts engineer_id
-      puts company_id
+      if view_context.am_i_engineer? 
+        engineer_id = session[:user_id] 
+        company_id  = params[:message][:opponent_id] if view_context.am_i_engineer?
+      elsif view_context.am_i_company?
+        engineer_id = params[:message][:opponent_id] if view_context.am_i_company?
+        company_id  = session[:user_id] if view_context.am_i_company?
+      end
 
       data = {
         'message_type'   => session['user_type'],

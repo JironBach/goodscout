@@ -57,8 +57,8 @@ def create_company
   Company.create(
     :company_name           => 'NOWALL',
     :email                  => 'nowall@nowall.co.jp',
-    :password               => "hogehoge",
-    :password_confirmation  => "hogehoge",
+    :password               => 'hogehoge',
+    :password_confirmation  => 'hogehoge',
     :phone_number           => '090987654321',
     :url                    => 'http://nowall.co.jp',
     :representative_person  => '柳澤直',
