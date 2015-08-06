@@ -1,40 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="container container--s">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>会社名</strong>
-  <%= @company.company_name %>
-</p>
+  <div class="content-box">
 
-<p>
-  <strong>ご担当者様氏名</strong>
-  <%= @company.representative_person %>
-</p>
+    <div class="content-box__header">
+      お問い合わせ内容
+    </div>
 
+    <div class="content-box__body">
 
-<p>
-  <strong>メールアドレス</strong>
-  <%= @company.email %>
-</p>
+      <table class="table table--colorful">
+        <tbody>
 
+          <tr>
+            <th>会社名</th>
+            <td><%= @inquiry.company_name %></td>
+          </tr>
 
-<p>
-  <strong>電話番号</strong>
-  <%= @company.phone_number %>
-</p>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @inquiry.company_name %></td>
+          </tr>
 
-<p>
-  <strong>ご希望の連絡方法</strong>
-  <%= @inquiry.how_to_reply %>
-</p>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @inquiry.company_phone_number %></td>
+          </tr>
 
-<p>
-  <strong>タイトル</strong>
-  <%= @inquiry.title %>
-</p>
+          <tr>
+            <th>代表者名</th>
+            <td><%= @inquiry.representative_person %></td>
+          </tr>
 
-<p>
-  <strong>本文</strong>
-  <%= @inquiry.desc %>
-</p>
+          <tr>
+            <th>送信日時</th>
+            <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          </tr>
 
-<%= link_to 'go to home',root_path %>
+          <tr>
+            <th>ご返信方法</th>
+            <td><%= @inquiry.company_name %></td>
+          </tr>
+
+          <tr>
+            <th>お問い合わせ内容</th>
+            <td>
+              <p class="text text--bold"><%= @inquiry.title %></p>
+              <p><%= @inquiry.desc %></p>
+          
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="text-center">
+      <%= link_to 'ホームに戻る', root_path %>
+    </div>
+
+    <br>
+  
+  </div>
+
+</div>

@@ -16,12 +16,11 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   create_table "companies", force: :cascade do |t|
     t.string   "company_name",          limit: 255, null: false
     t.string   "email",                 limit: 255, null: false
-    t.string   "password_digest",       limit: 255, null: false
+    t.string   "password_digest",       limit: 255
     t.string   "phone_number",          limit: 255
     t.string   "url",                   limit: 255
     t.string   "image",                 limit: 255
     t.string   "representative_person", limit: 255, null: false
-    t.string   "accound_id",            limit: 255
     t.string   "encryped_password",     limit: 255
     t.integer  "status",                limit: 4,   null: false
     t.string   "address",               limit: 255
@@ -60,12 +59,15 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   create_table "inquiries", force: :cascade do |t|
-    t.string   "title",        limit: 255,   null: false
-    t.text     "desc",         limit: 65535, null: false
-    t.integer  "how_to_reply", limit: 4,     null: false
-    t.integer  "company_id",   limit: 4,     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "title",                 limit: 255,   null: false
+    t.text     "desc",                  limit: 65535, null: false
+    t.integer  "how_to_reply",          limit: 4,     null: false
+    t.string   "company_name",          limit: 255,   null: false
+    t.string   "company_email",         limit: 255,   null: false
+    t.string   "company_phone_number",  limit: 255,   null: false
+    t.string   "representative_person", limit: 255,   null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "messages", force: :cascade do |t|

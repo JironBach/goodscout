@@ -17,7 +17,7 @@
     :age                    => 21,
     :image                  => "default_profile_img.jpg",
     :phone_number           => '09096760070',
-    :status                 => 0,
+    :status                 => rand(1..9),
     :job_history            => '内緒だお',
     :is_invitation_enabled  => true,
   )
@@ -96,6 +96,6 @@ end
 end
 
 #company
-100.times do
+10.times do
   create_company()
 end

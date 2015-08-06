@@ -13,21 +13,14 @@ class InquiriesController < ApplicationController
 
   # POST /inquiries
   def create
-    #論理積のみでの演算だと片方が評価されないことがあるので一旦変数に保存
-    company_data = parse_params_for_company(params)
-    @company = Company.new(company_data)
-    company_valid = @company.valid?
 
-    inquiry_data = parse_params_for_inquiry(params,@company.id)
-    @inquiry = Inquiry.new(inquiry_data)
-    inquiry_valid = @inquiry.valid?
+    @inquiry = Inquiry.new(inquiry_params)
 
-    if company_valid && inquiry_valid
-      @inquiry.company_id = @company.id if @company.save
+    if @inquiry.valid?
       @inquiry.save
       render :show
     else
-      render :new, notice: [@inquiry.errors,@company.errors]
+      render :new, notice: @inquiry.errors
     end
 
   end
@@ -35,7 +28,7 @@ class InquiriesController < ApplicationController
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:title, :desc, :how_to_reply, :company_id)
+      params.require(:inquiry).permit(:title, :desc, :how_to_reply, :company_name, :company_email, :company_phone_number, :representative_person)
     end
 
     def parse_params_for_company p
