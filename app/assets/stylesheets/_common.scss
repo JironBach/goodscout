@@ -80,16 +80,32 @@ html,body{
 
 
 /*
+
   popup
+
  */
 .popup{
+  z-index: $popup-z-index;
   background-color: $popup-bg-col;
-  height: 200px;
+  height: 250px;
   width: 400px;
   border: $popup-border;
+  border-radius: 4px;
   box-shadow: $popup-shadow;
   @include centering();
 }
+
+.popup__body{
+  text-align: center;
+  padding: 10px;
+}
+
+/*
+ 
+ 
+ 
+ */
+
 
 .hidden{
   display: none;
@@ -279,6 +295,7 @@ html,body{
   width: 100%;
 
   th,td{
+    font-weight: normal;
     border-bottom: $table-border-bottom;
     padding: 10px;
     text-align: left;
@@ -289,7 +306,6 @@ html,body{
     th{
       color: $table-colorful-th-col;
       background-color: $table-colorful-th-bg-col;
-      font-weight: normal;
     }
 
     th,td{
@@ -299,6 +315,7 @@ html,body{
   }
 
   &.table--chic{
+    color: $table-chic-col;
     th{
       background-color: $table-chic-bg-col;
     }
@@ -404,6 +421,21 @@ select{
 }
 
 /*
+ 
+  cover
+ 
+ */
+.cover{
+  z-index: $cover-z-index;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 1000vh;
+  width: 1000vw;
+  background-color: $cover-bg-col;
+}
+
+/*
  tips
  */
 .display-none{
@@ -429,4 +461,8 @@ select{
     border-radius: 4px;
   }
 
+}
+
+.noscroll{
+  overflow: hidden;
 }

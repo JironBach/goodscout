@@ -201,6 +201,7 @@ $table-colorful-th-bg-col: $medium-col;
 $table-colorful-th-col: $base-col-3;
 $table-colorful-border: 1px solid $base-col;
 
+$table-chic-col: $base-col-3;
 $table-chic-bg-col: $base-col-4;
 
 $table-s-font-size: $font-size - 2px;
@@ -271,9 +272,10 @@ $circle-bg-icon-bg-col: $theme-col;
 /*
   popup
 */
-$popup-bg-col: $base-col;
+$popup-bg-col: $base-col-3;
 $popup-border: 5px solid $theme-col;
 $popup-shadow: 0 2px 7px 5px rgba(0,0,0,0.2);
+$popup-z-index: 10000;
 
 /*
   profile

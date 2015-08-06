@@ -2,8 +2,6 @@ class EngineersController < ApplicationController
 
   before_action :set_engineer, only: [:show, :edit, :update, :destroy]
 
-  require 'pp'
-
   # GET /engineers
   # GET /engineers.json
   def index
