@@ -5,3 +5,14 @@ user_type:
 message_type:
   from_engineer   : 0
   from_company    : 1
+status:
+  not_registered                                    : 0
+  student_and_job_hunting_regular_employee          : 1
+  student_and_job_hunting_part_time_job             : 2
+  student_and_not_job_hunting                       : 3
+  regular_employee_and_job_hunting                  : 4
+  regular_employee_and_job_hunting_eagerly          : 5
+  regular_employee_and_not_job_hunting              : 6
+  freelance_and_looking_for_job                     : 7
+  freelance_and_looking_for_job_eagerly             : 8
+  freelance_and_not_looking_for_job                 : 9

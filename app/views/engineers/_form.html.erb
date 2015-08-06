@@ -31,6 +31,26 @@
       </tr>
 
       <tr>
+        <th><i class="fa fa-child"></i>現在の状況<label class="label label--danger">必須</label></th>
+        <td>
+          <%= f.select :status,
+            options_for_select([
+              ['学生で就職活動やバイト探しはしていない' ,Settings.status['student_and_job_hunting_regular_employee']],
+              ['学生で就職活動中'                       ,Settings.status['student_and_job_hunting_part_time_job']],
+              ['学生でバイトを探している'               ,Settings.status['student_and_not_job_hunting']],
+              ['正社員で転職活動はしていない'           ,Settings.status['regular_employee_and_job_hunting']],
+              ['正社員でいい仕事があったら転職したい'   ,Settings.status['regular_employee_and_job_hunting_eagerly']],
+              ['正社員で今すぐにでも転職したい'         ,Settings.status['regular_employee_and_not_job_hunting']],
+              ['フリーランスでいい仕事を探している'     ,Settings.status['freelance_and_looking_for_job']],
+              ['フリーランスで今すぐにでも仕事が欲しい' ,Settings.status['freelance_and_looking_for_job_eagerly']],
+              ['フリーランスで仕事を探していない'       ,Settings.status['freelance_and_not_looking_for_job']],
+          ]), :include_blank => "未選択"
+          %>
+        </td>
+          
+      </tr>
+
+      <tr>
         <th><i class="fa fa-envelope"></i>メールアドレス<label class="label label--danger">必須</label></th>
         <td><%= f.text_field :email, :class => 'input', :placeholder => 'info@nowall.co.jp' %></td>
       </tr>
