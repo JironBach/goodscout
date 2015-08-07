@@ -112,6 +112,7 @@ html,body{
 }
 
 .box-link{
+  cursor: pointer;
   @include centering();
   &.box-link--bold{
     font-size: $bold-link-text-font-size;
@@ -242,7 +243,7 @@ html,body{
     &.disabled{
       background-color: $content-box-list-hover-bg-col;
     }
-    &:hover{
+    &.clickable:hover{
       cursor: pointer;
       background-color: $content-box-list-hover-bg-col;
     }
@@ -442,10 +443,17 @@ select{
  */
 .label{
   font-size: $label-font-size;
-  float: right;
   padding: 3px 5px;
+  &.label--right{
+    float: right;
+  }
   &.label--danger{
     background-color: $label-danger-bg-col;
+    color: $label-danger-col;
+  }
+  &.label--theme{
+    background-color: $label-theme-bg-col;
+    color: $label-theme-col;
   }
 }
 
@@ -492,6 +500,9 @@ select{
  tips
 
  */
+.inline{
+  display: inline;
+}
 
 .text-right{
   text-align: right;
@@ -506,6 +517,11 @@ select{
 }
 
 .img{
+
+  &.img--50px{
+    height: 50px;
+    width: 50px;
+  }
 
   &.img--100px{
     height: 100px;

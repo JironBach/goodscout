@@ -1,8 +1,17 @@
 <div class="container container--s">
 
-  <p id="notice"><%= notice %></p>
+  <!-- flash -->
+  <% flash.each_with_index do |flash,i| %>
+    <div id="flash-<%= i %>" class="panel panel--<%= flash[0] %> mg-b-10 rm-mg-l grid">
+      <p class="grid__xs-11 grid__sp-11"><%= flash[1] %></p>
+      <div name="rm-flash" class="grid__xs-1 grid__sp-1 text-right">
+        <i id="rm-flash-<%= i %>" class="fa fa-remove fa--clean fa--clickable"></i>
+      </div>
+    </div>
+  <% end %>
+  <!-- /flash -->
 
-  <div class="grid rm-mg-l">
+  <div class="grid rm-mg-l mg-t-10">
 
     <div class="grid__xs-12 grid__sp-4">
 
@@ -76,14 +85,33 @@
           <ul>
             <% unless @messages.nil? %>
               <% @messages.each do |message| %>
-                <% if am_i_engineer? %>
-                    <li class="content-box__list--dark">
-                  <% else %>
-                    <li>
-                <% end %>
-                  タイトル:<%= message.title %><br>
-                  本文:<%= message.desc %><br>
-                  created_at：<%= message.created_at %><br>
+                <li class="grid">
+
+                  <div class="grid__xs-3 grid__sp-2">
+                    <% if message.message_type == Settings.message_type[:from_engineer] %>
+                      <% if message.engineer.image != nil && message.engineer.image.length > 0 %>
+                        <%= image_tag message.engineer.image.url %>
+                      <% else %>
+                        <%= image_tag Settings.default_img_path['engineer'], :class => 'img img--100 img--round' %>
+                      <% end %>
+                    <% elsif message.message_type == Settings.message_type[:from_company] %>
+                      <% if message.company.image != nil && message.company.image.length > 0 %>
+                        <%= image_tag message.company.image.url %>
+                      <% else %>
+                        <%= image_tag Settings.default_img_path['company'], :class => 'img img--100 img--round' %>
+                      <% end %>
+                    <% end  %>
+                  </div>
+
+                  <div class="grid__xs-9 grid__sp-10">
+                    <% if (am_i_engineer? && message.message_type == session[:user_type]) ||am_i_company? && message.message_type == session[:user_type] %>
+                      <p class="text text--bold inline"><%= message.title %></p><br>
+                    <% end %>
+                    <%= message.message_type %>
+                    <p class="inline">本文:<%= message.desc %></p><br>
+                    <p class="text text--thin">created_at：<%= message.created_at %><p>
+                  </div>
+
                 </li>
               <% end %>
             <% end %>
