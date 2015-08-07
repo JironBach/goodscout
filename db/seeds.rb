@@ -87,12 +87,12 @@ create_message(0,1,1)
 
 #message from engineer
 100.times do
-  create_message(0,rand(100) + 1,rand(100) + 1)
+  create_message(0,rand(100) + 1,rand(10) + 1)
 end
 
 #message from company
 100.times do
-  create_message(1,rand(100) + 1,rand(100) + 1)
+  create_message(1,rand(100) + 1,rand(10) + 1)
 end
 
 #company

@@ -123,12 +123,25 @@ html,body{
 /*
   panel
  */
-.panel--normal{
-  padding: 20px;
-  background-color: $panel-normal-bg-col;
-  color: $panel-normal-col;
-  border: $panel-normal-border;
+.panel{
+  padding: 15px;
+  box-shadow: $panel-box-shadow;
   border-radius: 3px;
+  &.panel--normal{
+    background-color: $panel-normal-bg-col;
+    color: $panel-normal-col;
+    border: $panel-normal-border;
+  }
+  &.panel--error{
+    background-color: $panel-error-bg-col;
+    color: $panel-error-col;
+    border: $panel-error-border;
+  }
+  &.panel--notice{
+    background-color: $panel-notice-bg-col;
+    color: $panel-notice-col;
+    border: $panel-notice-border;
+  }
 }
 
 /*
@@ -280,16 +293,31 @@ html,body{
   
   &.fa--medium{
     color: $medium-col;
+    &.fa--clickable:hover{
+      color: darken($fa-medium-col,10%);
+    }
   }
   
   &.fa--accent{
-    color: $accent-col;
+    color: $fa-accent-col;
+    &.fa--clickable:hover{
+      color: darken($fa-accent-col,10%);
+    }
+  }
+
+  &.fa--clean{
+    color: $fa-clean-col;
+    &.fa--clickable:hover{
+      color: darken($fa-clean-col,20%);
+    }
   }
 
 }
 
 /*
+
  table
+
  */
 .table{
   width: 100%;
@@ -315,9 +343,9 @@ html,body{
   }
 
   &.table--chic{
-    color: $table-chic-col;
     th{
       background-color: $table-chic-bg-col;
+      color: $table-chic-col;
     }
   }
 
@@ -437,8 +465,15 @@ select{
 }
 
 /*
+
  tips
+
  */
+
+.text-right{
+  text-align: right;
+}
+
 .display-none{
   display: none;
 }

@@ -53,11 +53,10 @@ class EngineersController < ApplicationController
         EngineerSkill.insert_engineer_skills(skills_data)
         session[:user_type] = Settings.user_type['engineer'] 
         session[:user_id] = @engineer.id
-        format.html { redirect_to @engineer, notice: 'Engineer was successfully created.' }
+        format.html { redirect_to @engineer, notice: '登録が完了しました！！' }
       else
-        pp @errors = @engineer.errors
+        @errors = @engineer.errors
         @skills = Skill.all
-        @engineer = Engineer.new
         format.html { render :new, notice: @errors }
       end
     end

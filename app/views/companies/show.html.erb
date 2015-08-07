@@ -1,6 +1,17 @@
 <div class="container">
 
-  <p id="notice"><%= notice %></p>
+  <div class="panel panel--success">
+    <p id="notice"><%= notice %></p>
+  </div>
+
+  <!-- flash -->
+  <% flash.each_with_index do |flash,i| %>
+    <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
+      <div class="grid__sp-11 grid__sm-11"><%= flash[1] %></div>
+      <div id="rm-notice-panel-<%= i %>" name="rm-notice-panel" class="grid__sp-1 grid__sm-1 rm-pd"><i class="fa fa-remove fa--with-notice"></i></div>
+    </div>
+  <% end %>
+  <!-- /flash -->
 
   <div class="profile">
 

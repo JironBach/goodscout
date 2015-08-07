@@ -14,3 +14,6 @@ $('body').click (e) ->
     $("#popup-login-form").hide()
     $("#cover").hide()
     $('body').removeClass('noscroll')
+
+$("[id^=rm-flash-]").click (el) ->
+  $("#flash-#{el.target.id.match(/\d+/)[0]}").remove()

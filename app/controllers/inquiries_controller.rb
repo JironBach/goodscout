@@ -18,6 +18,7 @@ class InquiriesController < ApplicationController
 
     if @inquiry.valid?
       @inquiry.save
+      flash.now[:notice] = 'この内容でお問い合わせを送信しました'
       render :show
     else
       render :new, notice: @inquiry.errors

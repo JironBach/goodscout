@@ -1,11 +1,17 @@
 <%= form_for(@engineer) do |f| %>
 
   <% if !@errors.nil? && @errors.any? %>
+
     <h2><%= @errors.count %>個の入力エラーがあります</h2>
 
     <ul>
-      <% @errors.messages.each do |message| %>
-        <li class="panel panel--error mg-b-10"><%= message[1][0] %></li>
+      <% @errors.messages.each_with_index do |message,i| %>
+        <li id="flash-<%= i %>" class="panel panel--error mg-b-10 rm-mg-l grid">
+          <p class="grid__xs-11 grid__sp-11">入力エラー：<%= message[1][0] %></p>
+          <div name="rm-flash" class="grid__xs-1 grid__sp-1 text-right">
+            <i id="rm-flash-<%= i %>" class="fa fa-remove fa--clean fa--clickable"></i>
+          </div>
+        </li>
       <% end %>
     </ul>
 
