@@ -20,7 +20,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <% if @engineers != nil %>
     <div class="grid list-item-wrapper">
         <% @engineers.each_with_index do |engineer,i| %>
@@ -60,5 +60,7 @@
         <% end %>
     </div>
   <% end %>
+
+  <%= paginate @engineers %>
 
 </div>

@@ -465,6 +465,29 @@ select{
 }
 
 /*
+ 
+  pagination
+ 
+ */
+.pagination{
+  text-align: center;
+}
+
+.pagination__box{
+  position: relative;
+  display: inline;
+  width: 30px;
+  height: 50px;
+  padding: 10px;
+  background-color: $pagination-bg-col;
+  border: $pagination-border;
+  color: $pagination-col;
+  a{
+    text-decoration: none;
+  }
+}
+
+/*
 
  tips
 

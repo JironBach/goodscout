@@ -6,9 +6,9 @@ gem 'carrierwave'
 gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'rails_config'
+gem 'kaminari'
 
 group :development, :staging do
-  gem 'better_errors'       #追加
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-stack_explorer'

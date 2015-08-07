@@ -228,7 +228,7 @@ $list-item-font-size: $font-size - 2px;
 $list-item-img-size: 160px;
 $list-item-border: 2px solid $theme-col;
 $list-item-bg-col: $base-col-3;
-$list-item-box-shadow: 1px 0 2px 2px rgba(0,0,0,0.2);
+$list-item-box-shadow: 1px 0 1px 1px rgba(0,0,0,0.2);
 
 /*
   shadow
@@ -268,13 +268,17 @@ $border-r-danger-col: $accent-col-2;
 $border-r-good-col: $accent-col-3;
 
 /*
+
   circle bg
+
 */
 $circle-bg-icon-col: white;
 $circle-bg-icon-bg-col: $theme-col;
 
 /*
+
   popup
+
 */
 $popup-bg-col: $base-col-3;
 $popup-border: 5px solid $theme-col;
@@ -282,7 +286,9 @@ $popup-shadow: 0 2px 7px 5px rgba(0,0,0,0.2);
 $popup-z-index: 10000;
 
 /*
+
   profile
+
  */
 $profile-img-border: 3px solid $base-col;
 $profile-top-bg-col: rgba(0,0,0,0.2);
@@ -293,7 +299,9 @@ $profile-navbar-border-hover: 3px solid darken($bg-col,10%);
 $profile-navbar-box-shadow: $profile-content-box-box-shadow;
 
 /*
+
   link-text
+
  */
 $bold-link-text-font-size: $font-size + 6px;
 
@@ -303,3 +311,13 @@ $bold-link-text-font-size: $font-size + 6px;
 
  */
 $text-sm-font-size: $font-size - 2px;
+
+/*
+ 
+  pagination
+ 
+ */
+$pagination-border: 2px solid $base-col-3;
+$pagination-box-shadow: 0 1px 1px 1px rgba(0,0,0,0.1);
+$pagination-bg-col: $theme-col;
+$pagination-col: $base-col-3;

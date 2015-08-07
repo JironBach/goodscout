@@ -7,7 +7,7 @@ class EngineersController < ApplicationController
   def index
 
     @skills = Skill.all
-    @engineers = Engineer.select_engineer_with_skills
+    @engineers = Engineer.select_engineer_with_skills.page(params[:page])
 
   end
 
@@ -103,7 +103,7 @@ class EngineersController < ApplicationController
     ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
     if ids != nil
       @skills = Skill.all
-      @engineers = Engineer.where(id: ids)
+      @engineers = Engineer.where(id: ids).page(params[:page])
     else
       @engineers = []
     end

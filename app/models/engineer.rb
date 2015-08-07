@@ -12,6 +12,7 @@ class Engineer < ActiveRecord::Base
   has_many :engineer_skills, dependent: :destroy
   has_many :messages
 
+  paginates_per 30
 
   mount_uploader :image, ImageUploader 
 
