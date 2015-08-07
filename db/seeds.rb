@@ -62,7 +62,6 @@ def create_company
     :phone_number           => '090987654321',
     :url                    => 'http://nowall.co.jp',
     :representative_person  => '柳澤直',
-    :url                    => 'http://nowall.co.jp',
     :status                 => 1,
     :address                => '東京都新宿区西新宿 6-15-1 セントラルパークタワー ラ・トゥール新宿 6階'
   )
@@ -74,24 +73,26 @@ def create_message type,engineer_id,company_id
     :message_type => type,
     :engineer_id  => engineer_id,
     :company_id   => company_id,
-    :title        => "タイトル文 type:##{type}",
-    :desc         => "本文 engineer_id:#{engineer_id} company_id:#{company_id} 
+    :title        => "タイトル文",
+    :desc         => "
     テストメッセージテストメッセージ
     テストメッセージテストメッセージ
     テストメッセージテストメッセージ
-    テストメッセージテストメッセージ"
+    テストメッセージテストメッセージ
+    info:engineer_id:#{engineer_id} company_id:#{company_id} type:#{type}
+    "
   )
 end
 
 create_message(0,1,1)
 
 #message from engineer
-100.times do
+1000.times do
   create_message(0,rand(100) + 1,rand(10) + 1)
 end
 
 #message from company
-100.times do
+1000.times do
   create_message(1,rand(100) + 1,rand(10) + 1)
 end
 

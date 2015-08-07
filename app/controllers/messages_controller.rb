@@ -43,7 +43,8 @@ class MessagesController < ApplicationController
       @skills = Skill.all
       @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id])
       @new_message = Message.new
-      render :show, notice: 'Message was successfully created.'
+      flash.now[:notice] = 'メッセージの送信に成功しました'
+      render :show
     else
       @engineer_id = params['message']['engineer_id']
       render :new
