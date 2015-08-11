@@ -48,6 +48,8 @@ class MessagesController < ApplicationController
       @skills = Skill.all
       @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id])
       @new_message = Message.new
+      @opponent = Company.find(params[:message][:opponent_id].to_i) if view_context.am_i_engineer?
+      @opponent = Engineer.find(params[:message][:opponent_id].to_i) if view_context.am_i_company?
       flash.now[:notice] = 'メッセージの送信に成功しました'
       render :show
     else
