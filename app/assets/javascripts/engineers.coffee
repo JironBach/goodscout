@@ -3,8 +3,19 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 skills_num = 0
+$("tr[id^=skills_]").each () ->
+  num = $(this).attr("id").match(/\d+/)[0]
+  skills_num = num if skills_num < num
+
 $("[id^=skills_]").change (el) ->
-  if $("#skills_#{skills_num}_id").val() > 0 && $("#skills_#{skills_num}_year").val() > 0 && 
+
+  c("=======================================")
+  c($("#skills_#{skills_num}_id").val())
+  c($("#skills_#{skills_num}_year").val())
+  c($("#skills_#{skills_num}_level").val())
+  c($("[id=skills_#{skills_num}]").length == 1)
+
+  if $("#skills_#{skills_num}_id").val() > 0 && $("#skills_#{skills_num}_year").val() > 0 &&
     $("#skills_#{skills_num}_level").val() > 0 && $("[id=skills_#{skills_num}]").length == 1
       el = $("#skills_#{skills_num}").clone()
       skills_num += 1

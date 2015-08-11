@@ -1,6 +1,17 @@
-<h1>Editing Engineer</h1>
+<div class="container container--s">
 
-<%= render 'form' %>
+  <div class="content-box">
 
-<%= link_to 'Show', @engineer %> |
-<%= link_to 'Back', engineers_path %>
+    <div class="content-box__header">
+      プロフィール更新
+    </div>
+
+    <div class="content-box__body">
+      <%= render 'form' %>
+    </div>
+
+  </div>
+
+</div>
+
+<%= javascript_include_tag 'engineers' %>

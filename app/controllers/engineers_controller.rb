@@ -68,9 +68,11 @@ class EngineersController < ApplicationController
   def update
     respond_to do |format|
       if @engineer.update(engineer_params)
+        @skills = Skill.all
         format.html { redirect_to @engineer, notice: 'Engineer was successfully updated.' }
         format.json { render :show, status: :ok, location: @engineer }
       else
+        @skills = Skill.all
         format.html { render :edit }
         format.json { render json: @engineer.errors, status: :unprocessable_entity }
       end

@@ -23,6 +23,13 @@
           </li>
         <% else %>
           <li>
+            <% if am_i_engineer? %>
+              <%= link_to 'マイページ', edit_engineer_path(session[:user_id]) %>
+            <% elsif am_i_company? %>
+              <%= link_to 'マイページ', edit_company_path(session[:user_id]) %>
+            <% end %>
+          </li>
+          <li>
             <%= link_to 'ログアウト', sign_out_path, :method => 'post' %>
           </li>
           <li>
