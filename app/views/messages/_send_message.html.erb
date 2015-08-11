@@ -1,0 +1,156 @@
+  <div class="grid rm-mg-l mg-t-10">
+  
+    <div class="grid__xs-12 grid__sp-4">
+  
+      <div class="content-box">
+
+        <div class="content-box__header">
+          メッセージ相手の詳細
+        </div>
+  
+        <div class="content-box__body grid">
+  
+          <% if am_i_engineer? %>
+  
+            <div class="grid__xs-4 grid__sp-4 grid__sm-4">
+              <% if @opponent.image != nil && @opponent.image.length > 0 %>
+                <%= image_tag @opponent.image.url,:class => 'img img--100 img--round' %>
+              <% else %>
+                <%= image_tag '/images/default_company_profile_img.jpg',:class => 'img img--100 img--round' %>
+              <% end %>
+            </div>
+  
+            <div class="grid__xs-8 grid__sp-8 grid__sm-8">
+              <p><i class="fa fa-briefcase fa--medium"></i>会社名：<%= @opponent.company_name %>:<%= @opponent.id %></p>
+              <p><i class="fa fa-building fa--medium"></i>所在地：<%= @opponent.address %></p>
+              
+            </div>
+  
+          <% elsif am_i_company? %>
+  
+            <div class="grid__xs-4 grid__sp-4 grid__sm-4">
+              <% if @opponent.image != nil && @opponent.image.length > 0 %>
+                <%= image_tag @opponent.image.url,:class => 'img img--100 img--round' %>
+              <% else %>
+                <%= image_tag '/images/default_engineer_profile_img.jpg',:class => 'img img--100 img--round' %>
+              <% end %>
+            </div>
+  
+            <div class="grid__xs-8 grid__sp-8 grid__sm-8">
+              <p><i class="fa fa-user fa--medium"></i><%= @opponent.name %></p>
+              <p><i class="fa fa-home fa--medium"></i><%= @opponent.living_place %>在住</p>
+              <p><i class="fa fa-birthday-cake fa--medium"></i><%= @opponent.age %>歳</p>
+              <% @opponent.engineer_skills.each_with_index do |skill,i| %>
+                <p><%= @skills[skill.skill_id - 1].name %>:
+                <% @opponent.engineer_skills[0].level.times do %>
+                  <i class="fa fa-star fa--accent fa--s"></i>
+                <% end %>
+                <% if i > 0 %>
+                  ......<% break %>
+                <% end %></p>
+              <% end %>
+            </div>
+  
+          <% end %>
+  
+          <%= link_to '', @opponent ,:class => 'box-link' %>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+    <div class="grid__xs-12 grid__sp-8">
+  
+      <div class="content-box">
+  
+        <div class="content-box__header">
+          メッセージスレッド
+        </div>
+  
+        <div class="content-box__list">
+            <% if @messages.length <= 0 %>
+              <p class="pd-10">メッセージはまだありません</p>
+            <% else %>
+              <ul>
+                <% @messages.each do |message| %>
+                  <li class="grid">
+  
+                    <div class="grid__xs-3 grid__sp-2">
+                      <% if message.message_type == Settings.message_type[:from_engineer] %>
+                        <% if message.engineer.image != nil && message.engineer.image.length > 0 %>
+                          <%= image_tag message.engineer.image.url %>
+                        <% else %>
+                          <%= image_tag Settings.default_img_path['engineer'], :class => 'img img--100 img--round' %>
+                        <% end %>
+                      <% elsif message.message_type == Settings.message_type[:from_company] %>
+                        <% if message.company.image != nil && message.company.image.length > 0 %>
+                          <%= image_tag message.company.image.url %>
+                        <% else %>
+                          <%= image_tag Settings.default_img_path['company'], :class => 'img img--100 img--round' %>
+                        <% end %>
+                      <% end  %>
+                    </div>
+  
+                    <div class="grid__xs-9 grid__sp-10">
+                      <% if (am_i_engineer? && message.message_type == session[:user_type]) ||am_i_company? && message.message_type == session[:user_type] %>
+                        <p class="text text--bold inline"><%= message.title %></p><br>
+                      <% end %>
+                      <%= message.message_type %>
+                      <p class="inline">本文:<%= message.desc %></p><br>
+                      <p class="text text--thin">created_at：<%= message.created_at %></p>
+                    </div>
+  
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+        </div>
+  
+      </div>
+  
+      <br>
+  
+      <div class="content-box pd-10 text-center">
+      
+        <%= form_for(@new_message) do |f| %>
+        
+          <% if @new_message.errors.any? %>
+        
+            <div id="error_explanation">
+              <h2><%= pluralize(@new_message.errors.count, "error") %> prohibited this message from being saved:</h2>
+              <ul>
+                <% @new_message.errors.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+        
+          <% end %>
+        
+          <div class="field">
+            <%= label_tag 'タイトル' %><br>
+            <%= f.text_field :title ,:class => 'content-box__input' %>
+          </div>
+        
+          <div class="field">
+            <%= label_tag '本文' %><br>
+            <%= f.text_area :desc,:class => 'content-box__input',:rows => '6'  %>
+          </div>
+        
+          <% if am_i_engineer? && (@messages != nil || @messages.length == 0 ) %>
+            <%= f.hidden_field :opponent_id, :value => @opponent.id %>
+          <% elsif am_i_company? && params[:opponent_id] != nil %>
+            <%= f.hidden_field :opponent_id, :value => params[:opponent_id] %>
+          <% end %>
+        
+          <%= f.submit '送信',:class => 'btn' %>
+        
+        <% end %>
+      
+      </div>
+
+    </div>
+
+  </div>

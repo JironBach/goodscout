@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create 
 
-    engineer = Engineer.find_by_email params[:email]
+    engineer = Engineer.find_by_email(params[:email])
 
     if engineer && engineer.authenticate(params[:password])
       session[:user_id] = engineer.id
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = "ログインに成功しました(エンジニア)"
     else
 
-      company = Company.find_by_email params[:email]
+      company = Company.find_by_email(params[:email])
 
       if company && company.authenticate(params[:password])
         session[:user_id] = company.id
@@ -29,9 +29,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:user_type] = nil
-    @engineers = Engineer.all
-    @skills = Skill.all
-    render :template => 'engineers/index'
+    redirect_to root_path
   end
 
 end

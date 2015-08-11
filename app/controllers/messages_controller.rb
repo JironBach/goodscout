@@ -16,12 +16,17 @@ class MessagesController < ApplicationController
     @skills = Skill.all
     @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id])
     @new_message = Message.new
+    @opponent = Company.find(params[:opponent_id].to_i) if view_context.am_i_engineer?
+    @opponent = Engineer.find(params[:opponent_id].to_i) if view_context.am_i_company?
   end
 
   # GET /messages/new
   def new
-    @message = Message.new
-    @engineer_id = params[:opponent_id].to_i
+    @skills = Skill.all
+    @new_message = Message.new
+    @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id])
+    @opponent = Company.find(params[:opponent_id].to_i) if view_context.am_i_engineer?
+    @opponent = Engineer.find(params[:opponent_id].to_i) if view_context.am_i_company?
   end
 
   # GET /messages/1/edit
