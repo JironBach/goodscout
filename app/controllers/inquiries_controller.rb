@@ -38,7 +38,7 @@ class InquiriesController < ApplicationController
         'company_name' => p['company_name'],
         'email' => p['email'],
         'representative_person' => p['representative_person'],
-        'company_name' => p['company_name'],
+        'name' => p['name'],
         'status' => 0,
       }
       company_data['url'] = p['url'] if p['url'] != nil

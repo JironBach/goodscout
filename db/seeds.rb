@@ -55,7 +55,7 @@ end
 
 def create_company
   Company.create(
-    :company_name           => 'NOWALL',
+    :name           => 'NOWALL',
     :email                  => 'nowall@nowall.co.jp',
     :password               => 'hogehoge',
     :password_confirmation  => 'hogehoge',

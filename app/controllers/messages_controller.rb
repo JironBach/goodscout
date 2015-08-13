@@ -47,11 +47,16 @@ class MessagesController < ApplicationController
     @message = Message.new(create_message_data())
 
     if @message.save
-      @skills = Skill.all
-      @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id]).page(params[:page])
-      @new_message = Message.new
-      @opponent = Company.find(params[:message][:opponent_id].to_i) if view_context.am_i_engineer?
-      @opponent = Engineer.find(params[:message][:opponent_id].to_i) if view_context.am_i_company?
+      @skills       = Skill.all
+      @messages     = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id]).page(params[:page])
+      @new_message  = Message.new
+      @opponent     = Company.find(params[:message][:opponent_id].to_i)   if view_context.am_i_engineer?
+      @opponent     = Engineer.find(params[:message][:opponent_id].to_i)  if view_context.am_i_company?
+      from_user     = Engineer.find(session[:user_id])                    if view_context.am_i_engineer?
+      from_user     = Company.find(session[:user_id])                     if view_context.am_i_company?
+      to_user       = Company.find(params[:message][:opponent_id])        if view_context.am_i_engineer?
+      to_user       = Engineer.find(params[:message][:opponent_id])       if view_context.am_i_company?
+      MessageMailer.send_message_email(from_user, to_user, @message).deliver_now
       flash.now[:notice] = 'メッセージの送信に成功しました'
       redirect_to message_path(@message.id,:opponent_id => params[:message][:opponent_id])
     else

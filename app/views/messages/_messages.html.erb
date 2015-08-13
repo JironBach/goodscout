@@ -8,7 +8,7 @@
 
           <% if am_i_engineer? %>
 
-            <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
+            <p class="text text--s text-center"><%= message.company.name %>さん</p>
 
             <% if message.company.image.nil? || message.company.image.length == 0 %>
               <%= image_tag Settings.default_img_path[:company] ,:class => 'tandem-list__img' %>
@@ -36,7 +36,7 @@
             <% if message.message_type == Settings.message_type[:from_engineer] %>
               <%= message.engineer.name %>
             <% elsif message.message_type == Settings.message_type[:from_company] %>
-              <%= message.company.company_name %>
+              <%= message.company.name %>
             <% end %>さん
           </label>
           <p class="mg-t-5">
