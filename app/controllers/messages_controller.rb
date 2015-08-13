@@ -48,12 +48,12 @@ class MessagesController < ApplicationController
 
     if @message.save
       @skills = Skill.all
-      @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id])
+      @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:message][:opponent_id]).page(params[:page])
       @new_message = Message.new
       @opponent = Company.find(params[:message][:opponent_id].to_i) if view_context.am_i_engineer?
       @opponent = Engineer.find(params[:message][:opponent_id].to_i) if view_context.am_i_company?
       flash.now[:notice] = 'メッセージの送信に成功しました'
-      render :show, :opponent_id => 1
+      redirect_to message_path(@message.id,:opponent_id => params[:message][:opponent_id])
     else
       @engineer_id = params['message']['engineer_id']
       render :new

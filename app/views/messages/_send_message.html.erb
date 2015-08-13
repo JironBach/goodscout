@@ -107,8 +107,14 @@
               </ul>
             <% end %>
         </div>
-  
+
       </div>
+
+      <br>
+
+      <% if @messages != nil %>
+        <%= paginate @messages %>
+      <% end %>
   
       <br>
   

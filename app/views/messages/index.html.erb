@@ -63,11 +63,9 @@
 
   <br>
 
-  <div name="toggle-obj" id="received-messages-pagination">
-    <% if @messages != nil %>
-      <%= paginate @messages %>
-    <% end %>
-  </div>
+  <% if @messages != nil %>
+    <%= paginate @messages %>
+  <% end %>
 
 </div>
 
