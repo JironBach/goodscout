@@ -8,6 +8,8 @@ class Message < ActiveRecord::Base
   belongs_to :engineer
   belongs_to :company
 
+  paginates_per 5 
+
   def self.select_received_messages user_type,user_id
 
     my_id_type        = 'engineer_id'                  if user_type == Settings.user_type['engineer']

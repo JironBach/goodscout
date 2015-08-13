@@ -1,0 +1,67 @@
+<ul>
+  <% if messages != nil && messages.length > 0 %>
+
+    <% messages.each do |message| %>
+      <li class="tandem-list clickable grid rm-mg-l">
+
+        <div class="grid__xs-2 grid__sp-3 text-center">
+
+          <% if am_i_engineer? %>
+
+            <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
+
+            <% if message.company.image.nil? || message.company.image.length == 0 %>
+              <%= image_tag Settings.default_img_path[:company] ,:class => 'tandem-list__img' %>
+            <% else %>
+              <%= image_tag message.company.image.url %>
+            <% end %>
+
+          <% elsif am_i_company? %>
+
+            <p class="text text--s text-center"><%= message.engineer.name %>さん</p>
+            
+            <% if message.engineer.image.nil? || message.engineer.image.url.nil? %>
+              <%= image_tag Settings.default_img_path[:engineer],:class => 'tandem-list__img' %>
+            <% else %>
+              <%= image_tag message.engineer.image.url %>
+            <% end %>
+
+          <% end %>
+
+        </div>
+
+        <div class="grid__xs-10 grid__sp-9">
+          <p class="text text--bold inline"><%= message.title %></p>
+          <label class="label label--theme label--right">送信者:
+            <% if message.message_type == Settings.message_type[:from_engineer] %>
+              <%= message.engineer.name %>
+            <% elsif message.message_type == Settings.message_type[:from_company] %>
+              <%= message.company.company_name %>
+            <% end %>さん
+          </label>
+          <p class="mg-t-5">
+            <% if message.desc.length > 100 %>
+              <%= message.desc.slice(0..50) %>.....
+            <% else %>
+              <%= message.desc %>
+            <% end %>
+          </p>
+
+          <p class="text text--s text--thin mg-t-5"><%= message.created_at.strftime("%Y/%m/%d %H時%M分") %></p>
+
+        </div>
+
+        <% if am_i_engineer? %>
+          <%= link_to '', message_path(message,opponent_id: message.company_id), :class => 'box-link' %>
+        <% elsif am_i_company? %>
+          <%= link_to '', message_path(message,opponent_id: message.engineer_id), :class => 'box-link' %>
+        <% end %>
+
+      </li>
+    <% end %>
+
+  <% else %>
+    メッセージはまだありません
+  <% end %>
+
+</ul>

@@ -3,30 +3,32 @@ class MessagesController < ApplicationController
   require 'pp'
 
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_val, only: [:show, :new]
 
   # GET /messages
+  # 受信メッセージの表示
   def index
     #todo DB設計を修正
-    @received_messages = Message.select_received_messages(session[:user_type],session[:user_id])
-    @sent_messages = Message.select_sent_messages(session[:user_type],session[:user_id])
+    messages = Message.select_received_messages(session[:user_type],session[:user_id])
+    @messages = Message.where(id: messages.map{ |message| message.id }).page(params[:page])
   end
+
+  # GET /messages/sent
+  # 送信メッセージの表示
+  def index_sent
+    messages = Message.select_sent_messages(session[:user_type],session[:user_id])
+    @messages = Message.where(id: messages.map{ |message| message.id }).page(params[:page])
+    render :index
+  end
+
+  # GET /messages
 
   # GET /messages/1
   def show
-    @skills = Skill.all
-    @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id])
-    @new_message = Message.new
-    @opponent = Company.find(params[:opponent_id].to_i) if view_context.am_i_engineer?
-    @opponent = Engineer.find(params[:opponent_id].to_i) if view_context.am_i_company?
   end
 
   # GET /messages/new
   def new
-    @skills = Skill.all
-    @new_message = Message.new
-    @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id])
-    @opponent = Company.find(params[:opponent_id].to_i) if view_context.am_i_engineer?
-    @opponent = Engineer.find(params[:opponent_id].to_i) if view_context.am_i_company?
   end
 
   # GET /messages/1/edit
@@ -51,7 +53,7 @@ class MessagesController < ApplicationController
       @opponent = Company.find(params[:message][:opponent_id].to_i) if view_context.am_i_engineer?
       @opponent = Engineer.find(params[:message][:opponent_id].to_i) if view_context.am_i_company?
       flash.now[:notice] = 'メッセージの送信に成功しました'
-      render :show
+      render :show, :opponent_id => 1
     else
       @engineer_id = params['message']['engineer_id']
       render :new
@@ -87,6 +89,14 @@ class MessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
+    end
+
+    def set_val
+      @skills = Skill.all
+      @messages = Message.select_message_thread(session[:user_type],session[:user_id],params[:opponent_id]).page(params[:page]).page(params[:page])
+      @new_message = Message.new
+      @opponent = Company.find(params[:opponent_id].to_i) if view_context.am_i_engineer?
+      @opponent = Engineer.find(params[:opponent_id].to_i) if view_context.am_i_company?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

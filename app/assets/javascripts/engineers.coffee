@@ -9,12 +9,6 @@ $("tr[id^=skills_]").each () ->
 
 $("[id^=skills_]").change (el) ->
 
-  c("=======================================")
-  c($("#skills_#{skills_num}_id").val())
-  c($("#skills_#{skills_num}_year").val())
-  c($("#skills_#{skills_num}_level").val())
-  c($("[id=skills_#{skills_num}]").length == 1)
-
   if $("#skills_#{skills_num}_id").val() > 0 && $("#skills_#{skills_num}_year").val() > 0 &&
     $("#skills_#{skills_num}_level").val() > 0 && $("[id=skills_#{skills_num}]").length == 1
       el = $("#skills_#{skills_num}").clone()

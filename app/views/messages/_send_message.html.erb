@@ -139,11 +139,7 @@
             <%= f.text_area :desc,:class => 'content-box__input',:rows => '6'  %>
           </div>
         
-          <% if am_i_engineer? && (@messages != nil || @messages.length == 0 ) %>
-            <%= f.hidden_field :opponent_id, :value => @opponent.id %>
-          <% elsif am_i_company? && params[:opponent_id] != nil %>
-            <%= f.hidden_field :opponent_id, :value => params[:opponent_id] %>
-          <% end %>
+          <%= f.hidden_field :opponent_id, :value => @opponent.id %>
         
           <%= f.submit '送信',:class => 'btn' %>
         

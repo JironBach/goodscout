@@ -14,10 +14,21 @@
         <div class="content-box__body">
           <div class="content-box__list">
             <ul>
-              <li name="show-btn" id="show-received-messages" class="disabled clickable">
+              <% if current_page?(messages_path) %>
+                <li class="disabled clickable">
+              <% else %>
+                <li class="clickable">
+                  <%= link_to '', messages_path, :class => 'box-link' %>
+              <% end %>
                 受信ボックス
               </li>
-              <li name="show-btn" id="show-sent-messages" class="clickable">
+
+              <% if current_page?(messages_sent_path) %>
+                <li class="clickable disabled">
+              <% else %>
+                <li class="clickable">
+                  <%= link_to '', messages_sent_path, :class => 'box-link' %>
+              <% end %>
                 送信ボックス
               </li>
             </ul>
@@ -38,143 +49,26 @@
 
         <div class="content-box__list">
 
-          <ul name="toggle-obj" id="received-messages">
-            <% if @received_messages != nil && @received_messages.length > 0 %>
-
-              <% @received_messages.each do |message| %>
-                <li class="tandem-list clickable grid rm-mg-l">
-
-                  <div class="grid__xs-2 grid__sp-3 text-center">
-
-                    <% if am_i_engineer? %>
-
-                      <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
-
-                      <% if message.company.image.nil? || message.company.image.length == 0 %>
-                        <%= image_tag Settings.default_img_path[:company] ,:class => 'tandem-list__img' %>
-                      <% else %>
-                        <%= image_tag message.company.image.url %>
-                      <% end %>
-
-                    <% elsif am_i_company? %>
-
-                      <p class="text text--s text-center"><%= message.engineer.name %>さん</p>
-                      
-                      <% if message.engineer.image.nil? || message.engineer.image.url.nil? %>
-                        <%= image_tag Settings.default_img_path[:engineer],:class => 'tandem-list__img' %>
-                      <% else %>
-                        <%= image_tag message.engineer.image.url %>
-                      <% end %>
-
-                    <% end %>
-
-                  </div>
-
-                  <div class="grid__xs-10 grid__sp-9">
-                    <p class="text text--bold inline"><%= message.title %></p>
-                    <label class="label label--theme label--right">送信者:
-                      <% if message.message_type == Settings.message_type[:from_engineer] %>
-                        <%= message.engineer.name %>
-                      <% elsif message.message_type == Settings.message_type[:from_company] %>
-                        <%= message.company.company_name %>
-                      <% end %>さん
-                    </label>
-                    <p class="mg-t-5">
-                      <% if message.desc.length > 100 %>
-                        <%= message.desc.slice(0..50) %>.....
-                      <% else %>
-                        <%= message.desc %>
-                      <% end %>
-                    </p>
-
-                    <p class="text text--s text--thin mg-t-5"><%= message.created_at.strftime("%Y/%m/%d %H時%M分") %></p>
-
-                  </div>
-
-                  <% if am_i_engineer? %>
-                    <%= link_to '', message_path(message,opponent_id: message.company_id), :class => 'box-link' %>
-                  <% elsif am_i_company? %>
-                    <%= link_to '', message_path(message,opponent_id: message.engineer_id), :class => 'box-link' %>
-                  <% end %>
-
-                </li>
-              <% end %>
-
-            <% else %>
-              メッセージはまだありません
-            <% end %>
-          </ul>
-
-
-          <ul name="toggle-obj" id="sent-messages" class="display-none">
-            <% if @sent_messages != nil && @sent_messages.length > 0 %>
-
-              <% @sent_messages.each do |message| %>
-                <li class="tandem-list grid rm-mg-l">
-
-                  <div class="grid__xs-2 grid__sp-3 text-center">
-
-                    <% if am_i_engineer? %>
-
-                      <p class="text text--s text-center"><%= message.company.company_name %>さん</p>
-
-                      <% if message.company.image.nil? || message.company.image.length == 0 %>
-                        <%= image_tag Settings.default_img_path[:company], :class => 'tandem-list__img' %>
-                      <% else %>
-                        <%= image_tag message.company.image.url %>
-                      <% end %>
-
-                    <% elsif am_i_company? %>
-
-                      <p class="text text--s text-center"><%= message.engineer.name %>さん</p>
-                      
-                      <% if message.engineer.image.nil? || message.engineer.image.length == 0 %>
-                        <%= image_tag Settings.default_img_path[:engineer],:class => 'tandem-list__img' %>
-                      <% else %>
-                        <%= image_tag message.engineer.image.url %>
-                      <% end %>
-
-                    <% end %>
-
-                  </div>
-
-                  <div class="grid__xs-10 grid__sp-9">
-                    <p class="text text--bold inline"><%= message.title %></p>
-                    <label class="label label--danger label--right">送信者:自分</label>
-                    <p class="mg-t-5">
-                      <% if message.desc.length > 100 %>
-                        <%= message.desc.slice(0..50) %>.....
-                      <% else %>
-                        <%= message.desc %>
-                      <% end %>
-                    </p>
-
-                    <p class="text text--s text--thin mg-t-5"><%= message.created_at.strftime("%Y/%m/%d %H時%M分") %></p>
-
-                  </div>
-
-                  <% if am_i_engineer? %>
-                    <%= link_to '', message_path(message,opponent_id: message.company_id), :class => 'box-link' %>
-                  <% elsif am_i_company? %>
-                    <%= link_to '', message_path(message,opponent_id: message.engineer_id), :class => 'box-link' %>
-                  <% end %>
-
-                </li>
-              <% end %>
-
-            <% else %>
-              メッセージはまだありません
-            <% end %>
-          </ul>
+          <div name="toggle-obj" id="received-messages">
+            <%= render 'messages', :messages => @messages %>
+          </div>
 
         </div>
 
       </div>
   
     </div>
-  
+
   </div>
-  
+
+  <br>
+
+  <div name="toggle-obj" id="received-messages-pagination">
+    <% if @messages != nil %>
+      <%= paginate @messages %>
+    <% end %>
+  </div>
+
 </div>
 
 <%= javascript_include_tag 'messages' %>

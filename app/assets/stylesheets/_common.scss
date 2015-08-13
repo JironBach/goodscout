@@ -493,6 +493,9 @@ select{
   a{
     text-decoration: none;
   }
+  &.disabled{
+    background: darken($pagination-bg-col,20%);
+  }
 }
 
 /*

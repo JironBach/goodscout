@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
 
   resources :companies
+
+  get 'messages/sent' => 'messages#index_sent'
   resources :messages
+
   root :to => 'engineers#index'
 
   resources :engineers
 
-  post 'search' => 'engineers#search'
+  post 'search'   => 'engineers#search'
 
-  post 'sign_in' => 'sessions#create'
+  post 'sign_in'  => 'sessions#create'
   post 'sign_out' => 'sessions#destroy'
 
   resources :inquiries, :except => [:index,:edit,:update,:destroy]

@@ -7,7 +7,11 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 -%>
-<div class="pagination__box">
+<% if page.current? %>
+  <div class="pagination__box disabled">
+<% else %>
+  <div class="pagination__box">
+<% end %>
   <%= page %>
   <%= link_to_unless page.current?, '', url, {:class => 'box-link',:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil} %>
 </div>

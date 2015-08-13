@@ -14,6 +14,8 @@ $('[name="show-btn"]').click (el) ->
 
   $('[name="toggle-obj"]').each (i,obj) ->
     $(obj).hide()
+    $("#{obj.id}-pagination").hide()
 
   id = el.target.id
   $( "#" + id.slice(id.indexOf('-') + 1,id.length) ).show()
+  $( "#" + id.slice(id.indexOf('-') + 1,id.length) + '-pagination' ).show()
