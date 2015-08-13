@@ -31,6 +31,13 @@ class MessagesController < ApplicationController
   def new
   end
 
+  def download_attached_file
+    @attached_file = Message.find(params[:message_id]).attached_file
+    filepath = @attached_file.current_path
+    stat = File::stat(filepath)
+    send_file(filepath, :filename => @attached_file.url.gsub(/.*\//,''), :length => stat.size)
+  end
+
   # GET /messages/1/edit
   def edit
   end
@@ -56,7 +63,7 @@ class MessagesController < ApplicationController
       from_user     = Company.find(session[:user_id])                     if view_context.am_i_company?
       to_user       = Company.find(params[:message][:opponent_id])        if view_context.am_i_engineer?
       to_user       = Engineer.find(params[:message][:opponent_id])       if view_context.am_i_company?
-      MessageMailer.send_message_email(from_user, to_user, @message).deliver_now
+      #MessageMailer.send_message_email(from_user, to_user, @message).deliver_now
       flash.now[:notice] = 'メッセージの送信に成功しました'
       redirect_to message_path(@message.id,:opponent_id => params[:message][:opponent_id])
     else
@@ -106,7 +113,7 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:title, :desc)
+      params.require(:message).permit(:title, :desc, :upload_file)
     end
 
     def create_message_data
@@ -120,11 +127,13 @@ class MessagesController < ApplicationController
       end
 
       data = {
-        'message_type'   => session['user_type'],
-        'engineer_id' => engineer_id,
-        'company_id'  => company_id,
-        'title'       => params['message']['title'],
-        'desc'        => params['message']['desc']
+        'message_type'        => session['user_type'],
+        'engineer_id'         => engineer_id,
+        'company_id'          => company_id,
+        'title'               => params['message']['title'],
+        'desc'                => params['message']['desc'],
+        'attached_file'       => params['message']['attached_file'],
+        'attached_file_name'  => params['message']['attached_file'].original_filename,
       }
 
     end

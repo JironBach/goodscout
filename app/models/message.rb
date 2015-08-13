@@ -8,6 +8,8 @@ class Message < ActiveRecord::Base
   belongs_to :engineer
   belongs_to :company
 
+  mount_uploader :attached_file, AttachedFileUploader
+
   paginates_per 5 
 
   def self.select_received_messages user_type,user_id

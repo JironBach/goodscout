@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'messages/sent' => 'messages#index_sent'
   resources :messages
+  get 'message/attached_file/:id' => 'messages#download_attached_file'
 
   root :to => 'engineers#index'
 

@@ -99,6 +99,10 @@
                       <% end %>
                       <%= message.message_type %>
                       <p class="inline">本文:<%= message.desc %></p><br>
+                      <% if message.attached_file.present? %>
+                        <p>ファイル</p>
+                        <%= link_to message.attached_file_name, action: "download_attached_file", message_id: message.id %>
+                      <% end %>
                       <p class="text text--thin">created_at：<%= message.created_at %></p>
                     </div>
   
@@ -143,6 +147,10 @@
           <div class="field">
             <%= label_tag '本文' %><br>
             <%= f.text_area :desc,:class => 'content-box__input',:rows => '6'  %>
+          </div>
+
+          <div class="field">
+            <%= f.file_field :attached_file %>
           </div>
         
           <%= f.hidden_field :opponent_id, :value => @opponent.id %>

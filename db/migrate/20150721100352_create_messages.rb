@@ -8,6 +8,8 @@ class CreateMessages < ActiveRecord::Migration
       t.references  :company      ,null: false
       t.string      :title        ,null: false
       t.text        :desc         ,null: false
+      t.string      :attached_file_name
+      t.binary      :attached_file
 
       t.timestamps null: false
     end

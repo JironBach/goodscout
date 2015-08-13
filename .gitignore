@@ -23,4 +23,4 @@ config/environments/*.local.yml
 
 config/schedule.rb
 
-public/uploads/engineer/image/*
+public/uploads/*
