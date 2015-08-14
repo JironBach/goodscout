@@ -2,9 +2,11 @@ user_type:
   engineer  : 0
   company   : 1
   admin     : 2
+
 message_type:
   from_engineer   : 0
   from_company    : 1
+
 status:
   not_registered                                    : 0
   student_and_job_hunting_regular_employee          : 1
@@ -16,6 +18,10 @@ status:
   freelance_and_looking_for_job                     : 7
   freelance_and_looking_for_job_eagerly             : 8
   freelance_and_not_looking_for_job                 : 9
+
+notification_type:
+  message   : 0
+
 default_img_path:
   engineer    : '/images/default_engineer_profile_img.jpg'
   company     : '/images/default_company_profile_img.jpg'

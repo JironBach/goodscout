@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722041534) do
+ActiveRecord::Schema.define(version: 20150814032632) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                  limit: 255, null: false
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   add_index "messages", ["engineer_id"], name: "index_messages_on_engineer_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "notification_type", limit: 4,                 null: false
+    t.integer  "user_type",         limit: 4,                 null: false
+    t.integer  "user_id",           limit: 4,                 null: false
+    t.boolean  "is_done",           limit: 1, default: false, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

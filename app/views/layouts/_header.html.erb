@@ -33,6 +33,11 @@
             <%= link_to 'ログアウト', sign_out_path, :method => 'post' %>
           </li>
           <li>
+            <% if @notifications.length > 0 %>
+              <div class="circle-label">
+                <p><%= @notifications.length %></p>
+              </div>
+            <% end %>
             <%= link_to 'メッセージ', messages_path %>
           </li>
         <% end %>

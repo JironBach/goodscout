@@ -480,6 +480,29 @@ select{
   }
 }
 
+.circle-label{
+  position: absolute;
+  background-color: $circle-label-bg-col;
+  color: white;
+  font-size: 8px;
+  border-radius: 50%;
+  top: 1px;
+  right: -2px;
+  height: 16px;
+  width: 16px;
+  p{
+    position: absolute;
+    top: -6px;
+    bottom: 0;
+    left: 2px;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    margin: auto;
+    font-size: 10px;
+  }
+}
+
 /*
  
   cover
