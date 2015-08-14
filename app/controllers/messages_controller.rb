@@ -25,6 +25,8 @@ class MessagesController < ApplicationController
 
   # GET /messages/1
   def show
+    render :show
+    Message.read_messages(@messages)
   end
 
   # GET /messages/new

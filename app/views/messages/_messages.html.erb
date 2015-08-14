@@ -4,6 +4,10 @@
     <% messages.each do |message| %>
       <li class="tandem-list clickable grid rm-mg-l">
 
+        <% if am_i_engineer? && message.message_type == Settings.message_type[:from_company] && !message.is_read %>
+          <div class="vertical-label"><p>NEW</p></div>
+        <% end %>
+
         <div class="grid__xs-2 grid__sp-3 text-center">
 
           <% if am_i_engineer? %>
@@ -48,6 +52,7 @@
           </p>
 
           <p class="text text--s text--thin mg-t-5"><%= message.created_at.strftime("%Y/%m/%d %H時%M分") %></p>
+
 
         </div>
 

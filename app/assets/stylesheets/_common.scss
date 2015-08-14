@@ -455,6 +455,29 @@ select{
     background-color: $label-theme-bg-col;
     color: $label-theme-col;
   }
+  &.label--normal{
+    background-color: $label-normal-bg-col;
+    color: $label-theme-col;
+  }
+}
+
+.vertical-label{
+  position: absolute;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 0;
+  width: 1rem;
+  top: 0;
+  left: 0;
+  border-top: 50px solid $vertical-label-bg-col;
+  border-right: 50px solid transparent;
+  p{
+    position: absolute;
+    font-size: 8px;
+    top: -42px;
+    left: 5px;
+    color: white;
+  }
 }
 
 /*
@@ -547,4 +570,8 @@ select{
 
 .f-r{
   float: right;
+}
+
+.chic-bg{
+  background-color: $chic-bg-col;
 }

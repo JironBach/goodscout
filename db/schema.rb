@@ -71,15 +71,16 @@ ActiveRecord::Schema.define(version: 20150722041534) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "message_type",       limit: 4,     null: false
-    t.integer  "engineer_id",        limit: 4,     null: false
-    t.integer  "company_id",         limit: 4,     null: false
-    t.string   "title",              limit: 255,   null: false
-    t.text     "desc",               limit: 65535, null: false
+    t.integer  "message_type",       limit: 4,                     null: false
+    t.integer  "engineer_id",        limit: 4,                     null: false
+    t.integer  "company_id",         limit: 4,                     null: false
+    t.string   "title",              limit: 255,                   null: false
+    t.text     "desc",               limit: 65535,                 null: false
     t.string   "attached_file_name", limit: 255
     t.binary   "attached_file",      limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "is_read",            limit: 1,     default: false, null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "messages", ["engineer_id"], name: "index_messages_on_engineer_id", using: :btree

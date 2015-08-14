@@ -75,7 +75,13 @@
             <% else %>
               <ul>
                 <% @messages.each do |message| %>
-                  <li class="grid">
+
+                  <% if session[:user_type] == message.message_type %>
+                    <li class="grid chic-bg">
+                  <% else %>
+                    <li class="grid">
+                  <% end %>
+
   
                     <div class="grid__xs-3 grid__sp-2">
                       <% if message.message_type == Settings.message_type[:from_engineer] %>

@@ -66,4 +66,11 @@ class Message < ActiveRecord::Base
 
   end
 
+  def self.read_messages messages
+    messages.each do |message|
+      message.is_read = true unless message.is_read
+      message.save
+    end
+  end
+
 end

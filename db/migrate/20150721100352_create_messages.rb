@@ -10,6 +10,7 @@ class CreateMessages < ActiveRecord::Migration
       t.text        :desc         ,null: false
       t.string      :attached_file_name
       t.binary      :attached_file
+      t.boolean     :is_read      ,null: false, default: false
 
       t.timestamps null: false
     end
