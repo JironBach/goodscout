@@ -10,13 +10,55 @@
   <!-- /flash -->
   
   <div class="panel panel--notice mg-10">
-    <p class="text-bold">エンジニアの絞り込み検索</p>
-    <div class="field">
+    <p class="text text--bold mg-b-10 inline">エンジニアの絞り込み検索</p>
+
+    <div class="switch f-r inline">
+      <label>
+        論理積検索
+        <input type="checkbox">
+        <span class="lever"></span>
+      </label>
+    </div>
+
+    <div class="field grid">
       <%= form_tag(search_path) do %>
-        <%= select_tag '1[skill_id]', options_from_collection_for_select(Skill.all,:id,:name) %>
-        <%= select_tag '1[years_of_experience]', options_for_select(['1年未満','1年以上','2年以上','3年以上']) %>
-        <%= select_tag '1[level]', options_for_select([['入門者レベル',0],['初心者レベル',1],['中級者レベル',2],['上級者レベル',3]]) %>
-        <%= submit_tag '検索', :class => 'btn btn--s' %>
+        <div class="grid__sp-12 grid__sm-5" id="statuses-parent">
+          ステータスで絞り込み<br>
+          <div id="statuses_0" class="inline mg-t-5">
+            <%= select_tag 'statuses[0][job]', content_tag(:option,'職業',:value=>"") + 
+              options_from_collection_for_select(Job.all ,:id, :desc), :id => 'statuses_0_job'
+            %>
+            <%= select_tag 'statuses[0][desire]', content_tag(:option,'仕事の必要度',:value=>"") + 
+            options_from_collection_for_select(DesireToWork.all,:id,:desc), :id => 'statuses_0_desire' 
+            %>
+          </div>
+          <div id="add-search-form-statuses" class="btn btn--s btn--chic">
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+        
+        <div class="grid__sp-12 grid__sm-5" id="skills-parent">
+          言語で絞り込み<br>
+          <div id="skills_0" class="inline mg-t-5">
+            <%= select_tag 'skills[0][skill_id]', content_tag(:option,'スキル名称',:value=>"") + 
+              options_from_collection_for_select(Skill.all,:id,:name) , :id => 'skills_0_id'
+            %>
+            <%= select_tag 'skills[0][year]',content_tag(:option,'経験年数',:value=>"") + 
+              options_for_select([['1年以上',1],['2年以上',2],['3年以上',3]]) , :id => 'skills_0_year'
+            %>
+            <%= select_tag 'skills[0][level]', content_tag(:option,'スキルのレベル',:value=>"") + 
+              options_for_select([['入門者レベル',1],['初心者レベル',2],['中級者レベル',3],['上級者レベル',4]]) , :id => 'skills_0_level'
+            %>
+          </div>
+          <div id="add-search-form-skills" class="btn btn--s btn--chic">
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+
+        <div class="grid__sp-2 grid__xs-2">
+          <%= submit_tag '検索', :class => 'btn btn--s' %>
+        </div>
+
       <% end %>
     </div>
   </div>
@@ -66,3 +108,5 @@
   <% end %>
 
 </div>
+
+<%= javascript_include_tag 'engineers' %>

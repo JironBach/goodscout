@@ -89,26 +89,31 @@ class EngineersController < ApplicationController
     end
   end
 
+  # ===================================
+  # search type
+  #   0 : not selected
+  #   1 : search by skill
+  #   2 : search by status
+  #   3 : search by skill and status
+  # ===================================
   def search
+    
+    search_by_skill_flag  = params['skills'].length > 1   || params['skills']['0']['skill_id'].to_i > 0
+    search_by_status_flag = params['statuses'].length > 1 || params['statuses']['0']['job'].to_i > 0
 
-    search_conditions = []
-    params.each do |param|
-      if param[0].to_i > 0
-        search_conditions.push({
-          'skill_id' => param[1]['skill_id'],
-          'years_of_experience' => param[1]['years_of_experience'],
-          'level' => param[1]['level']
-        }) 
-      end
-    end
+    type = 0
+    type = 1 if search_by_skill_flag
+    type = 2 if search_by_status_flag
+    type = 3 if search_by_skill_flag && search_by_status_flag
 
-    ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
-    if ids != nil
-      @skills = Skill.all
-      @engineers = Engineer.where(id: ids).page(params[:page])
-    else
-      @engineers = []
-    end
+    engineers = Engineer.all                                          if type == 0
+    engineers = Engineer.union(search_by_skills(),search_by_status()) if type == 3
+    engineers = search_by_status()                                    if type == 2
+    engineers = search_by_skills()                                    if type == 1
+
+    @engineers = engineers.page(params[:page])
+
+    @skills = Skill.all
 
     render :index
 
@@ -122,6 +127,42 @@ class EngineersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def engineer_params
-      params.require(:engineer).permit(:name, :email, :password, :password_confirmation, :self_introduction, :living_place, :fb_uid, :github_uid, :age, :phone_number, :status, :job_history, :notes, :is_invitation_enabled, :image, :image_cache, :remove_image)
+      params.require(:engineer).permit(
+        :name, :email, :password, :password_confirmation, 
+        :self_introduction, :living_place, :fb_uid, :github_uid, 
+        :age, :phone_number, :status, :job_history, :notes, 
+        :is_invitation_enabled, :image, :image_cache, :remove_image,
+        :job_id, :desire_to_work_id
+      )
     end
+
+    def search_by_status
+
+      job_ids = []
+      desire_to_work_ids = []
+      params['statuses'].each do |status|
+        job_ids.push(status[1]['job'])
+        desire_to_work_ids.push(status[1]['desire'])
+      end
+
+      Engineer.where(:job_id => job_ids,:desire_to_work_id => desire_to_work_ids)
+      
+    end
+
+    def search_by_skills
+
+      search_conditions = []
+      params['skills'].each do |key,param|
+        search_conditions.push({
+          'skill_id'            => param['skill_id'],
+          'years_of_experience' => param['year'],
+          'level'               => param['level']
+        }) 
+      end
+
+      ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
+      Engineer.where(:id => ids)
+
+    end
+
 end
