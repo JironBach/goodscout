@@ -7,19 +7,22 @@
 .navbar{
   background-color: $navbar-bg-col;
   color: $font-col;
-  padding: $navbar-padding;
+  height: $navbar-height;
   margin-bottom: 15px;
+  box-shadow: $navbar-box-shadow;
   border-top: $navbar-border;
 }
 
 .navbar__logo{
   position: relative;
+  height: $navbar-height;
+  font-weight: bold;
+  text-decoration: none;
   float: left;
   display: inline;
   font-size: 16px;
   color: $navbar-logo-col;
-  padding-left: 20px;
-  padding-right: 0;
+  padding: 15px 25px 0 25px;
   @media (max-width: $window-size-m){
     font-size: 14px;
   }
@@ -49,13 +52,24 @@
   position: relative;
   float: right;
   margin-right: 15px;
-  margin-top: 2px;
 }
 
 .navbar__list{
   ul li {
-    margin: 0;
-    display: inline-block;
-    padding-right: 20px;
+    position:relative;
+    float: right;
+    height: $navbar-list-height;
+    padding: 15px 10px 0 10px;
+    &:hover{
+      box-shadow: $navbar-list-box-shadow;
+      background-color: darken(white,2%);
+    }
+    a{
+      color: $navbar-list-col;
+      text-decoration: none;
+      cursor: pointer;
+      height: 100%;
+      display: block;
+    }
   }
 }

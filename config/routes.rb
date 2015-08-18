@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :enginners
+  resources :companies
+
+  get 'messages/sent' => 'messages#index_sent'
+  resources :messages
+  get 'message/attached_file/:id' => 'messages#download_attached_file'
+
+  root :to => 'engineers#index'
+
+  resources :engineers
+
+  post 'search'   => 'engineers#search'
+
+  post 'sign_in'  => 'sessions#create'
+  post 'sign_out' => 'sessions#destroy'
+
+  resources :inquiries, :except => [:index,:edit,:update,:destroy]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

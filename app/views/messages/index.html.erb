@@ -1,0 +1,72 @@
+<div class="container container--s">
+  <p id="notice"><%= notice %></p>
+  
+  <div class="grid rm-mg-l">
+  
+    <div class="grid__xs-12 grid__sm-3">
+  
+      <div class="content-box">
+  
+        <div class="content-box__header">
+          メッセージボックス
+        </div>
+
+        <div class="content-box__body">
+          <div class="content-box__list">
+            <ul>
+              <% if current_page?(messages_path) %>
+                <li class="disabled clickable">
+              <% else %>
+                <li class="clickable">
+                  <%= link_to '', messages_path, :class => 'box-link' %>
+              <% end %>
+                受信ボックス
+              </li>
+
+              <% if current_page?(messages_sent_path) %>
+                <li class="clickable disabled">
+              <% else %>
+                <li class="clickable">
+                  <%= link_to '', messages_sent_path, :class => 'box-link' %>
+              <% end %>
+                送信ボックス
+              </li>
+            </ul>
+          </div>
+        </div>
+  
+      </div>
+    
+    </div>
+    
+    <div class="grid__xs-12 grid__sm-9">
+  
+      <div class="content-box">
+
+        <div class="content-box__header">
+          メッセージの一覧
+        </div>
+
+        <div class="content-box__list">
+
+          <div name="toggle-obj" id="received-messages">
+            <%= render 'messages', :messages => @messages %>
+          </div>
+
+        </div>
+
+      </div>
+  
+    </div>
+
+  </div>
+
+  <br>
+
+  <% if @messages != nil %>
+    <%#= paginate @messages %>
+  <% end %>
+
+</div>
+
+<%= javascript_include_tag 'messages' %>

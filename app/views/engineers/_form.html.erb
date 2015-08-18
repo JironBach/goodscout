@@ -1,0 +1,184 @@
+<%= form_for(@engineer) do |f| %>
+
+  <% if !@errors.nil? && @errors.any? %>
+
+    <h2><%= @errors.count %>個の入力エラーがあります</h2>
+
+    <ul>
+      <% @errors.messages.each_with_index do |message,i| %>
+        <li id="flash-<%= i %>" class="panel panel--error mg-b-10 rm-mg-l grid">
+          <p class="grid__xs-11 grid__sp-11">入力エラー：<%= message[1][0] %></p>
+          <div name="rm-flash" class="grid__xs-1 grid__sp-1 text-right">
+            <i id="rm-flash-<%= i %>" class="fa fa-remove fa--clean fa--clickable"></i>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+  <% end %>
+
+  <table class="table table--colorful">
+
+    <tbody>
+
+      <tr>
+        <th><i class="fa fa-user"></i>氏名<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.text_field :name, :class => 'input', :placeholder => '例) 田中太郎' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-birthday-cake"></i>年齢<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.number_field :age, :class => 'input', :placeholder => '27' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-home"></i>住んでいる場所</th>
+        <td><%= f.text_field :living_place, :class => 'input', :placeholder => '東京都新宿区西新宿' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-child"></i>現在の状況<label class="label label--danger f-r">必須</label></th>
+        <td>
+          <%= f.select :status,
+            options_for_select([
+              ['学生で就職活動やバイト探しはしていない' ,Settings.status['student_and_job_hunting_regular_employee']],
+              ['学生で就職活動中'                       ,Settings.status['student_and_job_hunting_part_time_job']],
+              ['学生でバイトを探している'               ,Settings.status['student_and_not_job_hunting']],
+              ['正社員で転職活動はしていない'           ,Settings.status['regular_employee_and_job_hunting']],
+              ['正社員でいい仕事があったら転職したい'   ,Settings.status['regular_employee_and_job_hunting_eagerly']],
+              ['正社員で今すぐにでも転職したい'         ,Settings.status['regular_employee_and_not_job_hunting']],
+              ['フリーランスでいい仕事を探している'     ,Settings.status['freelance_and_looking_for_job']],
+              ['フリーランスで今すぐにでも仕事が欲しい' ,Settings.status['freelance_and_looking_for_job_eagerly']],
+              ['フリーランスで仕事を探していない'       ,Settings.status['freelance_and_not_looking_for_job']],
+          ]), :include_blank => "未選択", :selected => @engineer.status
+          %>
+        </td>
+          
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-envelope"></i>メールアドレス<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.text_field :email, :class => 'input', :placeholder => 'info@nowall.co.jp' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-phone"></i>電話番号</th>
+        <td><%= f.number_field :phone_number, :class => 'input', :placeholder => ' 03-6279-0840' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-eye"></i>パスワード<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.password_field :password, :class => 'input' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-eye"></i>パスワード確認<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.password_field :password_confirmation, :class => 'input' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-pencil-square-o"></i>自己紹介文<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.text_area :self_introduction, :class => 'textarea' %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-keyboard-o"></i>職務経歴<label class="label label--danger f-r">必須</label></th>
+        <td><%= f.text_area :job_history, :class => 'textarea'  %></td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-meh-o"></i>備考</th>
+        <td><%= f.text_area :notes, :class => 'textarea'  %></td>
+      </tr>
+
+
+      <tr>
+        <th><i class="fa fa-image"></i>プロフィール画像登録</th>
+        <td>
+
+          <% if @engineer.persisted? && @engineer.image? %>
+              <label>
+                <%= f.check_box :remove_image %>
+                画像を削除
+              </label>
+          <% else %>
+
+            <% if @engineer.image? %>
+              <div class="thumbnail">
+                <%= image_tag @engineer.image.url %>
+              </div>
+            <% end %>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th><i class="fa fa-code"></i>スキル</th>
+        <td>
+          <table class="table table--chic table--s">
+            <thead>
+              <th>スキル名</th>
+              <th>経験年数</th>
+              <th>レベル</th>
+            </thead>
+            <tbody id="skills_table">
+              <% counter = 0 %>
+              <% @engineer.engineer_skills.each_with_index do |skill,i| %>
+                <tr id="skills_<%= i %>">
+                  <td>
+                    <%= collection_select("skills[#{i}]", "id", @skills, :id, "name", :selected => skill.skill_id) %>
+                  </td>
+                  <td>
+                    <%= select_tag "skills[#{i}][year]",
+                      options_for_select([['未選択',0],['1年以下',1], ['1年以上', 2],['2年以上',3]],
+                                         :selected => skill.years_of_experience) 
+                    %>
+                  </td>
+                  <td>
+                    <%= select_tag "skills[#{i}][level]",
+                      options_for_select([['未選択',0],['1',1], ['2', 2],['3',3]],
+                                         :selected => skill.level) 
+                    %>
+                  </td>
+                </tr>
+                <% counter = i %>
+              <% end %>
+              <% counter += 1 %>
+              <tr id="skills_<%= counter %>">
+                <td>
+                  <%= collection_select("skills[#{counter}]", "id", @skills, :id, "name",:include_blank => '言語を選択') %>
+                </td>
+                <td>
+                  <%= select_tag "skills[#{counter}][year]",
+                    options_for_select([['経験年数を選択',0],['1年以下',1], ['1年以上', 2],['2年以上',3]]) 
+                  %>
+                </td>
+                <td>
+                  <%= select_tag "skills[#{counter}][level]",
+                    options_for_select([['レベルを選択',0],['1',1], ['2', 2],['3',3]]) 
+                  %>
+                </td>
+              </tr>
+            <tbody>
+          </table>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+
+
+  </table>
+
+  <br>
+
+  <div class="text-center">
+    <%= f.submit '送信', :class => 'btn' %>
+  </div>
+
+<% end %>

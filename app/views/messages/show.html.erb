@@ -1,0 +1,20 @@
+<div class="container container--s">
+
+  <!-- flash -->
+  <% flash.each_with_index do |flash,i| %>
+    <div id="flash-<%= i %>" class="panel panel--<%= flash[0] %> mg-b-10 rm-mg-l grid">
+      <p class="grid__xs-11 grid__sp-11"><%= flash[1] %></p>
+      <div name="rm-flash" class="grid__xs-1 grid__sp-1 text-right">
+        <i id="rm-flash-<%= i %>" class="fa fa-remove fa--clean fa--clickable"></i>
+      </div>
+    </div>
+  <% end %>
+  <!-- /flash -->
+
+  <%= render 'messages/send_message' %>
+  
+  <%= link_to 'Edit', edit_message_path(@message) %> |
+  <%= link_to 'Back', messages_path %>
+
+
+</div>

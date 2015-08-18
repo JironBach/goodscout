@@ -1,15 +1,46 @@
 <div class="navbar">
   <div class="navbar__left">
-    <div class="navbar__logo">
-      逆求人(仮)
-    </div>
+    <% if session[:user_type] == 0 %>
+      <%= link_to '逆求人(仮)※エンジニア', root_path, :class => 'navbar__logo'  %>
+    <% elsif session[:user_type] == 1 %>
+      <%= link_to '逆求人(仮)※企業', root_path, :class => 'navbar__logo'  %>
+    <% else %>
+      <%= link_to '逆求人(仮)', root_path, :class => 'navbar__logo'  %>
+    <% end %>
   </div>
+  user_type:<%= session[:user_type] %>
+  user_id:<%= session[:user_id] %>
   <div class="navbar__right">
     <div class="navbar__list">
-      <ul class="navbar__list">
-        <li>登録</li>
-        <li>ログイン</li>
-        <li>お問い合わせ(企業様用)</li>
+      <ul>
+        <% if session[:user_id] == nil %>
+          <li name="show-popup-login-form"><a>ログイン</a></li>
+          <li>
+            <%= link_to '新規登録', new_engineer_path, :class => '' %>
+          </li>
+          <li>
+            <%= link_to 'お問い合わせ', new_inquiry_path, :class => '' %>
+          </li>
+        <% else %>
+          <li>
+            <% if am_i_engineer? %>
+              <%= link_to 'マイページ', edit_engineer_path(session[:user_id]) %>
+            <% elsif am_i_company? %>
+              <%= link_to 'マイページ', edit_company_path(session[:user_id]) %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', sign_out_path, :method => 'post' %>
+          </li>
+          <li>
+            <% if @notifications.length > 0 %>
+              <div class="circle-label">
+                <p><%= @notifications.length %></p>
+              </div>
+            <% end %>
+            <%= link_to 'メッセージ', messages_path %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

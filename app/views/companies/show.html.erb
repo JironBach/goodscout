@@ -1,0 +1,84 @@
+<div class="container">
+
+  <div class="panel panel--success">
+    <p id="notice"><%= notice %></p>
+  </div>
+
+  <!-- flash -->
+  <% flash.each_with_index do |flash,i| %>
+    <div id="notice-panel-<%= i %>" class="panel panel--notice panel--<%= flash[0] %> grid" name="notice-panel">
+      <div class="grid__sp-11 grid__sm-11"><%= flash[1] %></div>
+      <div id="rm-notice-panel-<%= i %>" name="rm-notice-panel" class="grid__sp-1 grid__sm-1 rm-pd"><i class="fa fa-remove fa--with-notice"></i></div>
+    </div>
+  <% end %>
+  <!-- /flash -->
+
+  <div class="profile">
+
+    <div class="profile__top-bg">
+
+      <div class="profile__top-bg-img profile__top-bg-img--company"></div>
+
+      <% if @company.image != nil && @company.image.length > 0 %>
+        <%= image_tag @company.image.url , :class => 'profile__img' %>
+      <% else %>
+        <%= image_tag '/images/default_profile_img.jpg', :class => 'profile__img'  %>
+      <% end %>
+
+      <div class="profile__name">
+        <%= @company.name %>
+      </div>
+
+    </div>
+
+    <div class="profile__navbar">
+    </div>
+
+    <div class="profile__main-data grid">
+
+      <div class="f-l grid__sp-12 grid__sm-5 rm-pd-l">
+
+          <div class="content-box mg-b-20">
+            <div class="content-box__header">
+              基本情報
+            </div>
+            <div class="content-box__body">
+              <div class="content-box__text">
+                <i class="fa fa-briefcase fa--medium"></i>&nbsp;会社名 : <%= @company.name %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-envelope fa--medium"></i>&nbsp;メールアドレス： <%= @company.email %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-reply fa--medium"></i>&nbsp;会社URL： <a href="<%= @company.url %>"><%= @company.url %></a>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-phone fa--medium"></i>&nbsp;電話番号： <%= @company.phone_number %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-building fa--medium"></i>&nbsp;住所： <%= @company.address %>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+      <div class="f-r grid__sp-12 grid__sm-7 rm-pd-r">
+
+        <div class="content-box mg-b-20">
+          <div class="content-box__header">
+            会社紹介
+          </div>
+          <div class="content-box__body">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <br>
+
+</div>

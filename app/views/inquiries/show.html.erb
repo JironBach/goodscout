@@ -1,0 +1,76 @@
+<div class="container container--s">
+
+  <!-- flash -->
+  <% flash.each_with_index do |flash,i| %>
+    <div id="flash-<%= i %>" class="panel panel--<%= flash[0] %> mg-b-10 rm-mg-l grid">
+      <p class="grid__xs-11 grid__sp-11"><%= flash[1] %></p>
+      <div name="rm-flash" class="grid__xs-1 grid__sp-1 text-right">
+        <i id="rm-flash-<%= i %>" class="fa fa-remove fa--clean fa--clickable"></i>
+      </div>
+    </div>
+  <% end %>
+  <!-- /flash -->
+
+  <div class="content-box">
+
+    <div class="content-box__header">
+      お問い合わせ内容
+    </div>
+
+    <div class="content-box__body">
+
+      <table class="table table--colorful">
+        <tbody>
+
+          <tr>
+            <th>会社名</th>
+            <td><%= @inquiry.name %></td>
+          </tr>
+
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @inquiry.email %></td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+            <td><%= @inquiry.company_phone_number %></td>
+          </tr>
+
+          <tr>
+            <th>代表者名</th>
+            <td><%= @inquiry.representative_person %></td>
+          </tr>
+
+          <tr>
+            <th>送信日時</th>
+            <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          </tr>
+
+          <tr>
+            <th>ご返信方法</th>
+            <td><%= @inquiry.how_to_reply %></td>
+          </tr>
+
+          <tr>
+            <th>お問い合わせ内容</th>
+            <td>
+              <p class="text text--bold"><%= @inquiry.title %></p>
+              <p><%= @inquiry.desc %></p>
+          
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="text-center">
+      <%= link_to 'ホームに戻る', root_path %>
+    </div>
+
+    <br>
+  
+  </div>
+
+</div>

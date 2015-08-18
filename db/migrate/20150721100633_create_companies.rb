@@ -1,12 +1,13 @@
 class CreateCompanies < ActiveRecord::Migration
   def change
     create_table :companies do |t|
-      t.string  :company_name           ,null: false
+      t.string  :name                   ,null: false
       t.string  :email                  ,null: false
-      t.integer :phone_number
+      t.string  :password_digest
+      t.string  :phone_number
       t.string  :url
+      t.string  :image
       t.string  :representative_person  ,null: false
-      t.string  :accound_id
       t.string  :encryped_password
       t.integer :status                 ,null: false
       t.string  :address

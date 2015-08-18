@@ -1,0 +1,69 @@
+<%= form_for(@inquiry) do |f| %>
+
+  <% if @inquiry.errors.any? %>
+
+    <div id="error_explanation">
+      <h2><%= @inquiry.errors.count %>個の入力エラーがあります</h2>
+      <ul>
+        <% @inquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+
+  <% end %>
+
+  <table class="table table--colorful">
+
+    <tbody>
+
+      <tr>
+        <th>会社名<label class="label label--danger">必須</label></th>
+        <td><%= f.text_field :company_name, :class => 'input' %></td>
+      </tr>
+
+      <tr>
+        <th>ご担当者様氏名<label class="label label--danger">必須</label></th>
+        <td><%= f.text_field :representative_person, :class => 'input' %></td>
+      </tr>
+
+      <tr>
+        <th>メールアドレス<label class="label label--danger">必須</label></th>
+        <td><%= f.text_field :company_email, :class => 'input' %></td>
+      </tr>
+
+      <tr>
+        <th>ご希望の返信方法<label class="label label--danger">必須</label></th>
+        <td><%= f.select :how_to_reply,[['電話', '電話'], ['メール','メール']] %></td>
+      </tr>
+
+    <tr>
+      <th>電話番号<label class="label label--danger">必須</label></th>
+      <td><%= f.text_field :company_phone_number, :class => 'input' %></td>
+    </tr>
+
+
+    <tr>
+      <th><%= f.label 'タイトル' %><label class="label label--danger">必須</label></th>
+      <td><%= f.text_field :title, :class => 'input' %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label '本文' %><label class="label label--danger">必須</label></th>
+      <td><%= f.text_area :desc, :class => 'textarea', :rows => 8 %></td>
+    </tr>
+
+    <%= f.hidden_field :status, :value => 0 %>
+
+    </tbody>
+
+  </table>
+
+  <br>
+
+  <div class="text-center">
+    <%= f.submit '送信', :class => 'btn' %>
+  </div>
+
+
+<% end %>

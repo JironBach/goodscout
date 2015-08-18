@@ -1,0 +1,34 @@
+<!-- login popup -->
+<div class="popup hidden" id='popup-login-form'>
+  <br>
+  <div class="popup__body">
+
+    <%= form_tag sign_in_path do %>
+      <table class="table table--chic">
+        <tbody>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= text_field_tag :email , params[:email] %></td>
+          </tr>
+          <tr>
+            <th>パスワード</th>
+            <td><%= password_field_tag :password, params[:password] %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%= submit_tag "ログイン", :class => 'btn' %>
+
+    <% end %>
+
+    <p class="text-center mg-t-10">
+      <%= link_to '新規登録はこちらから', new_inquiry_path %>
+    </p>
+  </div>
+</div>
+<!-- /login popup -->
+
+<div id="cover" class="cover hidden">
+</div>

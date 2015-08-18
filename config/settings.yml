@@ -1,0 +1,37 @@
+user_type:
+  engineer  : 0
+  company   : 1
+  admin     : 2
+
+message_type:
+  from_engineer   : 0
+  from_company    : 1
+
+status:
+  not_registered                                    : 0
+  student_and_job_hunting_regular_employee          : 1
+  student_and_job_hunting_part_time_job             : 2
+  student_and_not_job_hunting                       : 3
+  regular_employee_and_job_hunting                  : 4
+  regular_employee_and_job_hunting_eagerly          : 5
+  regular_employee_and_not_job_hunting              : 6
+  freelance_and_looking_for_job                     : 7
+  freelance_and_looking_for_job_eagerly             : 8
+  freelance_and_not_looking_for_job                 : 9
+
+notification_type:
+  message   : 0
+
+default_img_path:
+  engineer    : '/images/default_engineer_profile_img.jpg'
+  company     : '/images/default_company_profile_img.jpg'
+  company_1   : '/images/test/1.jpg'
+  company_2   : '/images/test/2.jpg'
+  company_3   : '/images/test/3.jpg'
+  company_4   : '/images/test/4.jpg'
+  company_5   : '/images/test/5.jpg'
+  company_6   : '/images/test/6.jpg'
+  company_7   : '/images/test/7.jpg'
+  company_8   : '/images/test/8.jpg'
+  company_9   : '/images/test/9.jpg'
+  company_10  : '/images/test/10.jpg'
