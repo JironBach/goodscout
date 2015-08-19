@@ -98,7 +98,7 @@ class EngineersController < ApplicationController
   # ===================================
   def search
     
-    search_by_skill_flag  = params['skills'].length > 1   || params['skills']['0']['skill_id'].to_i > 0
+    search_by_skill_flag  = params['skills'].length > 1   || params['skills']['0']['id'].to_i > 0
     search_by_status_flag = params['statuses'].length > 1 || params['statuses']['0']['job'].to_i > 0
 
     type = 0
@@ -106,10 +106,10 @@ class EngineersController < ApplicationController
     type = 2 if search_by_status_flag
     type = 3 if search_by_skill_flag && search_by_status_flag
 
-    engineers = Engineer.all                                          if type == 0
-    engineers = Engineer.union(search_by_skills(),search_by_status()) if type == 3
-    engineers = search_by_status()                                    if type == 2
-    engineers = search_by_skills()                                    if type == 1
+    engineers = Engineer.all                   if type == 0
+    engineers = search_by_skills_and_status()  if type == 3
+    engineers = search_by_status()             if type == 2
+    engineers = search_by_skills()             if type == 1
 
     @engineers = engineers.page(params[:page])
 
@@ -138,12 +138,7 @@ class EngineersController < ApplicationController
 
     def search_by_status
 
-      job_ids = []
-      desire_to_work_ids = []
-      params['statuses'].each do |status|
-        job_ids.push(status[1]['job'])
-        desire_to_work_ids.push(status[1]['desire'])
-      end
+      job_ids,desire_to_work_ids = format_statuses_params()
 
       Engineer.where(:job_id => job_ids,:desire_to_work_id => desire_to_work_ids)
       
@@ -151,17 +146,47 @@ class EngineersController < ApplicationController
 
     def search_by_skills
 
+      search_conditions = format_skills_params()
+      ids = Engineer.search_by_skills(search_conditions)
+      Engineer.where(:id => ids)
+
+    end
+
+    def search_by_skills_and_status
+
+      job_ids,desire_to_work_ids = format_statuses_params()
+      search_conditions = format_skills_params()
+      Engineer.search_by_skills_and_status(search_conditions,job_ids,desire_to_work_ids)
+
+    end
+
+    def format_statuses_params
+      job_ids = []
+      desire_to_work_ids = []
+      params['statuses'].each do |status|
+        job_ids.push(status[1]['job'])
+        desire_to_work_ids.push(status[1]['desire'])
+      end
+
+      return job_ids,desire_to_work_ids
+    end
+
+    def format_skills_params
+
       search_conditions = []
+
       params['skills'].each do |key,param|
+        next                unless param['id'].to_i     > 0
+        param['year']   = 0 unless param['year'].to_i   > 0
+        param['level']  = 0 unless param['level'].to_i  > 0
         search_conditions.push({
-          'skill_id'            => param['skill_id'],
+          'skill_id'            => param['id'],
           'years_of_experience' => param['year'],
           'level'               => param['level']
         }) 
       end
 
-      ids = EngineerSkill.get_engineer_ids_by_skill(search_conditions[0])
-      Engineer.where(:id => ids)
+      search_conditions
 
     end
 

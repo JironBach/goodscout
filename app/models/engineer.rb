@@ -19,15 +19,6 @@ class Engineer < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader 
 
-  module UnionHack
-    def union(*relations)
-      from '((' + relations.map { |r| r.ast.to_sql }.join(') UNION (') + ')) AS ' + self.table_name
-    end
-  end
-
-  extend UnionHack
-
-
   def self.create_engineer params,status,is_invitation_enabled
 
     #begin
@@ -61,6 +52,31 @@ class Engineer < ActiveRecord::Base
   def self.select_engineer_with_skills
     Engineer.includes(:engineer_skills)
   end
+
+  def self.search_by_skills search_conditions
+
+    ids_ary = []
+    search_conditions.each do |search_condition|
+      ids = []
+      EngineerSkill.where(:skill_id => search_condition['skill_id']).each do |engineer_skill|
+        ids.push(engineer_skill.engineer_id)
+      end
+      ids_ary.push(ids)
+    end
+
+    engineers = Engineer.where(:id => ids_ary.shift)
+    ids_ary.each do |ids|
+      engineers = engineers.where(:id => ids)
+    end
+
+    engineers
+
+  end
+
+  def self.search_by_skills_and_status search_conditions,job_ids,desire_to_work_ids
+    search_by_skills(search_conditions).where(:job_id => job_ids, :desire_to_work_id => desire_to_work_ids)
+  end
+
 
   has_secure_password
 
