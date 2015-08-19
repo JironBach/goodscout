@@ -21,16 +21,6 @@ class Message < ActiveRecord::Base
     opponent_id_type  = 'company_id'                   if user_type == Settings.user_type['engineer']
     opponent_id_type  = 'engineer_id'                  if user_type == Settings.user_type['company']
 
-    #sql = 
-    #  "SELECT * FROM (
-    #    SELECT * FROM (
-    #      SELECT `messages`.* FROM `messages`
-    #      WHERE `messages`.`message_type` = #{opponent_type}
-    #      AND `messages`.`#{my_id_type}` = #{user_id}
-    #      ORDER BY created_at desc )
-    #    messages GROUP BY `messages`.`#{opponent_id_type}`) 
-    #    messages ORDER BY created_at desc"
-    
     sql = 
       "SELECT * FROM (
         SELECT `messages`.* FROM `messages`

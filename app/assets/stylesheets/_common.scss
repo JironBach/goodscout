@@ -414,6 +414,36 @@ select{
 
 /*
  
+  button-r
+ 
+ */
+.btn-r{
+  position: absolute;
+  color: $btn-r-col;
+  background-color: $btn-r-bg-col;
+  font-size: $btn-r-font-size;
+  height: 25px;
+  width: 25px;
+  box-shadow: $btn-r-box-shadow;
+  border: $btn-r-border;
+  i{
+    position: absolute;
+    height: $btn-r-font-size;
+    width: $btn-r-font-size;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  &:hover{
+    background-color: darken($btn-r-bg-col,10%);
+  }
+}
+
+
+/*
+ 
   input
  
  */
