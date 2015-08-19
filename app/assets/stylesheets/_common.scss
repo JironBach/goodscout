@@ -24,10 +24,9 @@ html,body{
  */
 .list-item{
   background-color: $list-item-bg-col;
-  padding: 10px;
   margin: 0 0 10px 0;
   box-shadow: $list-item-box-shadow;
-  height: 325px;
+  height: 350px;
   font-size: $list-item-font-size;
   border-radius: 3px;
   &:hover{
@@ -37,10 +36,10 @@ html,body{
 
 .list-item__img{
   width: $list-item-img-size;
-  max-width: $list-item-img-size;
+  //min-width: $list-item-img-size;
   height: $list-item-img-size;
-  max-height: $list-item-img-size;
-  border-radius: 3px;
+  //min-height: $list-item-img-size;
+  border-radius: 3px 3px 0 0;
   @media (min-width: $window-size-s){
     width: 100%;
     height: 100%;
@@ -48,11 +47,11 @@ html,body{
 }
 
 .list-item__desc{
+  width: 100%;
   padding: 5px;
 }
 
 .list-item-wrapper{
-  padding: 0 15px;
   width: initial;
 }
 
@@ -377,6 +376,10 @@ html,body{
     font-size: $text-sm-font-size;
   }
 
+  &.text--xs{
+    font-size: $text-xs-font-size;
+  }
+
   &.text--thin{
     color: $text-thin-col;
     font-size: $text-sm-font-size;
@@ -393,6 +396,12 @@ html,body{
 select{
   background-color: $select-bg-col;
   color: $select-col;
+  &.select{
+    width: 135px;
+    &.select--s{
+      width: 100px;
+    }
+  }
 }
 
 /*
@@ -474,6 +483,10 @@ select{
 .label{
   font-size: $label-font-size;
   padding: 3px 5px;
+  &.label--s{
+    padding: 0 2px;
+    font-size: $label-s-font-size;
+  }
   &.label--right{
     float: right;
   }

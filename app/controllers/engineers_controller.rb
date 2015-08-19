@@ -8,6 +8,8 @@ class EngineersController < ApplicationController
 
     @skills = Skill.all
     @engineers = Engineer.select_engineer_with_skills.page(params[:page])
+    @jobs = Job.all
+    @desire_to_works = DesireToWork.all
 
   end
 
