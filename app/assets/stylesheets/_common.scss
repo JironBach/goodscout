@@ -256,6 +256,7 @@ html,body{
 }
 
 .content-box__header{
+  font-weight: bold;
   text-align: center;
   background-color: darken($content-box-header-bg-col,7%);
   padding: 10px;

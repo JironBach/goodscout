@@ -17,6 +17,8 @@ class EngineersController < ApplicationController
   # GET /engineers/1.json
   def show
     @skills = Skill.all
+    @jobs = Job.all
+    @desire_to_works = DesireToWork.all
   end
 
   # GET /engineers/new
