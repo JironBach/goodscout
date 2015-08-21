@@ -27,6 +27,9 @@ class EngineersController < ApplicationController
 
   # GET /engineers/1/edit
   def edit
+    unless (view_context.am_i_engineer? && @engineer.id == session[:user_id]) || (view_context.am_i_company? && @company.id == session[:user_id])
+      render file: Rails.root.join('public/404.html'), status: 404, layout: false, content_type: 'text/html'
+    end
     @skills = Skill.all
   end
 

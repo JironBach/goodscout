@@ -17,6 +17,12 @@
 
       <div class="profile__top-bg-img profile__top-bg-img--engineer"></div>
 
+      <% if am_i_engineer? && @engineer.id == session[:user_id] %>
+        <%= button_to 'プロフィールを編集する', edit_engineer_path(@engineer), :class => 'btn profile__upper-left-content', :method => 'get' %>
+      <% elsif am_i_company? && @company.id == session[:user_id] %>
+        <%= button_to 'プロフィールを編集する', edit_company_path(@company), :class => 'btn profile__upper-left-content', :method => 'get' %>
+      <% end %>
+
       <% if @engineer.image != nil && @engineer.image.length > 0 %>
         <%= image_tag @engineer.image.url , :class => 'profile__img' %>
       <% else %>
