@@ -35,3 +35,11 @@ default_img_path:
   company_8   : '/images/test/8.jpg'
   company_9   : '/images/test/9.jpg'
   company_10  : '/images/test/10.jpg'
+
+omniauth_info:
+  facebook:
+    id         : '803076096468363'
+    app_secret : '1b6685db02fa75c0abbb8582ccec2236'
+  github:
+    id:
+    app_secret:
