@@ -42,7 +42,7 @@ class EngineersController < ApplicationController
     status = 0
     status = params['status'] if params['status'] != nil
     is_invitation_enabled = true
-    @engineer = Engineer.create_engineer(engineer_params,status,is_invitation_enabled)
+    @engineer = Engineer.create(engineer_params)
 
     respond_to do |format|
       if @engineer != nil && @engineer.valid?
@@ -139,7 +139,7 @@ class EngineersController < ApplicationController
         :self_introduction, :living_place, :fb_uid, :github_uid, 
         :age, :phone_number, :status, :job_history, :notes, 
         :is_invitation_enabled, :image, :image_cache, :remove_image,
-        :job_id, :desire_to_work_id
+        :job_id, :desire_to_work_id, :remote_image_url
       )
     end
 

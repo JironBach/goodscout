@@ -38,8 +38,8 @@ default_img_path:
 
 omniauth_info:
   facebook:
-    id         : '803076096468363'
-    app_secret : '1b6685db02fa75c0abbb8582ccec2236'
+    id          : '803076096468363'
+    app_secret  : '1b6685db02fa75c0abbb8582ccec2236'
   github:
-    id:
-    app_secret:
+    id          : '3abe1534bb6919d92b13'
+    app_secret  : '32ac4072bf51200337f2fa9db8103cd53ed7f19e'

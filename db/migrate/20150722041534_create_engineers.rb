@@ -9,7 +9,9 @@ class CreateEngineers < ActiveRecord::Migration
       t.text        :self_introduction     ,null: false
       t.string      :living_place
       t.string      :fb_uid
+      t.string      :fb_url
       t.string      :github_uid
+      t.string      :github_url
       t.integer     :age                   ,null: false
       t.string      :phone_number
       t.text        :job_history           ,null: false
