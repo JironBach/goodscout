@@ -9,9 +9,9 @@ $('[name="show-popup-login-form"]').each (i,el) ->
     $('body').addClass('noscroll')
 
 $('body').click (e) ->
-  if $(e.target).closest('[id="popup-login-form"]').attr('id') != 'popup-login-form' &&
+  if $(e.target).closest('[name="popup"]').attr('name') != 'popup' &&
       $(e.target).closest('[name="show-popup-login-form"]').attr('name') != 'show-popup-login-form'
-    $("#popup-login-form").hide()
+    $("[name='popup']").hide()
     $("#cover").hide()
     $('body').removeClass('noscroll')
 

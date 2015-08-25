@@ -53,7 +53,9 @@ ActiveRecord::Schema.define(version: 20150817055819) do
     t.text     "self_introduction",     limit: 65535,                null: false
     t.string   "living_place",          limit: 255
     t.string   "fb_uid",                limit: 255
+    t.string   "fb_url",                limit: 255
     t.string   "github_uid",            limit: 255
+    t.string   "github_url",            limit: 255
     t.integer  "age",                   limit: 4,                    null: false
     t.string   "phone_number",          limit: 255
     t.text     "job_history",           limit: 65535,                null: false

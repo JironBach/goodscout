@@ -98,10 +98,20 @@
                 <i class="fa fa-birthday-cake fa--medium"></i><%= @engineer.age %>歳
               </div>
               <div class="content-box__text">
-                <i class="fa fa-facebook fa--medium"></i>この方はFacebook連携をしていません
+                <i class="fa fa-facebook fa--medium"></i>
+                <% if @engineer.fb_url.present? && @engineer.fb_url.length > 0 %>
+                  <a href="<%= @engineer.fb_url %>">facebookページへ</a>
+                <% else %>
+                  この方はFacebook連携をしていません
+                <% end %>
               </div>
               <div class="content-box__text">
-                <i class="fa fa-github fa--medium"></i>この方はGithub連携をしていません
+                <i class="fa fa-github fa--medium"></i>
+                <% if @engineer.github_url.present? && @engineer.github_url.length > 0 %>
+                  <a href="<%= @engineer.github_url %>">githubページへ</a>
+                <% else %>
+                  この方はGithub連携をしていません
+                <% end %>
               </div>
             </div>
           </div>

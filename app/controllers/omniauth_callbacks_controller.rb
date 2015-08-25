@@ -27,12 +27,14 @@ class OmniauthCallbacksController < EngineersController
 
     if info.present?
       engineer.fb_uid  = info['uid']
+      engineer.fb_url  = info['info']['urls']['Facebook']
       engineer.name    = info['info']['name'] 
       engineer.email   = info['info']['email'] 
       engineer.remote_image_url = "#{info['info'].image.gsub('http://','https://')}?width=200&height=200"
       engineer.age     = calc_age(info['extra']['raw_info']['birthday'])
     end
 
+    pp engineer
     engineer
 
   end
@@ -43,6 +45,7 @@ class OmniauthCallbacksController < EngineersController
 
     if info.present?
       engineer.github_uid       = info['uid']
+      engineer.github_url       = info['info']['urls']['GitHub']
       engineer.name             = info['info']['name']
       engineer.email            = info['info']['email']
       engineer.living_place     = info['extra']['raw_info']['location']

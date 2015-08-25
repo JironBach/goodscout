@@ -14,12 +14,13 @@
   <body>
   
     <%= render 'layouts/header' %>
+
+    <%= render 'popups/popup' %>
   
     <%= yield %>
 
     <%= render 'layouts/footer' %>
 
-    <%= render 'popups/popup' %>
 
     <%= javascript_include_tag 'common', 'data-turbolinks-track' => true %>
   
