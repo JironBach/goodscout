@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :inquiries, :except => [:index,:edit,:update,:destroy]
 
+  #oauth
+  get '/auth/:provider/callback',    to: 'omniauth_callbacks#authenticate', as: :auth_callback
+  get '/auth/failure',               to: 'omniauth_callbacks#failed',       as: :auth_failure
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

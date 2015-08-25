@@ -21,6 +21,8 @@ $window-size-s: 768px;
 $window-size-m: 992px;
 $window-size-l: 1200px;
 
+$normal-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);
+
 
 $font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS P Gothic",Verdana,"sans-serif";
 
@@ -127,11 +129,17 @@ $btn-disabled-bg-col: darken($base-col,20%);
   button rounded
 
 */
-$btn-r-col: $theme-col;
+$btn-r-font-size: $font-size;
+
+$btn-r-col: $base-col-4;
 $btn-r-bg-col: white;
 $btn-r-bg-col-2: $base-col;
+
 $btn-r-two-colors-border-col: darken($base-col-2,20%);
-$btn-r-two-colors-border: 2px solid $btn-r-two-colors-border-col;
+$btn-r-two-colors-border: none;
+
+$btn-r-border: none;
+$btn-r-box-shadow: $normal-shadow;
 
 /*
   progressbar
@@ -194,7 +202,8 @@ $label-danger-col: $base-col-3;
 $label-theme-bg-col: $theme-col;
 $label-theme-col: $base-col-3;
 $label-normal-bg-col: $accent-col-3;
-$label-font-size: $font-size / 3;
+$label-font-size: $font-size - 6px;
+$label-s-font-size: $font-size - 8px;
 
 /*
  
@@ -243,7 +252,7 @@ $fa-clean-col: $base-col-3;
   list-item  
 */
 $list-item-font-size: $font-size - 2px;
-$list-item-img-size: 160px;
+$list-item-img-size: 161px;
 $list-item-border: 2px solid $theme-col;
 $list-item-bg-col: $base-col-3;
 $list-item-box-shadow: 1px 0 1px 1px rgba(0,0,0,0.2);
@@ -267,6 +276,8 @@ $text-thin-col: darken($base-col,20%);
 $text-good-col: $accent-col-3;
 $text-error-col: $accent-col-2;
 $text-small-col: darken($base-col,20%);
+
+$text-xs-font-size: $font-size - 4px;
 
 $text-bold-font-size: $font-size + 4px;
 

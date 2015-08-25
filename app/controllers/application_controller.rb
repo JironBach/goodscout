@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :get_message_notifications
 
+  require 'pp'
+
   def get_message_notifications
     @notifications = Notification.where(
       "notification_type = ? and user_type = ? and user_id = ? and is_done = false",

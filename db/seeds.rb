@@ -17,7 +17,8 @@
     :age                    => 21,
     :image                  => "default_profile_img.jpg",
     :phone_number           => '09096760070',
-    :status                 => rand(1..9),
+    :job_id                 => rand(1..3),
+    :desire_to_work_id      => rand(1..3),
     :job_history            => '内緒だお',
     :is_invitation_enabled  => true,
   )
@@ -100,3 +101,11 @@ create_message(0,1,1)
 10.times do
   create_company()
 end
+
+Job.create(:id => 1 ,:desc => '学生')
+Job.create(:id => 2 ,:desc => '正社員')
+Job.create(:id => 3 ,:desc => 'フリーランス')
+
+DesireToWork.create(:id => 1 ,:desc => '仕事を必要としていない')
+DesireToWork.create(:id => 2 ,:desc => '仕事を探している')
+DesireToWork.create(:id => 3 ,:desc => '今すぐにでも仕事が欲しい')

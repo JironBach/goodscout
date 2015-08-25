@@ -1,7 +1,5 @@
 class MessagesController < ApplicationController
 
-  require 'pp'
-
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :set_val, only: [:show, :new]
 

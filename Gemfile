@@ -7,6 +7,9 @@ gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'rails_config'
 gem 'kaminari'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 group :development, :staging do
   gem 'pry-rails'

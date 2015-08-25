@@ -17,6 +17,12 @@
 
       <div class="profile__top-bg-img profile__top-bg-img--engineer"></div>
 
+      <% if am_i_engineer? && @engineer.id == session[:user_id] %>
+        <%= button_to 'プロフィールを編集する', edit_engineer_path(@engineer), :class => 'btn profile__upper-left-content', :method => 'get' %>
+      <% elsif am_i_company? && @company.id == session[:user_id] %>
+        <%= button_to 'プロフィールを編集する', edit_company_path(@company), :class => 'btn profile__upper-left-content', :method => 'get' %>
+      <% end %>
+
       <% if @engineer.image != nil && @engineer.image.length > 0 %>
         <%= image_tag @engineer.image.url , :class => 'profile__img' %>
       <% else %>
@@ -80,6 +86,12 @@
             </div>
             <div class="content-box__body">
               <div class="content-box__text">
+                <i class="fa fa-briefcase fa--medium"></i><%= @jobs.find(@engineer.job_id).desc %>
+              </div>
+              <div class="content-box__text">
+                <i class="fa fa-desktop fa--medium"></i><%= @desire_to_works.find(@engineer.desire_to_work_id).desc %>
+              </div>
+              <div class="content-box__text">
                 <i class="fa fa-home fa--medium"></i><%= @engineer.living_place %>在住
               </div>
               <div class="content-box__text">
@@ -99,9 +111,9 @@
               スキル
             </div>
             <div class="content-box__body">
-              <table class="table">
+              <table class="table table--chic">
                 <thead>
-                  <th>スキル名</th>
+                  <th>職業</th>
                   <th>レベル</th>
                   <th>経験年数</th>
                 </thead>

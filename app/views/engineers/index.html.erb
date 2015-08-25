@@ -10,13 +10,47 @@
   <!-- /flash -->
   
   <div class="panel panel--notice mg-10">
-    <p class="text-bold">エンジニアの絞り込み検索</p>
+    <p class="text text--bold mg-b-10 inline">エンジニアの絞り込み検索</p>
+
     <div class="field">
-      <%= form_tag(search_path) do %>
-        <%= select_tag '1[skill_id]', options_from_collection_for_select(Skill.all,:id,:name) %>
-        <%= select_tag '1[years_of_experience]', options_for_select(['1年未満','1年以上','2年以上','3年以上']) %>
-        <%= select_tag '1[level]', options_for_select([['入門者レベル',0],['初心者レベル',1],['中級者レベル',2],['上級者レベル',3]]) %>
-        <%= submit_tag '検索', :class => 'btn btn--s' %>
+      <%= form_tag(search_path, :class => 'grid') do %>
+        <div class="grid__sp-10 grid__sm-10 grid__md-4" id="statuses-parent">
+          ステータスで絞り込み<br>
+          <div id="statuses_0" class="inline mg-t-5">
+            <%= select_tag 'statuses[0][job]', content_tag(:option,'職業',:value=>"") + 
+              options_from_collection_for_select(Job.all ,:id, :desc), :id => 'statuses_0_job', :class => 'select select--s'
+            %>
+            <%= select_tag 'statuses[0][desire]', content_tag(:option,'仕事の必要度',:value=>"") + 
+            options_from_collection_for_select(DesireToWork.all,:id,:desc), :id => 'statuses_0_desire' , :class => 'select'
+            %>
+          </div>
+          <div id="add-search-form-statuses" class="btn-r mg-l-10">
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+        
+        <div class="grid__sp-10 grid__sm-10 grid__md-7" id="skills-parent">
+          言語で絞り込み<br>
+          <div id="skills_0" class="inline mg-t-5">
+            <%= select_tag 'skills[0][id]', content_tag(:option,'スキル名',:value=>"") + 
+              options_from_collection_for_select(Skill.all,:id,:name) , :id => 'skills_0_id', :class => 'select select--s'
+            %>
+            <%= select_tag 'skills[0][year]',content_tag(:option,'経験年数',:value=>"") + 
+              options_for_select([['1年以上',1],['2年以上',2],['3年以上',3]]) , :id => 'skills_0_year', :class => 'select select--s'
+            %>
+            <%= select_tag 'skills[0][level]', content_tag(:option,'スキルのレベル',:value=>"") + 
+              options_for_select([['入門者レベル',1],['初心者レベル',2],['中級者レベル',3],['上級者レベル',4]]) , :id => 'skills_0_level', :class => 'select'
+            %>
+          </div>
+          <div id="add-search-form-skills" class="btn-r mg-l-10">
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+
+        <div class="grid__sp-2 grid__xs-2 grid__sm-1 text-center">
+          <%= submit_tag '検索', :class => 'btn mg-t-10' %>
+        </div>
+
       <% end %>
     </div>
   </div>
@@ -37,19 +71,30 @@
               </div>
   
               <div class="grid__sp-12 list-item__desc">
-                <% engineer.engineer_skills.each_with_index do |skill,i| %>
-                  <%= @skills[skill.skill_id - 1].name %>:<%= skill.years_of_experience %>年<br>
-                  <% skill.level.times do |i| %>
-                    <i class="fa fa-star fa--accent"></i>
+                <div class="mg-b-10">
+                  <p class="text text--bold text--s inline"><%= @jobs.find(engineer.job_id).desc %></p>
+                  <% if engineer.desire_to_work_id == 2 %>
+                    <label class="label label--normal label--s f-r">仕事探し中</label>
+                  <% elsif engineer.desire_to_work_id == 3 %>
+                    <label class="label label--danger label--s f-r">仕事探し中!!!</label>
                   <% end %>
-                  <% if i == 2 %>
-                    <br>
-                    その他複数...
-                    <% break %>
-                  <% elsif engineer.engineer_skills.last == skill %>
-                    <% break %>
-                  <% end %><br>
-                <% end %>
+                </div>
+
+                <div class="pd-5">
+                  <% engineer.engineer_skills.each_with_index do |skill,i| %>
+                    <%= @skills[skill.skill_id - 1].name %>:<%= skill.years_of_experience %>年<br>
+                    <% skill.level.times do |i| %>
+                      <i class="fa fa-star fa--accent fa--s"></i>
+                    <% end %>
+                    <% if i == 2 %>
+                      <br>
+                      その他複数...
+                      <% break %>
+                    <% elsif engineer.engineer_skills.last == skill %>
+                      <% break %>
+                    <% end %><br>
+                  <% end %>
+                </div>
               </div>
 
               <%= link_to 'もっと見る', engineer, :class => 'list-item__lower-right-text' %>
@@ -66,3 +111,5 @@
   <% end %>
 
 </div>
+
+<%= javascript_include_tag 'engineers' %>
