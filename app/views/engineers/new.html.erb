@@ -16,4 +16,8 @@
 
 </div>
 
+<% unless request.path_info.include?('callback') %>
+  <%= render 'popups/oauth_popup' %>
+<% end %>
+
 <%= javascript_include_tag('engineers') %>

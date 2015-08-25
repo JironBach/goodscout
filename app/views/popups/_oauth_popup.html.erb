@@ -1,0 +1,26 @@
+<!-- oauth popup -->
+<div class="popup" id='popup-oauth-form' name="popup">
+
+  <div class="popup__header">
+    ソーシャルログイン
+  </div>
+
+  <div class="popup__body">
+
+    <%= link_to '/auth/facebook', :class => 'mg-r-10' do %>
+      <i class="fa fa-facebook-official fa-5x"></i>
+    <% end %>   
+
+    <%= link_to '/auth/github', :class => 'mg-l-10' do %>
+      <i class="fa fa-github fa-5x"></i>
+    <% end %>   
+
+    <br>
+    <br>
+
+    <button class="btn" name="rm-popup">連携せずに登録する</a>
+
+  </div>
+
+</div>
+<!-- /oauth popup -->

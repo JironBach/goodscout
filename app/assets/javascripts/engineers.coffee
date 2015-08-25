@@ -9,13 +9,27 @@ class @EngineerClass
     @status_form_num = 0
     bind_events.call @
     initialize.call @
+    set_cover.call @
 
   initialize = () ->
     $("tr[id^=skills_]").each () ->
       num = $(this).attr("id").match(/\d+/)[0]
       @skills_form_num = num if @skills_form_num < num
 
+  set_cover = () ->
+    if location.pathname == '/engineers/new'
+      $("#cover").removeClass('hidden')
+    else
+      $("#popup-oauth-form").addClass('hidden')
+
   bind_events = () ->
+
+    # popup
+    $("[name='rm-popup']").click () ->
+      $("[name='popup']").hide()
+      $("#cover").hide()
+
+    # skill
     if location.pathname == '/engineers/new'
       $("[id^=skills_]").change (el) ->
         add_language_form(el,'#skills_parent')
@@ -62,7 +76,6 @@ class @EngineerClass
       match_data = el.id.match(/\d+/)
       num = match_data[0] if match_data != null && num < match_data[0]
     num
-
 
   debug = () ->
     skill_num = get_num('skills')

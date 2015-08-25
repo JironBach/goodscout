@@ -136,10 +136,10 @@ class EngineersController < ApplicationController
     def engineer_params
       params.require(:engineer).permit(
         :name, :email, :password, :password_confirmation, 
-        :self_introduction, :living_place, :fb_uid, :github_uid, 
-        :age, :phone_number, :status, :job_history, :notes, 
-        :is_invitation_enabled, :image, :image_cache, :remove_image,
-        :job_id, :desire_to_work_id, :remote_image_url
+        :self_introduction, :living_place, :fb_uid, :github_uid, :age, 
+        :phone_number, :status, :job_history, :notes, :is_invitation_enabled, 
+        :image, :image_cache, :remove_image, :job_id, :desire_to_work_id, 
+        :remote_image_url, :fb_url, :github_url
       )
     end
 
