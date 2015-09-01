@@ -24,12 +24,12 @@
 
           <tr>
             <th>会社名</th>
-            <td><%= @inquiry.name %></td>
+            <td><%= @inquiry.company_name %></td>
           </tr>
 
           <tr>
             <th>メールアドレス</th>
-            <td><%= @inquiry.email %></td>
+            <td><%= @inquiry.company_email %></td>
           </tr>
 
           <tr>
@@ -43,13 +43,14 @@
           </tr>
 
           <tr>
-            <th>送信日時</th>
-            <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-          </tr>
-
-          <tr>
             <th>ご返信方法</th>
-            <td><%= @inquiry.how_to_reply %></td>
+            <td>
+              <% if @inquiry.how_to_reply == 0 %>
+                電話
+              <% else %>
+                メール
+              <% end %>
+            </td>
           </tr>
 
           <tr>
@@ -59,6 +60,11 @@
               <p><%= @inquiry.desc %></p>
           
             </td>
+          </tr>
+
+          <tr>
+            <th>送信日時</th>
+            <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
           </tr>
 
         </tbody>
