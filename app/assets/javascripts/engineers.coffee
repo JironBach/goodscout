@@ -30,7 +30,8 @@ class @EngineerClass
       $("#cover").hide()
 
     # skill
-    if location.pathname == '/engineers/new'
+    c(location.pathname)
+    if location.pathname == '/engineers/new' || location.pathname == '/auth/github/callback' || location.pathname == '/engineers'
       $("[id^=skills_]").change (el) ->
         add_language_form(el,'#skills_parent')
     else if location.pathname == '/' || location.pathname == '/search'
