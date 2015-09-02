@@ -50,7 +50,7 @@ class EngineersController < ApplicationController
         params['skills'].each do |skill|
           if skill[1]['year'].to_i > 0 || skill[1]['level'].to_i > 0
             skills_data.push({
-              :skill_id             => skill[0].to_i,
+              :skill_id             => skill[1]['id'].to_i,
               :engineer_id          => @engineer.id,
               :years_of_experience  => skill[1]['year'],
               :level                => skill[1]['level'] 
