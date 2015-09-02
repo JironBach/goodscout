@@ -119,8 +119,8 @@ class EngineersController < ApplicationController
     engineers = search_by_skills()             if type == 1
 
     @engineers = engineers.page(params[:page])
-
     @skills = Skill.all
+    @jobs = Job.all
 
     render :index
 

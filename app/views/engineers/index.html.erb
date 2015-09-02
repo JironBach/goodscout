@@ -14,14 +14,14 @@
 
     <div class="field">
       <%= form_tag(search_path, :class => 'grid') do %>
-        <div class="grid__sp-10 grid__sm-10 grid__md-4" id="statuses-parent">
+        <div class="grid__sp-10 grid__sm-10 grid__md-5" id="statuses-parent">
           ステータスで絞り込み<br>
           <div id="statuses_0" class="inline mg-t-5">
             <%= select_tag 'statuses[0][job]', content_tag(:option,'職業',:value=>"") + 
               options_from_collection_for_select(Job.all ,:id, :desc), :id => 'statuses_0_job', :class => 'select select--s'
             %>
             <%= select_tag 'statuses[0][desire]', content_tag(:option,'仕事の必要度',:value=>"") + 
-            options_from_collection_for_select(DesireToWork.all,:id,:desc), :id => 'statuses_0_desire' , :class => 'select'
+            options_from_collection_for_select(DesireToWork.all,:id,:desc), :id => 'statuses_0_desire' , :class => 'select select--l'
             %>
           </div>
           <div id="add-search-form-statuses" class="btn-r mg-l-10">
@@ -29,7 +29,7 @@
           </div>
         </div>
         
-        <div class="grid__sp-10 grid__sm-10 grid__md-7" id="skills-parent">
+        <div class="grid__sp-10 grid__sm-10 grid__md-6" id="skills-parent">
           言語で絞り込み<br>
           <div id="skills_0" class="inline mg-t-5">
             <%= select_tag 'skills[0][id]', content_tag(:option,'スキル名',:value=>"") + 
