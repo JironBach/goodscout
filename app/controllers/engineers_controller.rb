@@ -19,6 +19,7 @@ class EngineersController < ApplicationController
     @skills = Skill.all
     @jobs = Job.all
     @desire_to_works = DesireToWork.all
+    @company = Company.find(session[:user_id]) if view_context.am_i_company?
   end
 
   # GET /engineers/new
