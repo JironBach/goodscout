@@ -3,6 +3,8 @@ class EngineerSkill < ActiveRecord::Base
   belongs_to :engineer
 
   def self.insert_engineer_skills skills
+    skills.uniq!
+    skills.each { |skill| skills.delete(skill) if EngineerSkill.where(skill).length > 0 }
     EngineerSkill.create(skills)
   end
 
