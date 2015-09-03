@@ -10,6 +10,7 @@ gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+gem 'rmagick', require: 'RMagick'
 
 group :development, :staging do
   gem 'pry-rails'
