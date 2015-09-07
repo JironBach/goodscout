@@ -30,7 +30,6 @@ class @EngineerClass
       $("#cover").hide()
 
     # skill
-    c(location.pathname)
     if location.pathname == '/engineers/new' || location.pathname == '/auth/github/callback' ||
        location.pathname == '/engineers' || /engineers\/\d+/.test(location.pathname)
       $("[id^=skills_]").change (el) ->
@@ -60,6 +59,7 @@ class @EngineerClass
         $(el.find("#skills_#{skill_num - 1}_year")[0]).attr('id',"skills_#{skill_num}_year").attr('name',"skills[#{skill_num}][year]")
         $(el.find("#skills_#{skill_num - 1}_level")[0]).attr('id',"skills_#{skill_num}_level").attr('name',"skills[#{skill_num}][level]")
         el.attr('id',"skills_#{skill_num}")
+        $(append_selector).append("<br>")
         $(append_selector).append(el)
 
   add_status_form = (el,append_selector) ->
@@ -70,6 +70,7 @@ class @EngineerClass
         $(el.find("#statuses_#{status_num - 1}_job")[0]).attr('id',"statuses_#{status_num}_job").attr('name',"statuses[#{status_num}][job]")
         $(el.find("#statuses_#{status_num - 1}_desire")[0]).attr('id',"statuses_#{status_num}_desire").attr('name',"statuses[#{status_num}][desire]")
         el.attr('id',"statuses_#{status_num}")
+        $(append_selector).append("<br>")
         $(append_selector).append(el)
 
   get_num = (type) ->
