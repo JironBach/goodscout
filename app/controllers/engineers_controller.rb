@@ -19,6 +19,7 @@ class EngineersController < ApplicationController
     @skills = Skill.all
     @jobs = Job.all
     @desire_to_works = DesireToWork.all
+    @company = Company.find(session[:user_id]) if view_context.am_i_company?
   end
 
   # GET /engineers/new
@@ -74,14 +75,25 @@ class EngineersController < ApplicationController
   # PATCH/PUT /engineers/1.json
   def update
     respond_to do |format|
+      @skills = Skill.all
       if @engineer.update(engineer_params)
-        @skills = Skill.all
-        format.html { redirect_to @engineer, notice: 'Engineer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @engineer }
+        skills = []
+        params['skills'].each do |skill|
+          if skill[1]['year'].to_i > 0 || skill[1]['level'].to_i > 0
+            skills.push({
+              :skill_id             => skill[1]['id'].to_i,
+              :engineer_id          => @engineer.id,
+              :years_of_experience  => skill[1]['year'],
+              :level                => skill[1]['level'] 
+            })
+          end
+        end
+        pp skills
+        EngineerSkill.insert_engineer_skills(skills)
+        format.html { redirect_to @engineer, notice: 'プロフィールが正常に更新されました' }
       else
-        @skills = Skill.all
-        format.html { render :edit }
-        format.json { render json: @engineer.errors, status: :unprocessable_entity }
+        @errors = @engineer.errors
+        format.html { render :edit, notice: @errors }
       end
     end
   end

@@ -34,7 +34,6 @@ class OmniauthCallbacksController < EngineersController
       engineer.age     = calc_age(info['extra']['raw_info']['birthday'])
     end
 
-    pp engineer
     engineer
 
   end
