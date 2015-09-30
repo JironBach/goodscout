@@ -11,6 +11,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'rmagick', require: 'RMagick'
+gem 'therubyracer'
 
 group :development, :staging do
   gem 'pry-rails'
