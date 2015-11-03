@@ -1,0 +1,15 @@
+box: phusion/passenger-ruby22
+build:
+  steps:
+    #- wercker/install-packages@0.0.4
+    #- install-packages:
+    #    packages: cmake
+    - bundle-install
+    - script:
+      name: rspec
+      code: bundle exec rspec
+deploy:
+  steps:
+    - script:
+      name: deploy_staging
+      code: bin/deploy_staging.sh
