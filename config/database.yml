@@ -1,13 +1,23 @@
-development: &default
+default: &default
   adapter: mysql2
+  host: 153.120.82.113
   encoding: utf8
-  database: gyakukyujin 
   pool: 5
-  username: root
-  password: 
+  username: goodscout
+  password: goodscout1102
+
+development:
+  <<: *default
+  database: goodscout_development
 
 test:
   <<: *default
+  database: goodscout_test
+
+staging:
+  <<: *default
+  database: goodscout_staging
 
 production:
   <<: *default
+  database: goodscout
