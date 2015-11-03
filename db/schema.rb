@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150817055819) do
     t.integer  "job_id",                limit: 4,                    null: false
     t.integer  "desire_to_work_id",     limit: 4,                    null: false
     t.text     "notes",                 limit: 65535
-    t.boolean  "is_invitation_enabled", limit: 1,     default: true, null: false
+    t.boolean  "is_invitation_enabled",               default: true, null: false
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
   end
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150817055819) do
     t.text     "desc",               limit: 65535,                 null: false
     t.string   "attached_file_name", limit: 255
     t.binary   "attached_file",      limit: 65535
-    t.boolean  "is_read",            limit: 1,     default: false, null: false
+    t.boolean  "is_read",                          default: false, null: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150817055819) do
     t.integer  "notification_type", limit: 4,                 null: false
     t.integer  "user_type",         limit: 4,                 null: false
     t.integer  "user_id",           limit: 4,                 null: false
-    t.boolean  "is_done",           limit: 1, default: false, null: false
+    t.boolean  "is_done",                     default: false, null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end

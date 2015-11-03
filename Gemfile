@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
 #======================= our gems ============================
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.13'
 gem 'carrierwave'
 gem 'bcrypt-ruby', '3.1.5', require: 'bcrypt'
 gem 'font-awesome-rails'
-gem 'rails_config'
+gem 'rails_config', '~> 0.4.2'
 gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
-gem 'rmagick', require: 'RMagick'
 gem 'therubyracer'
+gem 'rmagick', require: 'RMagick'
 
 group :development, :staging do
   gem 'pry-rails'
@@ -45,7 +45,7 @@ end
 
 #======================= default =============================
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '~> 4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -71,9 +71,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'passenger'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'seed-fu'
+gem 'dotenv-rails'
+gem 'log-monitor'
+
+group :development, :test do
+  gem 'rspec-core'
+  gem 'rspec-rails'
+  gem 'rspec-expectations'
+  gem "factory_girl_rails"
+  gem 'thin'
+  gem 'minitest'
+  gem 'poltergeist'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
